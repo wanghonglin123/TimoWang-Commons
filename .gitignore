@@ -1,0 +1,49 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# maven ignore
+target/
+*.jar
+*.war
+*.zip
+*.tar
+*.tar.gz
+*.rar
+
+# eclipse ignore
+.settings/
+.project
+.classpath
+.metadata
+
+# idea ignore
+.idea/
+*.ipr
+*.iml
+*.iws
+
+# temp ignore
+*.log
+*.cache
+*.diff
+*.patch
+*.tmp
+
+# system ignore
+.DS_Store
+Thumbs.db
+
+## .recommenders ignore
+.recommenders
+.recommenders/
+
+## rebel.xml
+rebel.xml
+
+/msyt-parent/msyt-parent-pojo/src/main/java/cc/msonion/carambola/parent/pojo/CustomDefinition.java
+/msyt-parent/msyt-parent-pojo/src/main/java/cc/msonion/carambola/parent/pojo/CustomDefinition.java
+/msyt-parent/msyt-parent-pojo/src/main/java/cc/msonion/carambola/parent/pojo/zk/client/CustomDefinition.java
