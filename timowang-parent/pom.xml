@@ -65,6 +65,35 @@
                 <version>1.0.0</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.timowang</groupId>
+                <artifactId>timowang-dao</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.timowang</groupId>
+                <artifactId>timowang-interfaces</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.timowang</groupId>
+                <artifactId>timowang-pojo</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.timowang</groupId>
+                <artifactId>timowang-ext</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.timowang</groupId>
+                <artifactId>timowang-member-service</artifactId>
+                <version>1.0.0</version>
+            </dependency>
             <!-- mysql驱动包 -->
             <dependency>
                 <groupId>mysql</groupId>

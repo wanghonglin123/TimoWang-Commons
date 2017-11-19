@@ -30,7 +30,12 @@ package com.timowang.common.configura.druid;
  * @Version: V2.0.10
  */
 
+import com.alibaba.druid.pool.DruidDataSource;
+import com.timowang.common.configura.mybatis.TimoMybatisConfigura;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
@@ -46,10 +51,74 @@ import org.springframework.stereotype.Component;
 @PropertySource("${spring.profile.active}/jdbc.properties")
 public class TimoDruidConfigura {
 
-    @Value("${jdbc.username}")
+    @Value("${spring.druid.datasource.driverClassName}")
+    private String driverClassName;
+
+    @Value("${spring.druid.datasource.url}")
+    private String url;
+
+    @Value("${spring.druid.datasource.username}")
     private String userName;
 
-    @Value("${jdbc.password}")
+    @Value("${spring.druid.datasource.password}")
     private String password;
 
+    @Value("${spring.druid.datasource.initialSize}")
+    private int initialSize;
+
+    @Value("${spring.druid.datasource.minIdle}")
+    private int minIdle;
+
+    @Value("${spring.druid.datasource.maxActive}")
+    private int maxActive;
+
+    @Value("${spring.druid.datasource.maxWait}")
+    private int maxWait;
+
+    @Value("${spring.druid.datasource.minEvictableIdleTimeMillis}")
+    private long minEvictableIdleTimeMillis;
+
+    @Value("${spring.druid.datasource.timeBetweenEvictionRunsMillis}")
+    private long timeBetweenEvictionRunsMillis;
+
+    @Value("${spring.druid.datasource.validationQuery}")
+    private String validationQuery;
+
+    @Value("${spring.druid.datasource.testWhileIdle}")
+    private boolean testWhileIdle;
+
+    @Value("${spring.druid.datasource.testOnBorrow}")
+    private boolean testOnBorrow;
+
+    @Value("${spring.druid.datasource.testOnReturn}")
+    private boolean testOnReturn;
+
+    @Value("${spring.druid.datasource.poolPreparedStatements}")
+    private boolean poolPreparedStatements;
+
+    @Value("${spring.druid.datasource.maxOpenPreparedStatements}")
+    private int maxOpenPreparedStatements;
+
+    @Bean(destroyMethod = "close", initMethod = "init")
+    public DruidDataSource druidDataSource(){
+        DruidDataSource druidDataSource = new DruidDataSource();
+        druidDataSource.setDriverClassName(this.driverClassName);
+        druidDataSource.setUrl(this.url);
+        druidDataSource.setUsername(this.userName);
+        druidDataSource.setPassword(this.password);
+        druidDataSource.setInitialSize(this.initialSize);
+        druidDataSource.setMaxActive(this.maxActive);
+        druidDataSource.setMinIdle(this.minIdle);
+        druidDataSource.setMaxWait(this.maxWait);
+        druidDataSource.setMinEvictableIdleTimeMillis(this.minEvictableIdleTimeMillis);
+        druidDataSource.setTimeBetweenEvictionRunsMillis(this.timeBetweenEvictionRunsMillis);
+        druidDataSource.setValidationQuery(this.validationQuery);
+        druidDataSource.setTestWhileIdle(this.testWhileIdle);
+        druidDataSource.setTestOnBorrow(this.testOnBorrow);
+        druidDataSource.setTestOnReturn(this.testOnReturn);
+        druidDataSource.setPoolPreparedStatements(this.poolPreparedStatements);
+        druidDataSource.setMaxOpenPreparedStatements(this.maxOpenPreparedStatements);
+
+        return druidDataSource;
+    }
 }
