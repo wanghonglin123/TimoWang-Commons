@@ -18,74 +18,46 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.common.configura.shiro;
+package com.timowang.common.configura.shiro.pojo;
 
 /**
- * @Title: TimoShiroConfigura
+ * @Title: TimoShiroSecurityRealm
  * @Package: com.timowang.common.configura.shiro
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHongLin timo-wang@msyc.cc
+ * @Date: 2017/11/21
+ * @Version: V2.0.10
+ * @Modify-by: WangHongLin timo-wang@msyc.cc
+ * @Modify-date: 2017/11/21
+ * @Modify-version: 2.1.5
+ * @Modify-description: 新增：增，删，改，查方法
  */
 
-import com.timowang.common.configura.shiro.pojo.*;
-import org.apache.shiro.cache.MemoryConstrainedCacheManager;
-import org.apache.shiro.session.mgt.eis.CachingSessionDAO;
-import org.apache.shiro.web.mgt.CookieRememberMeManager;
-import org.apache.shiro.web.servlet.SimpleCookie;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.subject.PrincipalCollection;
 
 /**
- * @ClassName: TimoShiroConfigura
+ * @ClassName: TimoShiroSecurityRealm
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
- * @Date: 2017/11/20
+ * @Date: 2017/11/21
  */
-@Configuration
-public class TimoShiroConfigura {
+public class TimoShiroSecurityRealm extends AuthorizingRealm{
 
-    @Bean(name = "sessionIdCookie")
-    public SimpleCookie sessionIdCookie() {
-        SimpleCookie timoSimpleCookie = new TimoSimpleCookie("sid.timowang.com");
-        timoSimpleCookie.setMaxAge(36000);
-        timoSimpleCookie.setHttpOnly(true);
-        return timoSimpleCookie;
+    @Override
+    public AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection var1){
+        return null;
     }
 
-    @Bean(name = "rememberMeCookie")
-    public SimpleCookie rememberMeCookie() {
-        SimpleCookie timoSimpleCookie = new TimoSimpleCookie("rme.timowang.com");
-        timoSimpleCookie.setMaxAge(36000);
-        timoSimpleCookie.setHttpOnly(true);
-        return timoSimpleCookie;
+    @Override
+    public AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken var1) throws AuthenticationException{
+        return null;
     }
-
-    @Bean
-    public CookieRememberMeManager cookieRememberMeManager(SimpleCookie sessionIdCookie) {
-        CookieRememberMeManager timoCookieRememberMeManager = new TimoCookieRememberMeManager();
-        timoCookieRememberMeManager.setCookie(sessionIdCookie);
-        timoCookieRememberMeManager.setCipherKey("test".getBytes());
-        return timoCookieRememberMeManager;
-    }
-
-    @Bean
-    public MemoryConstrainedCacheManager cacheManager() {
-        return new TimoMemoryConstrainedCacheManager();
-    }
-
-    @Bean
-    public CachingSessionDAO sessionDAO() {
-        CachingSessionDAO cachingSessionDAO = new TimoSessionDao();
-        return cachingSessionDAO;
-    }
-
-    @Bean
-    public TimoDefaultWebSecurityManager defaultWebSecurityManager() {
-        TimoDefaultWebSecurityManager timoDefaultWebSecurityManager = new TimoDefaultWebSecurityManager();
-        return timoDefaultWebSecurityManager;
-    }
-
 
 }

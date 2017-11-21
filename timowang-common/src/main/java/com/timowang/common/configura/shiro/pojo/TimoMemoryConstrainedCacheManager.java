@@ -18,10 +18,10 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.common.configura.shiro;
+package com.timowang.common.configura.shiro.pojo;
 
 /**
- * @Title: TimoShiroSessionListener
+ * @Title: TimoMemoryConstrainedCacheManager
  * @Package: com.timowang.common.configura.shiro
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
@@ -34,30 +34,24 @@ package com.timowang.common.configura.shiro;
  * @Modify-description: 新增：增，删，改，查方法
  */
 
-import org.apache.shiro.session.Session;
-import org.apache.shiro.session.SessionListener;
+import org.apache.shiro.cache.Cache;
+import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 
 /**
- * @ClassName: TimoShiroSessionListener
- * @Description:    自定义Shiro Session监听器
+ * @ClassName: TimoMemoryConstrainedCacheManager
+ * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
  * @Date: 2017/11/21
  */
-public class TimoShiroSessionListener implements SessionListener{
+public class TimoMemoryConstrainedCacheManager extends MemoryConstrainedCacheManager{
 
-    @Override
-    public void onStart(Session session) {
-
+    public TimoMemoryConstrainedCacheManager() {
+        super();
     }
 
     @Override
-    public void onStop(Session session) {
-
-    }
-
-    @Override
-    public void onExpiration(Session session) {
-
+    protected Cache createCache(String name) {
+        return super.createCache(name);
     }
 }

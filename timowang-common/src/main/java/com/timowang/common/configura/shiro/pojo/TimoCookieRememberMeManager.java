@@ -18,10 +18,10 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.common.configura.shiro;
+package com.timowang.common.configura.shiro.pojo;
 
 /**
- * @Title: TimoSessionDao
+ * @Title: TimoCookieRememberMeManager
  * @Package: com.timowang.common.configura.shiro
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
@@ -34,42 +34,51 @@ package com.timowang.common.configura.shiro;
  * @Modify-description: 新增：增，删，改，查方法
  */
 
-import org.apache.shiro.cache.Cache;
-import org.apache.shiro.cache.CacheManager;
-import org.apache.shiro.session.Session;
-import org.apache.shiro.session.UnknownSessionException;
-import org.apache.shiro.session.mgt.eis.CachingSessionDAO;
-import org.apache.shiro.session.mgt.eis.SessionIdGenerator;
-
-import java.io.Serializable;
-import java.util.Collection;
+import org.apache.shiro.subject.Subject;
+import org.apache.shiro.subject.SubjectContext;
+import org.apache.shiro.web.mgt.CookieRememberMeManager;
+import org.apache.shiro.web.servlet.Cookie;
 
 /**
- * @ClassName: TimoSessionDao
+ * @ClassName: TimoCookieRememberMeManager
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
  * @Date: 2017/11/21
  */
-public class TimoSessionDao extends CachingSessionDAO{
+public class TimoCookieRememberMeManager extends CookieRememberMeManager{
 
-    @Override
-    protected Serializable doCreate(Session session) {
-        return null;
+    public TimoCookieRememberMeManager() {
+        super();
     }
 
     @Override
-    protected Session doReadSession(Serializable serializable) {
-        return null;
+    public Cookie getCookie() {
+        return super.getCookie();
     }
 
     @Override
-    protected void doUpdate(Session session) {
-
+    public void setCookie(Cookie cookie) {
+        super.setCookie(cookie);
     }
 
     @Override
-    protected void doDelete(Session session) {
+    protected void rememberSerializedIdentity(Subject subject, byte[] serialized) {
+        super.rememberSerializedIdentity(subject, serialized);
+    }
 
+    @Override
+    protected byte[] getRememberedSerializedIdentity(SubjectContext subjectContext) {
+        return super.getRememberedSerializedIdentity(subjectContext);
+    }
+
+    @Override
+    protected void forgetIdentity(Subject subject) {
+        super.forgetIdentity(subject);
+    }
+
+    @Override
+    public void forgetIdentity(SubjectContext subjectContext) {
+        super.forgetIdentity(subjectContext);
     }
 }
