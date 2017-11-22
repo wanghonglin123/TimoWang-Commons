@@ -36,6 +36,12 @@
             <artifactId>shiro-all</artifactId>
         </dependency>
         <!-- shiro-all -->
+
+        <!-- Redis客户端 -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

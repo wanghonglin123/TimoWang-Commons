@@ -100,7 +100,7 @@ public class TimoDruidConfigura {
     private int maxOpenPreparedStatements;
 
     @Bean(destroyMethod = "close", initMethod = "init")
-    public DruidDataSource druidDataSource(){
+    public DruidDataSource dataSource(){
         DruidDataSource druidDataSource = new DruidDataSource();
         druidDataSource.setDriverClassName(this.driverClassName);
         druidDataSource.setUrl(this.url);

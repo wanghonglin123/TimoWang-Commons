@@ -43,20 +43,18 @@ public class TimoMybatisConfigura {
     private Resource[] mapperLocations;
 
     @Autowired
-    private DruidDataSource druidDataSource;
+    private DruidDataSource dataSource;
 
     @Bean
-    @ConditionalOnBean(DruidDataSource.class)
     public SqlSessionFactory sqlSessionFactory() throws Exception{
         SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
-        sqlSessionFactory.setDataSource(druidDataSource);
+        sqlSessionFactory.setDataSource(dataSource);
         sqlSessionFactory.setMapperLocations(this.mapperLocations);
         sqlSessionFactory.setTypeAliasesPackage(this.typeAliasesPackage);
         return sqlSessionFactory.getObject();
     }
 
     @Bean
-    @ConditionalOnBean(SqlSessionFactory.class)
     public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) throws Exception{
         return new SqlSessionTemplate(sqlSessionFactory);
     }
