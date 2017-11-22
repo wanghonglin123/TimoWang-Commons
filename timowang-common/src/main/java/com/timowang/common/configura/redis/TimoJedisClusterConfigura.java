@@ -26,15 +26,10 @@ package com.timowang.common.configura.redis;
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHongLin timo-wang@msyc.cc
- * @Date: 2017/11/22
- * @Version: V2.0.10
- * @Modify-by: WangHongLin timo-wang@msyc.cc
- * @Modify-date: 2017/11/22
- * @Modify-version: 2.1.5
- * @Modify-description: 新增：增，删，改，查方法
  */
 
 import com.timowang.common.configura.redis.pojo.TimoJedisCluster;
+import com.timowang.common.configura.redis.pojo.TimoJedisPoolConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -59,10 +54,46 @@ public class TimoJedisClusterConfigura{
     @Value("${redis.nodes}")
     private String nodes;
 
+    @Value("${redis.timeout}")
+    private Integer timeout;
+
+    @Value("${redis.maxIdle}")
+    private int maxIdle;
+
+    @Value("${redis.minIdle}")
+    private int minIdle;
+
+    @Value("redis.maxTotal")
+    private int maxTotal;
+
+    @Value("redis.maxWaitMillis")
+    private int maxWaitMillis;
+
+    @Value("${redis.testOnBorrow}")
+    private boolean testOnBorrow;
+
+    @Value("${redis.testOnReturn}")
+    private boolean testOnReturn;
+
+    @Value("${redis.maxAttempts}")
+    private int maxAttempts;
+
     @Bean
-    public JedisCluster jedisCluster() throws Exception{
+    public TimoJedisPoolConfig timoJedisPool(){
+        TimoJedisPoolConfig timoJedisPool = new TimoJedisPoolConfig();
+        timoJedisPool.setMaxIdle(maxIdle);
+        timoJedisPool.setMaxTotal(maxTotal);
+        timoJedisPool.setMinIdle(minIdle);
+        timoJedisPool.setMaxWaitMillis(maxWaitMillis);
+        timoJedisPool.setTestOnBorrow(testOnBorrow);
+        timoJedisPool.setTestOnReturn(testOnReturn);
+        return timoJedisPool;
+    }
+
+    @Bean
+    public JedisCluster jedisCluster(TimoJedisPoolConfig timoJedisPool) throws Exception{
         Set<HostAndPort> hostAndPorts = this.getHostAndPorts();
-        JedisCluster jedisCluster = new TimoJedisCluster(hostAndPorts);
+        JedisCluster jedisCluster = new TimoJedisCluster(hostAndPorts, timeout, maxAttempts, timoJedisPool);
         return jedisCluster;
     }
 
