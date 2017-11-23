@@ -1,0 +1,3 @@
+1：sudo docker search mysql 查看Mysql所有的镜像
+2：sudo docker pull mysql:5.6
+3: sudo docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 96dc914914f5 运行Mysql镜像，96dc914914f5 镜像id

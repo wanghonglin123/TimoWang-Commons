@@ -48,14 +48,14 @@ import java.util.Set;
  * @Date: 2017/11/22
  */
 @Configuration
-@PropertySource("${spring.profile.active}/redis.properties")
+@PropertySource({"${spring.profile.active}/redis.properties"})
 public class TimoJedisClusterConfigura{
 
     @Value("${redis.nodes}")
     private String nodes;
 
     @Value("${redis.timeout}")
-    private Integer timeout;
+    private int timeout;
 
     @Value("${redis.maxIdle}")
     private int maxIdle;
@@ -63,10 +63,10 @@ public class TimoJedisClusterConfigura{
     @Value("${redis.minIdle}")
     private int minIdle;
 
-    @Value("redis.maxTotal")
+    @Value("${redis.maxTotal}")
     private int maxTotal;
 
-    @Value("redis.maxWaitMillis")
+    @Value("${redis.maxWaitMillis}")
     private int maxWaitMillis;
 
     @Value("${redis.testOnBorrow}")
@@ -93,6 +93,8 @@ public class TimoJedisClusterConfigura{
     @Bean
     public JedisCluster jedisCluster(TimoJedisPoolConfig timoJedisPool) throws Exception{
         Set<HostAndPort> hostAndPorts = this.getHostAndPorts();
+        // 不使用这个，父类默认配置了JedisPool，timeout, maxAttempts
+        //JedisCluster jedisCluster = new TimoJedisCluster(hostAndPorts);
         JedisCluster jedisCluster = new TimoJedisCluster(hostAndPorts, timeout, maxAttempts, timoJedisPool);
         return jedisCluster;
     }
@@ -113,9 +115,10 @@ public class TimoJedisClusterConfigura{
                 HostAndPort hostAndPortExample = new HostAndPort(host, post);
                 hostAndPorts.add(hostAndPortExample);
             }
+            return hostAndPorts;
         } catch (Exception e) {
             hostAndPorts = null;
+            throw new Exception(e);
         }
-        return null;
     }
 }

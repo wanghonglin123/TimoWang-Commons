@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)https://www.cnblogs.com/ivictor/archive/2015/09/08/4791274.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Docker命令详解 - iVictor - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Docker命令详解 - iVictor - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Docker命令详解 - iVictor - 博客园_files/bundle-coffee.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./Docker命令详解 - iVictor - 博客园_files/bundle-coffee-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/ivictor/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/ivictor/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/ivictor/wlwmanifest.xml">
+<script async="" src="./Docker命令详解 - iVictor - 博客园_files/analytics.js.下载"></script><script type="text/javascript" src="./Docker命令详解 - iVictor - 博客园_files/encoder.js.下载"></script><script src="./Docker命令详解 - iVictor - 博客园_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'ivictor', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./Docker命令详解 - iVictor - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/ivictor/"><img id="blogLogo" src="./Docker命令详解 - iVictor - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/ivictor/">SlowTech</a></h1>
+<h2>生活本应就是慢的</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="navigator">
+			
+<ul id="navList">
+	<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+	<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/ivictor/">首页</a></li>
+	<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+	<li><a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/iVictor">联系</a></li>
+	<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+	<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/ivictor/rss">订阅</a>
+	<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/ivictor/rss"><img src="./Docker命令详解 - iVictor - 博客园_files/xml.gif" alt="订阅"></a></li>
+</ul>
+
+
+			<div class="blogStats">
+				
+				<div id="blog_stats">
+<!--done-->
+随笔- 232&nbsp;
+文章- 0&nbsp;
+评论- 150&nbsp;
+</div>
+				
+			</div><!--end: blogStats -->
+		</div><!--end: navigator 博客导航栏 -->
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/ivictor/p/4791274.html">Docker命令详解</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>最近学习Docker，将docker所有命令实验了一番，特整理如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Docker命令详解 - iVictor - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;"># docker </span>--<span style="color: #000000;">help
+Usage: docker [OPTIONS] COMMAND [arg...]
+       docker daemon [ </span>--help |<span style="color: #000000;"> ... ]
+       docker [ </span>-h | --help | -v | --<span style="color: #000000;">version ]
+
+A self</span>-sufficient runtime <span style="color: #0000ff;">for</span><span style="color: #000000;"> containers.
+
+Options:
+
+  </span>--config=~/<span style="color: #000000;">.docker              Location of client config files
+  </span>-D, --debug=<span style="color: #0000ff;">false</span><span style="color: #000000;">               Enable debug mode
+  </span>-H, --host=<span style="color: #000000;">[]                   Daemon socket(s) to connect to
+  </span>-h, --help=<span style="color: #0000ff;">false</span><span style="color: #000000;">                Print usage
+  </span>-l, --log-level=<span style="color: #000000;">info            Set the logging level
+  </span>--tls=<span style="color: #0000ff;">false</span>                     Use TLS; implied by --<span style="color: #000000;">tlsverify
+  </span>--tlscacert=~/.docker/ca.pem    Trust certs signed only by <span style="color: #0000ff;">this</span><span style="color: #000000;"> CA
+  </span>--tlscert=~/.docker/<span style="color: #000000;">cert.pem    Path to TLS certificate file
+  </span>--tlskey=~/.docker/<span style="color: #000000;">key.pem      Path to TLS key file
+  </span>--tlsverify=<span style="color: #0000ff;">false</span><span style="color: #000000;">               Use TLS and verify the remote
+  </span>-v, --version=<span style="color: #0000ff;">false</span><span style="color: #000000;">             Print version information and quit
+
+Commands:
+    <strong><span style="color: #ff0000;">attach    Attach to a running container</span> </strong> <br></span>              <span style="color: #0000ff;">--将终端依附到容器上
+              </span><span style="color: #800080;">1</span>&gt;<span style="color: #000000;"> 运行一个交互型容器
+                 [root@localhost </span>~]# docker run -i -t centos /bin/<span style="color: #000000;">bash
+                 [root@f0a02b473067 </span>/<span style="color: #000000;">]# 
+              </span><span style="color: #800080;">2</span>&gt;<span style="color: #000000;"> 在另一个窗口上查看该容器的状态
+                 [root@localhost </span>~]# docker ps -<span style="color: #000000;">a
+                 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS      PORTS       NAMES
+                 d4a75f165ce6        centos              </span><span style="color: #800000;">"</span><span style="color: #800000;">/bin/bash</span><span style="color: #800000;">"</span>         <span style="color: #800080;">5</span> seconds ago       Up <span style="color: #800080;">5</span><span style="color: #000000;"> seconds            cranky_mahavira
+              </span><span style="color: #800080;">3</span>&gt;<span style="color: #000000;"> 退出第一步中运行的容器
+                 [root@d4a75f165ce6 </span>/<span style="color: #000000;">]# exit
+                  exit
+              </span><span style="color: #800080;">4</span>&gt;<span style="color: #000000;"> 查看该容器的状态
+                 [root@localhost </span>~]# docker ps -<span style="color: #000000;">a
+                 CONTAINER ID        IMAGE           COMMAND           CREATED             STATUS                  PORTS    NAMES
+                 d4a75f165ce6        centos          </span><span style="color: #800000;">"</span><span style="color: #800000;">/bin/bash</span><span style="color: #800000;">"</span>       <span style="color: #800080;">2</span> minutes ago       Exited (<span style="color: #800080;">0</span>) <span style="color: #800080;">23</span><span style="color: #000000;"> seconds ago        cranky_mahavira
+                 可见此时容器的状态是Exited，那么，如何再次运行这个容器呢？可以使用docker start命令
+              </span><span style="color: #800080;">5</span>&gt;<span style="color: #000000;"> 再次运行该容器
+                 [root@localhost </span>~<span style="color: #000000;">]# docker start cranky_mahavira
+                 cranky_mahavira
+              </span><span style="color: #800080;">6</span>&gt;<span style="color: #000000;"> 再次查看该容器的状态
+                 [root@localhost </span>~]# docker ps -<span style="color: #000000;">a
+                 CONTAINER ID        IMAGE          COMMAND             CREATED             STATUS              PORTS      NAMES
+                 d4a75f165ce6        centos         </span><span style="color: #800000;">"</span><span style="color: #800000;">/bin/bash</span><span style="color: #800000;">"</span>         <span style="color: #800080;">6</span> minutes ago       Up <span style="color: #800080;">29</span><span style="color: #000000;"> seconds                  cranky_mahavira
+                 因为该容器是交互型的，但此刻我们发现没有具体的终端可以与之交互，这时可使用attach命令。
+              </span><span style="color: #800080;">7</span>&gt;<span style="color: #000000;"> 通过attach命令进行交互
+                 [root@localhost </span>~<span style="color: #000000;">]# docker attach cranky_mahavira
+                 [root@d4a75f165ce6 </span>/<span style="color: #000000;">]# <br>
+    <strong><span style="color: #ff0000;">build     Build an image </span></strong></span><strong><span style="color: #ff0000;">from a Dockerfile
+              </span></strong>-<span style="color: #0000ff;">-</span><span style="color: #000000;"><span style="color: #0000ff;">通过Dockerfile创建镜像<br></span>
+    <strong><span style="color: #ff0000;">commit    Create a </span></strong></span><strong><span style="color: #ff0000;">new image from a container's changes</span></strong>
+             <span style="color: #0000ff;"> --</span><span style="color: #000000;"><span style="color: #0000ff;">通过容器创建本地镜像</span>
+              注意：如果是要push到docker hub中，注意生成镜像的命名
+               [root@localhost </span>~<span style="color: #000000;">]# docker commit centos_v1 centos:v1
+               68ad49c999496cff25fdda58f0521530a143d3884e61bce7ada09bdc22337638
+               [root@localhost </span>~<span style="color: #000000;">]# docker push centos:v1
+               You cannot push a </span><span style="color: #800000;">"</span><span style="color: #800000;">root</span><span style="color: #800000;">"</span> repository. Please rename your repository to &lt;user&gt;/&lt;repo&gt; (ex: &lt;user&gt;/<span style="color: #000000;">centos)
+               用centos:v1就不行，因为它push到docker hub中时，是推送到相应用户下，必须指定用户名。譬如我的用户名是ivictor，则新生成的本地镜像命名为：
+               docker push victor</span>/<span style="color: #000000;">centos:v1，其中v1是tag，可不写，默认是latest <br>              
+    <strong><span style="color: #ff0000;">cp        Copy files</span></strong></span><strong><span style="color: #ff0000;">/folders from a container to a HOSTDIR or to STDOUT
+              </span></strong><span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">在宿主机和容器之间相互COPY文件</span>
+              cp的用法如下：
+              Usage:    docker cp [OPTIONS] CONTAINER:PATH LOCALPATH</span>|-<span style="color: #000000;">
+                        docker cp [OPTIONS] LOCALPATH</span>|-<span style="color: #000000;"> CONTAINER:PATH
+              </span><span style="color: #000000;">如：容器mysql中/usr/local/bin/存在docker-entrypoint.sh文件，可如下方式copy到宿主机<br>              #&nbsp; docker cp mysql:/usr/local/bin/docker-entrypoint.sh /root<br>              修改完毕后，将该文件重新copy回容器<br>              # docker cp /root/docker-entrypoint.sh mysql:/usr/local/bin/     <br>
+    <strong><span style="color: #ff0000;">create    Create a </span></strong></span><strong><span style="color: #ff0000;">new container </span> </strong><br>              <span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">创建一个新的容器，注意，此时，容器的status只是Created<br><br></span>   <strong> <span style="color: #ff0000;">diff      Inspect changes on a container</span></strong></span><strong><span style="color: #ff0000;">'s filesystem</span></strong>
+              <span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">查看容器内发生改变的文件，以我的mysql容器为例</span>
+               [root@localhost </span>~<span style="color: #000000;">]# docker diff mysqldb
+               C </span>/<span style="color: #000000;">root
+               A </span>/root/<span style="color: #000000;">.bash_history
+               A </span>/<span style="color: #000000;">test1.txt
+               A </span>/<span style="color: #000000;">test.tar
+               A </span>/<span style="color: #000000;">test.txt
+               C </span>/<span style="color: #000000;">run
+               C </span>/run/<span style="color: #000000;">mysqld
+               A </span>/run/mysqld/<span style="color: #000000;">mysqld.pid
+               A </span>/run/mysqld/<span style="color: #000000;">mysqld.sock
+               不难看出，C对应的均是目录，A对应的均是文件<br>
+    <strong><span style="color: #ff0000;">events    Get real time events </span></strong></span><strong><span style="color: #ff0000;">from the server
+              </span></strong><span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">实时输出Docker服务器端的事件，包括容器的创建，启动，关闭等。</span>
+              譬如：
+              [root@localhost </span>~<span style="color: #000000;">]# docker events
+              </span><span style="color: #800080;">2015</span>-<span style="color: #800080;">09</span>-08T17:<span style="color: #800080;">40</span>:<span style="color: #800080;">13.000000000</span>+<span style="color: #800080;">08</span>:<span style="color: #800080;">00</span> d2a2ef5ddb90b505acaf6b59ab43eecf7eddbd3e71f36572436c34dc0763db79: (<span style="color: #0000ff;">from</span><span style="color: #000000;"> wordpress) create
+              </span><span style="color: #800080;">2015</span>-<span style="color: #800080;">09</span>-08T17:<span style="color: #800080;">40</span>:<span style="color: #800080;">14.000000000</span>+<span style="color: #800080;">08</span>:<span style="color: #800080;">00</span> d2a2ef5ddb90b505acaf6b59ab43eecf7eddbd3e71f36572436c34dc0763db79: (<span style="color: #0000ff;">from</span><span style="color: #000000;"> wordpress) die
+              </span><span style="color: #800080;">2015</span>-<span style="color: #800080;">09</span>-08T17:<span style="color: #800080;">42</span>:<span style="color: #800080;">10.000000000</span>+<span style="color: #800080;">08</span>:<span style="color: #800080;">00</span> 839866a338db6dd626fa8eabeef53a839e4d2e2eb16ebd89679aa722c4caa5f7: (<span style="color: #0000ff;">from</span><span style="color: #000000;"> mysql) start<br>
+    <strong><span style="color: #ff0000;">exec      Run a command </span></strong></span><strong><span style="color: #ff0000;">in a running container
+              </span></strong><span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">用于容器启动之后，执行其它的任务</span>
+              通过exec命令可以创建两种任务：后台型任务和交互型任务
+              后台型任务：docker exec </span>-d cc touch <span style="color: #800080;">123</span><span style="color: #000000;">  其中cc是容器名
+              交互型任务：
+              [root@localhost </span>~]# docker exec -i -t cc /bin/<span style="color: #000000;">bash
+              root@1e5bb46d801b:</span>/<span style="color: #000000;"># ls
+              </span><span style="color: #800080;">123</span>  bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  <span style="color: #0000ff;">var<br></span><strong><span style="color: #ff0000;">
+    export    Export a container's filesystem as a tar archive</span></strong>
+              <span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">将容器的文件系统打包成tar文件</span>
+              有两种方式：
+              docker export </span>-<span style="color: #000000;">o mysqldb1.tar mysqldb
+              docker export mysqldb </span>&gt;<span style="color: #000000;"> mysqldb.tar<br>
+    <strong><span style="color: #ff0000;">history   Show the history of an image
+              </span></strong></span><span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">显示镜像制作的过程，相当于dockfile<br></span>
+    <span style="color: #ff0000;"><strong>images    List images</strong>   <br>              </span></span><span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">列出本机的所有镜像<br></span>
+    <strong><span style="color: #ff0000;">import    Import the contents </span></strong></span><strong><span style="color: #ff0000;">from a tarball to create a filesystem image
+              </span></strong><span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">根据tar文件的内容新建一个镜像，与之前的export命令相对应</span>
+             [root@localhost </span>~<span style="color: #000000;">]# docker import mysqldb.tar mysql:v1
+             eb81de183cd94fd6f0231de4ff29969db822afd3a25841d2dc9cf3562d135a10
+             [root@localhost </span>~<span style="color: #000000;">]# docker images
+             REPOSITORY                 TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
+             mysql                      v1                  eb81de183cd9        </span><span style="color: #800080;">21</span> seconds ago       <span style="color: #800080;">281.9</span><span style="color: #000000;"> MB<br>
+    <strong><span style="color: #ff0000;">info      Display system</span></strong></span><strong><span style="color: #ff0000;">-wide information
+              </span></strong><span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">查看docker的系统信息</span>
+              [root@localhost </span>~<span style="color: #000000;">]# docker info
+              Containers: </span><span style="color: #800080;">3</span>   <span style="color: #0000ff;"> --</span><span style="color: #000000;"><span style="color: #0000ff;">当前有3个容器</span>
+              Images: </span><span style="color: #800080;">298</span><span style="color: #000000;">      
+              Storage Driver: devicemapper
+               Pool Name: docker</span>-<span style="color: #800080;">253</span>:<span style="color: #800080;">0</span>-<span style="color: #800080;">34402623</span>-<span style="color: #000000;">pool
+               Pool Blocksize: </span><span style="color: #800080;">65.54</span><span style="color: #000000;"> kB
+               Backing Filesystem: xfs
+               Data file: </span>/dev/<span style="color: #000000;">loop0
+               Metadata file: </span>/dev/<span style="color: #000000;">loop1
+               Data Space Used: </span><span style="color: #800080;">8.677</span> GB     <span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">对应的是下面Data loop file大小</span>
+               Data Space Total: </span><span style="color: #800080;">107.4</span><span style="color: #000000;"> GB
+               Data Space Available: </span><span style="color: #800080;">5.737</span><span style="color: #000000;"> GB
+               Metadata Space Used: </span><span style="color: #800080;">13.4</span> MB  <span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">对应的是下面Metadata loop file大小</span>
+               Metadata Space Total: </span><span style="color: #800080;">2.147</span><span style="color: #000000;"> GB
+               Metadata Space Available: </span><span style="color: #800080;">2.134</span><span style="color: #000000;"> GB
+               Udev Sync Supported: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">
+               Deferred Removal Enabled: </span><span style="color: #0000ff;">false</span><span style="color: #000000;">
+               Data loop file: </span>/<span style="color: #0000ff;">var</span>/lib/docker/devicemapper/devicemapper/<span style="color: #000000;">data
+               Metadata loop file: </span>/<span style="color: #0000ff;">var</span>/lib/docker/devicemapper/devicemapper/<span style="color: #000000;">metadata
+               Library Version: </span><span style="color: #800080;">1.02</span>.<span style="color: #800080;">93</span>-RHEL7 (<span style="color: #800080;">2015</span>-<span style="color: #800080;">01</span>-<span style="color: #800080;">28</span><span style="color: #000000;">)
+              Execution Driver: native</span>-<span style="color: #800080;">0.2</span><span style="color: #000000;">
+              Logging Driver: json</span>-<span style="color: #000000;">file
+              Kernel Version: </span><span style="color: #800080;">3.10</span>.<span style="color: #800080;">0</span>-<span style="color: #800080;">229</span><span style="color: #000000;">.el7.x86_64
+              Operating System: CentOS Linux </span><span style="color: #800080;">7</span><span style="color: #000000;"> (Core)
+              CPUs: </span><span style="color: #800080;">2</span><span style="color: #000000;">
+              Total Memory: </span><span style="color: #800080;">979.7</span><span style="color: #000000;"> MiB
+              Name: localhost.localdomain
+              ID: TFVB:BXGQ:VVOC:K2DJ:LECE:2HNK:23B2:LEVF:P3IQ:L7D5:NG2V:UKNL
+              WARNING: bridge</span>-nf-call-iptables <span style="color: #0000ff;">is</span><span style="color: #000000;"> disabled
+              WARNING: bridge</span>-nf-call-ip6tables <span style="color: #0000ff;">is</span><span style="color: #000000;"> disabled<br>
+    <strong><span style="color: #ff0000;">inspect   Return low</span></strong></span><strong><span style="color: #ff0000;">-level information on a container or image
+              </span></strong><span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">用于查看容器的配置信息，包含容器名、环境变量、运行命令、主机配置、网络配置和数据卷配置等。<br></span>
+  <strong><span style="color: #ff0000;">  kill      Kill a running container 
+              </span></strong></span><span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">强制终止容器</span>
+              关于stop和kill的区别，docker stop命令给容器中的进程发送SIGTERM信号，默认行为是会导致容器退出，当然，
+              容器内程序可以捕获该信号并自行处理，例如可以选择忽略。而docker kill则是给容器的进程发送SIGKILL信号，该信号将会使容器必然退出。<br>
+    <strong><span style="color: #ff0000;">load      Load an image </span></strong></span><strong><span style="color: #ff0000;">from a tar archive or STDIN
+              </span></strong><span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">与下面的save命令相对应，将下面sava命令打包的镜像通过load命令导入<br></span>
+    <strong><span style="color: #ff0000;">login     Register or log </span></strong></span><strong><span style="color: #ff0000;">in to a Docker registry
+              </span></strong><span style="color: #ff0000;"><span style="color: #0000ff;">--登录到自己的Docker register，需有Docker Hub的注册账号</span></span><span style="color: #000000;">
+              [root@localhost </span>~<span style="color: #000000;">]# docker login
+              Username: ivictor
+              Password: 
+              Email: xxxx@foxmail.com
+              WARNING: login credentials saved </span><span style="color: #0000ff;">in</span> /root/.docker/<span style="color: #000000;">config.json
+              Login Succeeded<br>
+    <strong><span style="color: #ff0000;">logout    Log </span></strong></span><strong><span style="color: #ff0000;">out from a Docker registry
+              </span></strong><span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">退出登录</span>
+              [root@localhost </span>~<span style="color: #000000;">]# docker logout
+              Remove login credentials </span><span style="color: #0000ff;">for</span> https:<span style="color: #008000;">//</span><span style="color: #008000;">index.docker.io/v1/<br></span>
+<strong><span style="color: #ff0000;">    logs      Fetch the logs of a container
+              </span></strong><span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">用于查看容器的日志，它将输出到标准输出的数据作为日志输出到docker logs命令的终端上。常用于后台型容器<br></span>
+    <strong><span style="color: #ff0000;">pause     Pause all processes within a container
+              </span></strong></span><span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">暂停容器内的所有进程，</span>
+              此时，通过docker stats可以观察到此时的资源使用情况是固定不变的，
+              通过docker logs </span>-<span style="color: #000000;">f也观察不到日志的进一步输出。<br>
+    <strong><span style="color: #ff0000;">port      List port mappings or a specific mapping </span></strong></span><strong><span style="color: #ff0000;">for the CONTAINER
+              </span></strong><span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">输出容器端口与宿主机端口的映射情况</span>
+              譬如：
+              [root@localhost </span>~<span style="color: #000000;">]# docker port blog
+              </span><span style="color: #800080;">80</span>/tcp -&gt; <span style="color: #800080;">0.0</span>.<span style="color: #800080;">0.0</span>:<span style="color: #800080;">80</span><span style="color: #000000;">
+              容器blog的内部端口80映射到宿主机的80端口，这样可通过宿主机的80端口查看容器blog提供的服务<br>
+    <strong><span style="color: #ff0000;">ps        List containers  <br></span></strong></span>              <span style="color: #0000ff;">--列出所有容器，其中docker ps用于查看正在运行的容器，ps -</span><span style="color: #000000;"><span style="color: #0000ff;">a则用于查看所有容器。</span><br>
+    <strong><span style="color: #ff0000;">pull      Pull an image or a repository </span></strong></span><strong><span style="color: #ff0000;">from a registry
+              </span></strong><span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">从docker hub中下载镜像</span><br>
+    <strong><span style="color: #ff0000;">push      Push an image or a repository to a registry
+              </span></strong></span><span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">将本地的镜像上传到docker hub中</span>
+              前提是你要先用docker login登录上，不然会报以下错误
+              [root@localhost </span>~]# docker push ivictor/<span style="color: #000000;">centos:v1
+              The push refers to a repository [docker.io</span>/ivictor/centos] (len: <span style="color: #800080;">1</span><span style="color: #000000;">)
+              unauthorized: access to the requested resource </span><span style="color: #0000ff;">is</span><span style="color: #000000;"> not authorized<br>
+    <strong><span style="color: #ff0000;">rename    Rename a container
+              </span></strong></span><span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">更改容器的名字</span><br>
+    <strong><span style="color: #ff0000;">restart   Restart a running container <br></span></strong></span>             <span style="color: #0000ff;"> --</span><span style="color: #000000;"><span style="color: #0000ff;">重启容器</span><br>
+    <strong><span style="color: #ff0000;">rm        Remove one or more containers</span> 
+              </strong></span><span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">删除容器，注意，不可以删除一个运行中的容器，必须先用docker stop或docker kill使其停止。</span>
+              当然可以强制删除，必须加</span>-<span style="color: #000000;">f参数
+              如果要一次性删除所有容器，可使用 docker rm </span>-f `docker ps -a -q`，其中，-<span style="color: #000000;">q指的是只列出容器的ID<br>
+    <strong><span style="color: #ff0000;">rmi       Remove one or more images   <br></span></strong></span>              <span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">删除镜像</span><br>
+    <strong><span style="color: #ff0000;">run       Run a command </span></strong></span><strong><span style="color: #ff0000;">in a new</span></strong><span style="color: #000000;"><strong><span style="color: #ff0000;"> container</span></strong>   <br>              <span style="color: #0000ff;">--让创建的容器立刻进入运行状态，该命令等同于docker create创建容器后再使用docker start启动容器</span><br>
+   <strong><span style="color: #ff0000;"> save      Save an image(s) to a tar archive
+              </span></strong></span><span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">将镜像打包，与上面的load命令相对应</span>
+              譬如：
+              docker save </span>-<span style="color: #000000;">o nginx.tar nginx<br>
+    <strong><span style="color: #ff0000;">search    Search the Docker Hub </span></strong></span><strong><span style="color: #ff0000;">for images</span></strong>   <br>              <span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">从Docker Hub中搜索镜像</span><br>
+    <strong><span style="color: #ff0000;">start     Start one or more stopped containers
+              </span></strong></span><span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">启动容器</span><br>
+   <strong><span style="color: #ff0000;"> stats     Display a live stream of container(s) resource usage statistics
+              </span></strong></span><span style="color: #0000ff;">--动态显示容器的资源消耗情况，包括：CPU、内存、网络I/</span><span style="color: #000000;"><span style="color: #0000ff;">O</span><br>
+  <strong><span style="color: #ff0000;">  stop      Stop a running container</span> </strong><br></span>              <span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">停止一个运行的容器</span><br>
+  <strong><span style="color: #ff0000;">  tag       Tag an image into a repository
+              </span></strong></span><span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">对镜像进行重命名</span><br>
+    <strong><span style="color: #ff0000;">top       Display the running processes of a container
+              </span></strong></span><span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">查看容器中正在运行的进程</span><br>
+    <strong><span style="color: #ff0000;">unpause   Unpause all processes within a container
+              </span></strong></span><span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">恢复容器内暂停的进程，与pause参数相对应</span><br>
+    <strong><span style="color: #ff0000;">version   Show the Docker version information</span> </strong><br></span>              <span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">查看docker的版本</span><br>
+    <span style="color: #ff0000;">wait      Block until a container stops, then print its exit code
+              </span></span><span style="color: #0000ff;">--</span><span style="color: #000000;"><span style="color: #0000ff;">捕捉容器停止时的退出码</span>
+              执行此命令后，该命令会“hang”在当前终端，直到容器停止，此时，会打印出容器的退出码。
+
+Run </span><span style="color: #800000;">'</span><span style="color: #800000;">docker COMMAND --help</span><span style="color: #800000;">'</span> <span style="color: #0000ff;">for</span> more information on a command.</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Docker命令详解 - iVictor - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/ivictor/category/732393.html" target="_blank">Docker</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/ivictor/tag/Docker/">Docker</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(4791274,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;0c261817-f13a-e311-8d02-90b11c0b17d6&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Docker命令详解 - iVictor - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Docker命令详解 - iVictor - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/ivictor/" target="_blank"><img src="./Docker命令详解 - iVictor - 博客园_files/sample_face.gif" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/ivictor/">iVictor</a><br>
+            <a href="http://home.cnblogs.com/u/ivictor/followees">关注 - 2</a><br>
+            <a href="http://home.cnblogs.com/u/ivictor/followers">粉丝 - 129</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;0c261817-f13a-e311-8d02-90b11c0b17d6&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(4791274,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">3</span>
+    </div>
+    <div class="buryit" onclick="votePost(4791274,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/ivictor/p/4766094.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/ivictor/p/4766094.html" title="发布于2015-08-28 11:47">如何输出第二列相同的行</a><br><a href="http://www.cnblogs.com/ivictor/p/4800657.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/ivictor/p/4800657.html" title="发布于2015-09-11 13:22">sqoop数据导出导入命令</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2015-09-08 17:01</span> <a href="http://www.cnblogs.com/ivictor/">iVictor</a> 阅读(<span id="post_view_count">33589</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=4791274" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/ivictor/archive/2015/09/08/4791274.html#" onclick="AddToWz(4791274);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=166611,cb_entryId=4791274,cb_blogApp=currentBlogApp,cb_blogUserGuid='0c261817-f13a-e311-8d02-90b11c0b17d6',cb_entryCreatedDate='2015/9/8 17:01:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/ivictor/archive/2015/09/08/4791274.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/ivictor/archive/2015/09/08/4791274.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://news.cnblogs.com/n/582971/" target="_blank">【新闻】H3 BPM体验平台全面上线</a><br><a href="http://www.hubwiz.com/course/?type=Vue.js&amp;affid=cnblogs" target="_blank">【推荐】Vue.js 2.x 快速入门，大量高效实战示例</a><br><a href="https://cloud.tencent.com/solution/la?fromSource=gwzcw.628319.628319.628319" target="_blank">【推荐】搭建微信小程序，新用户体验3元起</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://www.gcpowertools.com.cn/products/spreadservices/?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=Spreadbiaoge&amp;utm_campaign=community" target="_blank"><img width="300" height="250" src="./Docker命令详解 - iVictor - 博客园_files/24442-20171114102308171-1147697076.png" alt="葡萄城1114"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/583222/" target="_blank">彼得·蒂尔等待10年搞垮这家网站 现在还要买了它</a><br> ·  <a href="http://news.cnblogs.com/n/583221/" target="_blank">软银投资加码或控股印度打车应用Ola</a><br> ·  <a href="http://news.cnblogs.com/n/583220/" target="_blank">快递车撞伤七旬老人 顺丰：已垫付医药费</a><br> ·  <a href="http://news.cnblogs.com/n/583219/" target="_blank">多家公关营销公司涉嫌抹黑京东被起诉</a><br> ·  <a href="http://news.cnblogs.com/n/583218/" target="_blank">没有互联网的朝鲜，却已经成为「黑客帝国」</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/34771/" target="_blank"><img width="468" height="60" src="./Docker命令详解 - iVictor - 博客园_files/24442-20171113120112796-634832761.jpg" alt="阿里云1113"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/177402/" target="_blank">门内门外看招聘</a><br> ·  <a href="http://kb.cnblogs.com/page/112506/" target="_blank">大道至简，职场上做人做事做管理</a><br> ·  <a href="http://kb.cnblogs.com/page/563790/" target="_blank">关于编程，你的练习是不是有效的？</a><br> ·  <a href="http://kb.cnblogs.com/page/581467/" target="_blank">改善程序员生活质量的 3+10 习惯</a><br> ·  <a href="http://kb.cnblogs.com/page/568841/" target="_blank">NASA的10条代码编写原则</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/ivictor/">iVictor</a><br>园龄：<a href="http://home.cnblogs.com/u/ivictor/" title="入园时间：2013-10-22">4年1个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/ivictor/followers/">129</a><br>关注：<a href="http://home.cnblogs.com/u/ivictor/followees/">2</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;0c261817-f13a-e311-8d02-90b11c0b17d6&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/10/01&#39;);return false;">&lt;</a></td><td align="center">2017年11月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/12/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td class="CalWeekendDay" align="center">4</td></tr><tr><td class="CalWeekendDay" align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td class="CalWeekendDay" align="center">11</td></tr><tr><td class="CalWeekendDay" align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td class="CalWeekendDay" align="center">18</td></tr><tr><td class="CalWeekendDay" align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td class="CalTodayDay" align="center">23</td><td align="center">24</td><td class="CalWeekendDay" align="center">25</td></tr><tr><td class="CalWeekendDay" align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td></tr><tr><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+
+</div>
+</div>
+
+</div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(233)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/ivictor/category/732393.html">Docker(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/ivictor/category/985679.html">Go(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/ivictor/category/726280.html">GoldenGate(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/ivictor/category/686050.html">Java(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/ivictor/category/563656.html">Linux(17)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/ivictor/category/855223.html">Mongodb(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/ivictor/category/776209.html">MyCAT(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/ivictor/category/734568.html">MySQL(30)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/ivictor/category/886997.html">MySQL Percona Toolkit(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/ivictor/category/923478.html">MySQL 备份恢复(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/ivictor/category/960851.html">MySQL 常用工具(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/ivictor/category/923512.html">MySQL 分区表(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/ivictor/category/923473.html">MySQL 复制(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/ivictor/category/923469.html">MySQL 高可用(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/ivictor/category/923489.html">MySQL 优化(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/ivictor/category/775608.html">Nagios &amp; Zabbix(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/ivictor/category/565246.html">Oracle(28)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/ivictor/category/566014.html">Oracle Dataguard(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/ivictor/category/699031.html">Perl(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/ivictor/category/598799.html">PL/SQL(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/ivictor/category/669982.html">Python(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/ivictor/category/785927.html">Redis(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/ivictor/category/528369.html">Shell(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_23" href="http://www.cnblogs.com/ivictor/category/779566.html">Spark(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_24" href="http://www.cnblogs.com/ivictor/category/688094.html">SQL(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_25" href="http://www.cnblogs.com/ivictor/category/613591.html">SQL*Loader(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_26" href="http://www.cnblogs.com/ivictor/category/739921.html">大数据(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_27" href="http://www.cnblogs.com/ivictor/category/604414.html">其它(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_28" href="http://www.cnblogs.com/ivictor/category/966990.html">碎碎念(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_29" href="http://www.cnblogs.com/ivictor/category/845631.html">运维自动化(2)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(232)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/ivictor/archive/2017/05.html">2017年5月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/ivictor/archive/2017/04.html">2017年4月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/ivictor/archive/2017/03.html">2017年3月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/ivictor/archive/2017/02.html">2017年2月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/ivictor/archive/2017/01.html">2017年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/ivictor/archive/2016/12.html">2016年12月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/ivictor/archive/2016/11.html">2016年11月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/ivictor/archive/2016/10.html">2016年10月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/ivictor/archive/2016/09.html">2016年9月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/ivictor/archive/2016/08.html">2016年8月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/ivictor/archive/2016/07.html">2016年7月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/ivictor/archive/2016/06.html">2016年6月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/ivictor/archive/2016/05.html">2016年5月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/ivictor/archive/2016/04.html">2016年4月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/ivictor/archive/2016/03.html">2016年3月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/ivictor/archive/2016/02.html">2016年2月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/ivictor/archive/2016/01.html">2016年1月 (17)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/ivictor/archive/2015/12.html">2015年12月 (16)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/ivictor/archive/2015/11.html">2015年11月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/ivictor/archive/2015/10.html">2015年10月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/ivictor/archive/2015/09.html">2015年9月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/ivictor/archive/2015/08.html">2015年8月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_22" href="http://www.cnblogs.com/ivictor/archive/2015/07.html">2015年7月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_23" href="http://www.cnblogs.com/ivictor/archive/2015/06.html">2015年6月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_24" href="http://www.cnblogs.com/ivictor/archive/2015/05.html">2015年5月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_25" href="http://www.cnblogs.com/ivictor/archive/2015/04.html">2015年4月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_26" href="http://www.cnblogs.com/ivictor/archive/2015/03.html">2015年3月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_27" href="http://www.cnblogs.com/ivictor/archive/2015/02.html">2015年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_28" href="http://www.cnblogs.com/ivictor/archive/2015/01.html">2015年1月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_29" href="http://www.cnblogs.com/ivictor/archive/2014/11.html">2014年11月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_30" href="http://www.cnblogs.com/ivictor/archive/2014/10.html">2014年10月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_31" href="http://www.cnblogs.com/ivictor/archive/2014/09.html">2014年9月 (23)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_32" href="http://www.cnblogs.com/ivictor/archive/2014/08.html">2014年8月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_33" href="http://www.cnblogs.com/ivictor/archive/2014/07.html">2014年7月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_34" href="http://www.cnblogs.com/ivictor/archive/2014/06.html">2014年6月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_35" href="http://www.cnblogs.com/ivictor/archive/2014/05.html">2014年5月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_36" href="http://www.cnblogs.com/ivictor/archive/2014/04.html">2014年4月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_37" href="http://www.cnblogs.com/ivictor/archive/2014/03.html">2014年3月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_38" href="http://www.cnblogs.com/ivictor/archive/2013/10.html">2013年10月 (4)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	229235
+	</li><li class="liRank">
+		排名 -	920
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ivictor/p/4834864.html#3836015">1. Re:关于Docker目录挂载的总结</a></li>
+        <li class="recent_comment_body">终于找到了，谢谢！！</li>
+        <li class="recent_comment_author">--潺风</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ivictor/p/5131480.html#3801394">2. Re:MyCAT实现MySQL的读写分离</a></li>
+        <li class="recent_comment_body">@最爱大口袋不好意思，我最近也没怎么弄mycat了，你搜下QQ，有官方群的。...</li>
+        <li class="recent_comment_author">--iVictor</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ivictor/p/5131480.html#3800312">3. Re:MyCAT实现MySQL的读写分离</a></li>
+        <li class="recent_comment_body">@iVictor <br>     方便给我个联系方式嘛？ 或者mycat技术群，刚接触mycat。好多的疑问。比如怎么去调用存储过程呢？各种。</li>
+        <li class="recent_comment_author">--最爱大口袋</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ivictor/p/5502240.html#3776283">4. Re:如何远程备份MySQL binlog</a></li>
+        <li class="recent_comment_body">这个功能是我需要的学习了</li>
+        <li class="recent_comment_author">--52rock</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ivictor/p/5735580.html#3768279">5. Re:MySQL半同步复制</a></li>
+        <li class="recent_comment_body">好</li>
+        <li class="recent_comment_author">--benjamin杨</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/ivictor/p/5146247.html">1. CentOS 7下MySQL服务启动失败的解决思路(44612)</a></li><li><a href="http://www.cnblogs.com/ivictor/p/5142809.html">2. ERROR 1819 (HY000): Your password does not satisfy the current policy requirements(37996)</a></li><li><a href="http://www.cnblogs.com/ivictor/p/4791274.html">3. Docker命令详解(33587)</a></li><li><a href="http://www.cnblogs.com/ivictor/p/5111495.html">4. MyCAT简易入门(28656)</a></li><li><a href="http://www.cnblogs.com/ivictor/p/4834864.html">5. 关于Docker目录挂载的总结(26113)</a></li><li><a href="http://www.cnblogs.com/ivictor/p/5446503.html">6. 如何高效地向Redis插入大量的数据(25419)</a></li><li><a href="http://www.cnblogs.com/ivictor/p/5028368.html">7. MySQL中有关TIMESTAMP和DATETIME的总结(17111)</a></li><li><a href="http://www.cnblogs.com/ivictor/p/5131480.html">8. MyCAT实现MySQL的读写分离(15168)</a></li><li><a href="http://www.cnblogs.com/ivictor/p/5735580.html">9. MySQL半同步复制(12758)</a></li><li><a href="http://www.cnblogs.com/ivictor/p/5311607.html">10. 关于skip_name_resolve参数的总结(9199)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/ivictor/p/5131480.html">1. MyCAT实现MySQL的读写分离(32)</a></li><li><a href="http://www.cnblogs.com/ivictor/p/6249066.html">2. 闰秒导致MySQL服务器的CPU sys过高(18)</a></li><li><a href="http://www.cnblogs.com/ivictor/p/5146247.html">3. CentOS 7下MySQL服务启动失败的解决思路(13)</a></li><li><a href="http://www.cnblogs.com/ivictor/p/5099870.html">4. MySQL的分页优化(8)</a></li><li><a href="http://www.cnblogs.com/ivictor/p/6440429.html">5. 如何利用docker快速构建MySQL主从复制环境(8)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/ivictor/p/6249066.html">1. 闰秒导致MySQL服务器的CPU sys过高(10)</a></li><li><a href="http://www.cnblogs.com/ivictor/p/5131480.html">2. MyCAT实现MySQL的读写分离(8)</a></li><li><a href="http://www.cnblogs.com/ivictor/p/4834864.html">3. 关于Docker目录挂载的总结(7)</a></li><li><a href="http://www.cnblogs.com/ivictor/p/5522383.html">4. 基于keepalived搭建MySQL的高可用集群(7)</a></li><li><a href="http://www.cnblogs.com/ivictor/p/5099870.html">5. MySQL的分页优化(5)</a></li><li><a href="http://www.cnblogs.com/ivictor/p/5111495.html">6. MyCAT简易入门(4)</a></li><li><a href="http://www.cnblogs.com/ivictor/p/3383295.html">7. RHEL 6.3 详细安装教程(4)</a></li><li><a href="http://www.cnblogs.com/ivictor/p/3636920.html">8. Oracle Dataguard之物理standby的基本配置(3)</a></li><li><a href="http://www.cnblogs.com/ivictor/p/3623096.html">9. 如何搭建DNS服务(3)</a></li><li><a href="http://www.cnblogs.com/ivictor/p/5505307.html">10. mysqldump的实现原理(3)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 iVictor
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

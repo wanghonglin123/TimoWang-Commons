@@ -1,0 +1,28 @@
+1：卸载旧版本
+$ sudo apt-get remove docker docker-engine docker.io
+如果出现
+E: dpkg was interrupted, you must manually run 'sudo dpkg --configure -a' to correct the problem.
+ 	解决办法：
+	1：sudo rm  /var/lib/dpkg/lock
+	2：sudo apt clean 清除apt缓存
+	3：sudo rm /var/lib/dpkg/updates/*
+	4：sudo apt-get update
+2: 使用存储库进行安装
+大多数用户 设置Docker的存储库并从中进行安装，以方便安装和升级任务。这是推荐的方法。
+1:更新apt软件包索引：$ sudo apt-get update
+2:安装软件包以允许apt通过HTTPS使用存储库：
+$ sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+3:curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+4:sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+5:sudo apt-get update 需要更新apt
+6: sudo apt-get install docker-ce 安装docker
+
+7: 卸载
+sudo apt-get purge docker-ce

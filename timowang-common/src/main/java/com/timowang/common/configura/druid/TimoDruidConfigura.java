@@ -31,14 +31,10 @@ package com.timowang.common.configura.druid;
  */
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.timowang.common.configura.mybatis.TimoMybatisConfigura;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
-import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Component;
 
 /**
  * @ClassName: TimoDruidConfigura

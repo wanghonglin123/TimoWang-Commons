@@ -1,0 +1,12 @@
+1： ps -aux 列出所有进程
+2： ps -aux | grep 'apt-get' 查找相应的进程
+3： sudo kill 333 333是进程id ,杀掉这个
+4： sudo apt clean 清除apt缓存
+5:  sudo rm  /var/lib/dpkg/lock 删除目录
+6： sudo apt install docker-ce 安装程序
+7： sudo apt-get purge docker-ce 卸载程序
+8： mkdir 目录 创建目录
+8： rm -rf 目录 删除目录下面所有
+9： mv 目录 新目录  修改目录名称
+10：service ssh status 服务状态
+11：service ssh start 服务启动
