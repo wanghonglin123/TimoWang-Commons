@@ -1,0 +1,11 @@
+一：docker创建一个基本容器
+二：安装redis
+	安装
+下载，解压，编译:
+$ wget http://download.redis.io/releases/redis-4.0.1.tar.gz
+$ tar xzf redis-4.0.1.tar.gz
+$ cd redis-4.0.1
+$ make
+	
+
+

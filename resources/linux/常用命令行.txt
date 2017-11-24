@@ -10,3 +10,5 @@
 9： mv 目录 新目录  修改目录名称
 10：service ssh status 服务状态
 11：service ssh start 服务启动
+12：设置用户密码 passwd
+13: 切换到root用户 su root

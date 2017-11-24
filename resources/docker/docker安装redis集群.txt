@@ -1,5 +1,0 @@
-1：构建基本容器
-2：apt-get update 更新apt-get
-3: apt install net-tools 安装系统命令
-4: apt install iputils-ping	ping命令
-5：

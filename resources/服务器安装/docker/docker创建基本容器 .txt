@@ -1,0 +1,15 @@
+
+1：docker pull hub.c.163.com/library/ubuntu:latest 下载一个基本容器,这里下载的是ubuntu
+2：docker run -d -t hub.c.163.com/library/ubuntu:latest /bin/bash	运行这个容器
+3：apt-get update 更新apt
+4: apt install net-tools 安装系统命令，不然sudo，ifconfig 这些命令多用不了
+5：apt install iputils-ping	ping命令
+6：apt-get install ssh 安装ssh
+7: passwd 设置root用户容器密码
+8: vim /etc/ssh/sshd_config
+9: PermitRootLogin yes 将PermitRootLogin 设置成ys，允许root用密码远程登陆
+10：service restart ssh 重启ssh
+11：使用ssh远程工具连接容器
+12：docker commit image_id new_image_name 生成新的镜像
+
+
