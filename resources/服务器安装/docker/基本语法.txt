@@ -15,3 +15,4 @@
 	
 10: sudo docker exec -it e97f17df92f7  /bin/sh 进入docker容器终端
 11：sudo docker commit container_id new_image_name 将容器生成新镜像
+12 ： 退出容器终端 ctri + d

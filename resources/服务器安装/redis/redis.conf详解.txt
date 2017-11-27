@@ -1,0 +1,56 @@
+1：bind 127.0.0.1 
+这样的话，访问redis服务只能通过本机的客户端连接，而无法通过远程连接
+bind 本地主机ip 或者注释掉 ，远程可以连接redis
+该处说明bind的是interface，也就是说是网络接口。服务器可以有一个网络接口(通俗的说网卡)，或者多个。打个比方说机器上有两个网卡，分别为192.168.205.5 和192.168.205.6，如果bind 192.168.205.5，那么只有该网卡地址接受外部请求，如果不绑定，则两个网卡口都接受请求。
+2: protected-mode yes 
+开启保护模式，远程不能连接
+不开启保护模式，远程可以连接，最好设置密码
+3：port 6379
+redis启动的端口号，远程连接必须 H + P =  主机IP + 端口号
+4：tcp-backlog
+然后运行ss命令显示:
+
+State      Recv-Q Send-Q        Local Address:Port          Peer Address:Port 
+LISTEN     0      100                       *:6379                     *:*     
+我们看到Send-Q的值为100, 即是我们配置的tcp-backlog值. 为了搞清楚这个值的意思, 了解了下tcp的三次握手进行中的一些queue的知识. 参考下图我们可以看到在server接收到sny的时候会进入到一个syn queue队列, 当server端最终收到ack时转换到accept queue队列. 上面终端显示在listen状态下的连接, 其Send-Q就是这个accept queue队列的最大值. 只有server端执行了accept后才会从这个队列中移除这个连接. 这个值的大小是受somaxconn影响的, 因为是取的它们两者的最小值, 所以如果要调大的话必需修改内核的
+somaxconn值. 
+5：timeout 0
+# 指定在一个 client 空闲多少秒之后关闭连接（0 就是不管它）
+6： tcp-keepalive 0
+指定TCP连接是否为长连接,”侦探”信号由server端维护,长连接将会额外的增加server端的开支
+
+默认为0.表示禁用,非0值表示开启”长连接” ;”侦探”信号的发送间隔将有linux系统决定
+
+在多次”侦探”后,如果对等端仍不回复,将会关闭连接,否则连接将会被保持开启.
+
+client端socket也可以通过配置keepalive选项,开启”长连接”.
+8. loglevel notice
+
+server日志级别,合法值:debug,verbose,notice,warning 默认为notice
+
+debug适合开发环境,客户端操作信息都会输出日志
+verbose输出一些相对有用的信息,目前效果不明
+notice适合生产环境
+warning异常信息
+10. databases 16
+
+设定redis所允许的最大”db簇”的个数,默认为16个簇.
+
+客户端可以通过”select”指令指定需要使用的”db簇”索引号,默认为0.
+
+redis的顶层数据结构中,所有K-V都潜在的包括了”db簇”索引号,任何一个key都将隶属于一个”db”.
+
+任何对数据的检索,只会覆盖指定的”db”;例如数据被插入到”db 10″中,那么在”db 1″中去get,将会返回null.
+
+对数据归类到不同的db簇中,可以帮助我们实现一些特定的需求,比如根据不同客户端连接,来指定不同的db索引号.
+9. logfile
+
+指定Redis日志记录方式，默认值为stdout
+2. daemonize no
+
+默认情况下，redis不是在后台运行的，如果需要在后台运行，把该项的值更改为yes
+
+3. pidfile /var/run/redis.pid
+
+当redis在后台运行的时候，Redis默认会把pid文件放在/var/run/redis.pid，你可以配置到其他地址。当运行多个redis服务时，需要指定不同的pid文件和端口。
+

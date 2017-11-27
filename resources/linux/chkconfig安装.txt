@@ -1,0 +1,1 @@
+1£ºrpm -aq |grep chkconfig

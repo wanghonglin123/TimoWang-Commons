@@ -12,3 +12,4 @@
 11：service ssh start 服务启动
 12：设置用户密码 passwd
 13: 切换到root用户 su root
+14：自动启动服务：chkconfig ssh on

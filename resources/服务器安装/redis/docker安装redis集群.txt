@@ -6,6 +6,48 @@ $ wget http://download.redis.io/releases/redis-4.0.1.tar.gz
 $ tar xzf redis-4.0.1.tar.gz
 $ cd redis-4.0.1
 $ make
+如果出现报错，解决办法
+1：apt-get install gcc
+2: make MALLOC=libc
+
+三：修改6台服务器配置文件
+port  7000                                        //端口7000,7002,7003        
+bind 本机ip                                       //默认ip为127.0.0.1 需要改为其他节点机器可访问的ip 否则创建集群时无法访问对应的端口，无法创建集群
+daemonize    yes                               //redis后台运行
+pidfile  /var/run/redis_7000.pid          //pidfile文件对应7000,7001,7002
+cluster-enabled  yes                           //开启集群  把注释#去掉
+cluster-config-file  nodes_7000.conf   //集群的配置  配置文件首次启动自动生成 7000,7001,7002
+cluster-node-timeout  5000                //请求超时  默认15秒，可自行设置
+appendonly  yes                           //aof日志开启  有需要就开启，它会每次写操作都记录一条日志
+protected-mode no 不开启保护模式，开启保护模式，其它服务器连接不了
+
+
+四: 保存redis容器，启动6容器
+3:docker commit 容器id 镜像名称
+4: 分别启动6个容器
+ 	docker run -d -t --name redis_7001 --restart always -p 7001:22 镜像名称 /bin/bash
+	docker run -d -t --name redis_7002 --restart always -p 7002:22 镜像名称 /bin/bash
+	docker run -d -t --name redis_7003 --restart always -p 7003:22 镜像名称 /bin/bash
+	docker run -d -t --name redis_7004 --restart always -p 7004:22 镜像名称 /bin/bash
+	docker run -d -t --name redis_7005 --restart always -p 7005:22 镜像名称 /bin/bash
+	docker run -d -t --name redis_7006 --restart always -p 7006:22 镜像名称 /bin/bash
+
+五：启动6redis节点,每个容器执行下面的语法启动redis实例
+cd /redis/redis-4.0.1 src/redis-service redis.conf
+ps -ef | grep redis 可以查看redis节点启动是否成功
+
+6：src/redis-trib.rb  create  --replicas  1  172.17.0.6:7001 172.17.0.3:7002  172.17.0.2:7003 172.17.0.4:7004  172.17.0.7:7005  172.17.0.5:7006
+如果报错，那么安装ruby
+apt-get install ruby
+gem install redis
+src/redis-trib.rb  create  --replicas  1  172.17.0.6:7001 172.17.0.3:7002  172.17.0.2:7003 172.17.0.4:7004  172.17.0.7:7005  172.17.0.5:700
+
+
+7:使用 
+1：src/redis-cli -h 172.17.0.6 -p 7001 -c
+
+-c 必须加上，否则可能会报错
+
 	
 
 

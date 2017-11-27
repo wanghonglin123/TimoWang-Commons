@@ -1,0 +1,5 @@
+1：hadoop/oozie/sqoop，以及kafka/zookeeper/flume；
+2：hive/hbase/redis/solr/mongodb/mysql。
+3：Etl
+4: hadoop，spark，storm，分布式文件系统hdfs，分布式消息队列例如kafka，非关系型数据库例如redis，hbase。
+https://software.intel.com/zh-cn/videos/machine-learning-introduction-regression-and-classification

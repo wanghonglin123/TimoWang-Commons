@@ -1,0 +1,1 @@
+http://doc.redisfans.com/topic/cluster-tutorial.html#id5
