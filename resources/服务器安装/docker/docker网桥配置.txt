@@ -1,0 +1,32 @@
+1、查看docker运行状态
+lin@ubuntu:~$ ps -ef | grep docker  
+root      7673     1  0 10:51 ?        00:00:31 /usr/bin/docker daemon -H fd://
+lin@ubuntu:~$ 
+2、docker 正在运行，需要先停止docker
+
+$ sudo service docker stop
+3、查看docker默认网桥
+
+lin@ubuntu:~$ ifconfig | grep docker0
+docker0   Link encap:Ethernet  HWaddr 02:42:86:27:36:61  
+4、停止docker默认网桥并删除
+
+
+lin@ubuntu:~$ brctl show
+lin@ubuntu:~$ sudo ip link set dev docker0 down
+lin@ubuntu:~$ sudo brctl delbr docker0
+6、自定义网桥分配Ip
+
+lin@ubuntu:~$ sudo brctl addbr bridge0
+lin@ubuntu:~$ sudo ip addr add 192.168.1.1/24 dev bridge0 
+lin@ubuntu:~$ sudo ip link set dev bridge0 up
+7、查看是否配置成功
+
+lin@ubuntu:~$ ip addr show bridge0
+8、配置docker文件，默认桥接到创建的网桥上
+
+echo 'DOCKER_OPTS="-b=bridge0"' >> /etc/default/docker
+9、重启docker服务
+
+sudo service docker start
+http://blog.csdn.net/linlinv3/article/details/50373511
