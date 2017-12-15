@@ -1,0 +1,13 @@
+1：执行src/redis-trib.rb  create  --replicas  1  172.17.0.6:7001 172.17.0.3:7002  172.17.0.2:7003 172.17.0.4:7004  172.17.0.7:7005  172.17.0.5:7006出现以下错误
+
+172.16.10.101:7001 is not empty. Either the node already knows other nodes (check with CLUSTER NODES) or contains some key in database 0.
+原因：redis 非正常关闭，比如死机，有配置文件保留原先集群的信息，再次集群的时候就会报错
+结172.16.10.101:7001不是空的。要么节点已经知道其他节点（检查集群节点），要么包含数据库0中的某个键。
+删除集群所有的nodes-7001文件
+
+2：Node 172.16.10.101:7002 is not empty. Either the node already knows other nodes (check with CLUSTER NODES) or contains some key in database 0.
+
+src/redis-cli -h 172.16.10.101 -p 7001 
+flushdb
+
+3:ERR Slot 6918 is already busy (Redis::CommandError)

@@ -121,4 +121,5 @@ public class TimoJedisClusterConfigura{
             throw new Exception(e);
         }
     }
+
 }
