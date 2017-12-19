@@ -24,31 +24,26 @@ protected-mode no 不开启保护模式，开启保护模式，其它服务器连接不了
 
 四: 保存redis容器，启动6容器
 3:docker commit 容器id 镜像名称
-4: 分别启动6个容器 -p 172.16.10.101:7001:22 ip  172.16.10.101必须加上 --privileged=true 防火墙功能
- 	docker run -d -t --name redis_7001 --privileged=true --restart always -p 172.16.10.101:7001:7001 镜像名称 /bin/bash
-	docker run -d -t --name redis_7002 --privileged=true --restart always -p 172.16.10.101:7002:7002 镜像名称 /bin/bash
-	docker run -d -t --name redis_7003 --privileged=true --restart always -p 172.16.10.101:7003:7003 镜像名称 /bin/bash
-	docker run -d -t --name redis_7004 --privileged=true --restart always -p 172.16.10.101:7004:7004 镜像名称 /bin/bash
-	docker run -d -t --name redis_7005 --privileged=true --restart always -p 172.16.10.101:7005:7005 镜像名称 /bin/bash
-	docker run -d -t --name redis_7006 --privileged=true --restart always -p 172.16.10.101:7006:7006 镜像名称 /bin/bash
+4: 分别启动6个容器 -p 172.16.10.101:7001:22 ip  172.16.10.101必须加上 --network=host测试环境使用 防火墙功能
+ 	docker run -d -t --name redis_7001 --network=host --restart always  镜像名称 /bin/bash
+	docker run -d -t --name redis_7002 --network=host --restart always  镜像名称 /bin/bash
+	docker run -d -t --name redis_7003 --network=host --restart always  镜像名称 /bin/bash
+	docker run -d -t --name redis_7004 --network=host --restart always  镜像名称 /bin/bash
+	docker run -d -t --name redis_7005 --network=host --restart always  镜像名称 /bin/bash
+	docker run -d -t --name redis_7006 --network=host --restart always  镜像名称 /bin/bash
 
 五：启动6redis节点,每个容器执行下面的语法启动redis实例
 cd /redis/redis-4.0.1 src/redis-service redis.conf
 ps -ef | grep redis 可以查看redis节点启动是否成功
 
-6：src/redis-trib.rb  create  --replicas  1  172.17.0.6:7001 172.17.0.7:7002 172.17.0.9:7003 172.17.0.8:7004 172.17.0.4:7005 172.17.0.3:7006
+6：src/redis-trib.rb  create  --replicas  1  172.16.10.101:7001 172.16.10.101:7002 172.16.10.101:7003 172.16.10.101:7004 172.16.10.101:7005 172.16.10.101:7006
 如果报错，那么安装ruby
 apt-get install ruby
 gem install redis
-src/redis-trib.rb  create  --replicas  1  172.17.0.6:7001 172.17.0.3:7002  172.17.0.2:7003 172.17.0.4:7004  172.17.0.7:7005  172.17.0.5:700
+src/redis-trib.rb  create  --replicas  1  172.16.10.101:7001 172.16.10.101:7002 172.16.10.101:7003 172.16.10.101:7004 172.16.10.101:7005 172.16.10.101:7006
 
 
-7:使用 
-1：src/redis-cli -h 172.17.0.6 -p 7001 -c
 
--c 必须加上，否则可能会报错
-
-8： 关闭防火墙
 
 	
 
