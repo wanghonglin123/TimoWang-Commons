@@ -4,7 +4,41 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.timowang.dao.mapper.member.MemberMapper">
+    <resultMap id="member" type="com.timowang.pojo.member.Member">
+        <id column="user_name" property="userName"></id>
+        <id column="create_time" property="createTime"></id>
+        <id column="update_time" property="updateTime"></id>
+    </resultMap>
     <insert id="add" parameterType="Map">
-        insert into tb_test values (#{id})
+        insert into tb_member values (#{idx}, #{idxCode},#{userName},#{pwd},
+        #{createTime}, #{updateTime}, #{createByMemberIdxCode},
+        #{updateByMemberIdxCode}, #{status}, #{version}, #{ext})
     </insert>
+
+    <select id="query" parameterType="Map" resultMap="member">
+        select * from tb_member where 1 = 1
+        <if test="userName != null">
+            and user_name = #{userName}
+        </if>
+    </select>
+
+    <update id="edit" parameterType="Map">
+        update tb_member
+        set
+        user_name = #{userName,jdbcType=VARCHAR},
+        pwd = #{pwd,jdbcType=VARCHAR},
+        status = #{status,jdbcType=SMALLINT},
+        version = #{version,jdbcType=BIGINT},
+        create_by_member_idx_code = #{createByMemberIdxCode,jdbcType=BIGINT},
+        update_by_member_idx_code = #{updateByMemberIdxCode,jdbcType=BIGINT},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        ext = #{ext,jdbcType=VARCHAR}
+    </update>
+
+    <delete id="del" parameterType="Map">
+        delete from tb_member
+          where
+        idx = #{idx}
+    </delete>
 </mapper>

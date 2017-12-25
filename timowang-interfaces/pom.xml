@@ -12,5 +12,13 @@
 
     <artifactId>timowang-interfaces</artifactId>
 
+    <dependencies>
+
+        <dependency>
+            <groupId>com.timowang</groupId>
+            <artifactId>timowang-pojo</artifactId>
+        </dependency>
+
+    </dependencies>
 
 </project>

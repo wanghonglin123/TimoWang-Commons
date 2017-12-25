@@ -18,28 +18,35 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.dao;
 
 /**
  * @Title: Test
- * @Package: com.timowang.dao
+ * @Package: PACKAGE_NAME
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHongLin timo-wang@msyc.cc
- * @Date: 2017/11/18
+ * @Date: 2017/12/7
  * @Version: V2.0.10
  * @Modify-by: WangHongLin timo-wang@msyc.cc
- * @Modify-date: 2017/11/18
+ * @Modify-date: 2017/12/7
  * @Modify-version: 2.1.5
  * @Modify-description: 新增：增，删，改，查方法
  */
+
+import redis.clients.jedis.Jedis;
 
 /**
  * @ClassName: Test
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
- * @Date: 2017/11/18
+ * @Date: 2017/12/7
  */
 public class Test {
+
+    public static void main(String[] args) {
+        Jedis jedis = new Jedis("172.16.10.101", 7001);
+        jedis.set("test", "test");
+        System.out.println(jedis.get("test"));
+    }
 }

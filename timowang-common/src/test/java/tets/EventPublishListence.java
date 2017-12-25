@@ -18,28 +18,31 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.pojo;
+package tets;
 
 /**
- * @Title: Test
- * @Package: com.timowang.pojo
+ * @Title: EventPublishListence
+ * @Package: tets
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHongLin timo-wang@msyc.cc
- * @Date: 2017/11/18
+ * @Date: 2017/12/13
  * @Version: V2.0.10
  * @Modify-by: WangHongLin timo-wang@msyc.cc
- * @Modify-date: 2017/11/18
+ * @Modify-date: 2017/12/13
  * @Modify-version: 2.1.5
  * @Modify-description: 新增：增，删，改，查方法
  */
 
 /**
- * @ClassName: Test
+ * @ClassName: EventPublishListence
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
- * @Date: 2017/11/18
+ * @Date: 2017/12/13
  */
-public class Test {
+public class EventPublishListence {
+
+    public EventPublishListence(){
+    }
 }

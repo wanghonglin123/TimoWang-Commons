@@ -83,13 +83,13 @@ public class TimoShiroFilterConfigura {
 
     private String getFilterChainDefinitions() {
         StringBuilder filterChainDefinitions = new StringBuilder();
-        filterChainDefinitions.append("/rebuild/item/index = anon \n");
+        //filterChainDefinitions.append("/rebuild/item/index = anon \n");
         // <!-- anon表示此地址不需要任何权限即可访问 -->
-        filterChainDefinitions.append("/sys/**=anon \n");
-        // <!-- authc需要认证(登录)才能使用 -->
+        filterChainDefinitions.append("/*/**=anon \n");
+        /*// <!-- authc需要认证(登录)才能使用 -->
         filterChainDefinitions.append("/collect/item/downExcel = authc \n");
         // <!--所有的请求(除去配置的静态资源请求或请求地址为anon的请求)都要通过登录验证,如果未登录则跳到/loginUrl -->
-        filterChainDefinitions.append("/** = anyRoles \n");
+        filterChainDefinitions.append("*//** = anyRoles \n");*/
         return filterChainDefinitions.toString();
     }
 }
