@@ -18,38 +18,73 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.common.configura.shiro;
+package com.timowang.pojo.member;
 
 /**
- * @Title: TimoCacheMangConfigura
- * @Package: com.timowang.common.configura.shiro.pojo
+ * @Title: MemberRole
+ * @Package: com.timowang.pojo.member
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHongLin timo-wang@msyc.cc
- * @Date: 2017/11/22
+ * @Date: 2017/12/26
  * @Version: V2.0.10
  * @Modify-by: WangHongLin timo-wang@msyc.cc
- * @Modify-date: 2017/11/22
+ * @Modify-date: 2017/12/26
  * @Modify-version: 2.1.5
  * @Modify-description: 新增：增，删，改，查方法
  */
 
-import org.apache.shiro.cache.MemoryConstrainedCacheManager;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
 /**
- * @ClassName: TimoCacheMangConfigura
+ * @ClassName: MemberRole
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
- * @Date: 2017/11/22
+ * @Date: 2017/12/26
  */
-@Configuration
-public class TimoCacheMangConfigura {
+public class MemberRole {
+    private long idx;
+    private long roleIdx;
+    private long memberIdx;
 
-    @Bean
-    public MemoryConstrainedCacheManager cacheManager() {
-        return new MemoryConstrainedCacheManager();
+    /**
+     * @return idx
+     */
+    public long getIdx() {
+        return idx;
+    }
+
+    /**
+     * @param idx idx
+     */
+    public void setIdx(long idx) {
+        this.idx = idx;
+    }
+
+    /**
+     * @return roleIdx
+     */
+    public long getRoleIdx() {
+        return roleIdx;
+    }
+
+    /**
+     * @param roleIdx roleIdx
+     */
+    public void setRoleIdx(long roleIdx) {
+        this.roleIdx = roleIdx;
+    }
+
+    /**
+     * @return memberIdx
+     */
+    public long getMemberIdx() {
+        return memberIdx;
+    }
+
+    /**
+     * @param memberIdx memberIdx
+     */
+    public void setMemberIdx(long memberIdx) {
+        this.memberIdx = memberIdx;
     }
 }

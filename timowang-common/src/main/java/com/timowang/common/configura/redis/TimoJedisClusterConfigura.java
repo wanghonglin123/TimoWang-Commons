@@ -42,7 +42,7 @@ import java.util.Set;
 
 /**
  * @ClassName: TimoRedisConfigura
- * @Description:
+ * @Description: redis集群配置
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
  * @Date: 2017/11/22

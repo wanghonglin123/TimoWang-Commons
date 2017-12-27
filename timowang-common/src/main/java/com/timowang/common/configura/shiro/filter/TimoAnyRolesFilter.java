@@ -20,16 +20,6 @@
  */
 package com.timowang.common.configura.shiro.filter;
 
-/**
- * @Title: TimoAnyRolesFilter
- * @Package: com.timowang.common.configura.shiro.filter
- * @Description:
- * @Company: 广州市两棵树网络科技有限公司
- * @Author: WangHongLin timo-wang@msyc.cc
- * @Date: 2017/11/22
- * @Version: V2.0.10
- */
-
 import org.apache.shiro.web.filter.AccessControlFilter;
 
 import javax.servlet.ServletRequest;
@@ -37,18 +27,33 @@ import javax.servlet.ServletResponse;
 
 /**
  * @ClassName: TimoAnyRolesFilter
- * @Description:
+ * @Description:    Shiro 权限过滤器
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
  * @Date: 2017/11/22
  */
 public class TimoAnyRolesFilter extends AccessControlFilter {
 
+    /**
+     * 判断是否允许访问， true 允许， flase 不允许
+     * @param servletRequest
+     * @param servletResponse
+     * @param o
+     * @return
+     * @throws Exception
+     */
     @Override
     protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object o) throws Exception {
-        return false;
+        return true;
     }
 
+    /**
+     *  如果isAccessAllowed返回false, 验证失败逻辑处理
+     * @param servletRequest
+     * @param servletResponse
+     * @return
+     * @throws Exception
+     */
     @Override
     protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
         return false;

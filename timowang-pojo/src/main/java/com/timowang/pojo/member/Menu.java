@@ -18,39 +18,82 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.common.configura.shiro;
+package com.timowang.pojo.member;
 
 /**
- * @Title: TimoSessionListense
- * @Package: com.timowang.common.configura.shiro
+ * @Title: Menu
+ * @Package: com.timowang.pojo.member
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHongLin timo-wang@msyc.cc
- * @Date: 2017/11/22
+ * @Date: 2017/12/26
  * @Version: V2.0.10
  * @Modify-by: WangHongLin timo-wang@msyc.cc
- * @Modify-date: 2017/11/22
+ * @Modify-date: 2017/12/26
  * @Modify-version: 2.1.5
  * @Modify-description: 新增：增，删，改，查方法
  */
 
-import com.timowang.common.configura.shiro.pojo.TimoShiroSessionListener;
-import org.apache.shiro.session.SessionListener;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
 /**
- * @ClassName: TimoSessionListense
- * @Description:
+ * @ClassName: Menu
+ * @Description: 菜单Po
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
- * @Date: 2017/11/22
+ * @Date: 2017/12/26
  */
-@Configuration
-public class TimoSessionListenerConfigura {
+public class Menu {
+    /**
+     * idx
+     */
+    private long idx;
+    /**
+     * 菜单名称
+     */
+    private String menuName;
+    /**
+     * 菜单编码
+     */
+    private String menuCode;
 
-    @Bean
-    public SessionListener sessionListener() {
-        return new TimoShiroSessionListener();
+    /**
+     * @return idx
+     */
+    public long getIdx() {
+        return idx;
+    }
+
+    /**
+     * @param idx idx
+     */
+    public void setIdx(long idx) {
+        this.idx = idx;
+    }
+
+    /**
+     * @return menuName
+     */
+    public String getMenuName() {
+        return menuName;
+    }
+
+    /**
+     * @param menuName menuName
+     */
+    public void setMenuName(String menuName) {
+        this.menuName = menuName;
+    }
+
+    /**
+     * @return menuCode
+     */
+    public String getMenuCode() {
+        return menuCode;
+    }
+
+    /**
+     * @param menuCode menuCode
+     */
+    public void setMenuCode(String menuCode) {
+        this.menuCode = menuCode;
     }
 }

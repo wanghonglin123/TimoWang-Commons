@@ -18,26 +18,73 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.common.configura.shiro.pojo;
-
-import org.apache.shiro.cache.Cache;
-import org.apache.shiro.cache.MemoryConstrainedCacheManager;
+package com.timowang.pojo.member;
 
 /**
- * @ClassName: TimoMemoryConstrainedCacheManager
- * @Description:    自定义内存约束的缓存管理器
+ * @Title: RoleResourceGroup
+ * @Package: com.timowang.pojo.member
+ * @Description:
+ * @Company: 广州市两棵树网络科技有限公司
+ * @Author: WangHongLin timo-wang@msyc.cc
+ * @Date: 2017/12/26
+ * @Version: V2.0.10
+ * @Modify-by: WangHongLin timo-wang@msyc.cc
+ * @Modify-date: 2017/12/26
+ * @Modify-version: 2.1.5
+ * @Modify-description: 新增：增，删，改，查方法
+ */
+
+/**
+ * @ClassName: RoleResourceGroup
+ * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
- * @Date: 2017/11/21
+ * @Date: 2017/12/26
  */
-public class TimoMemoryConstrainedCacheManager extends MemoryConstrainedCacheManager{
+public class RoleResourceGroup {
+    private long idx;
+    private long roleIdx;
+    private long resourceGroupIdx;
 
-    public TimoMemoryConstrainedCacheManager() {
-        super();
+    /**
+     * @return idx
+     */
+    public long getIdx() {
+        return idx;
     }
 
-    @Override
-    protected Cache createCache(String name) {
-        return super.createCache(name);
+    /**
+     * @param idx idx
+     */
+    public void setIdx(long idx) {
+        this.idx = idx;
+    }
+
+    /**
+     * @return roleIdx
+     */
+    public long getRoleIdx() {
+        return roleIdx;
+    }
+
+    /**
+     * @param roleIdx roleIdx
+     */
+    public void setRoleIdx(long roleIdx) {
+        this.roleIdx = roleIdx;
+    }
+
+    /**
+     * @return resourceGroupIdx
+     */
+    public long getResourceGroupIdx() {
+        return resourceGroupIdx;
+    }
+
+    /**
+     * @param resourceGroupIdx resourceGroupIdx
+     */
+    public void setResourceGroupIdx(long resourceGroupIdx) {
+        this.resourceGroupIdx = resourceGroupIdx;
     }
 }

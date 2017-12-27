@@ -20,20 +20,6 @@
  */
 package com.timowang.common.configura.shiro.pojo;
 
-/**
- * @Title: TimoSimpleCookie
- * @Package: com.timowang.common.configura.shiro
- * @Description:
- * @Company: 广州市两棵树网络科技有限公司
- * @Author: WangHongLin timo-wang@msyc.cc
- * @Date: 2017/11/21
- * @Version: V2.0.10
- * @Modify-by: WangHongLin timo-wang@msyc.cc
- * @Modify-date: 2017/11/21
- * @Modify-version: 2.1.5
- * @Modify-description: 新增：增，删，改，查方法
- */
-
 import org.apache.shiro.web.servlet.Cookie;
 import org.apache.shiro.web.servlet.SimpleCookie;
 

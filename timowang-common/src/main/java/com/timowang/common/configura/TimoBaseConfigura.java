@@ -18,28 +18,48 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.common;
+package com.timowang.common.configura;
 
 /**
- * @Title: Test
- * @Package: com.timowang.common
+ * @Title: TimoBaseConfigura
+ * @Package: com.timowang.common.configura
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHongLin timo-wang@msyc.cc
- * @Date: 2017/11/18
+ * @Date: 2017/12/26
  * @Version: V2.0.10
  * @Modify-by: WangHongLin timo-wang@msyc.cc
- * @Modify-date: 2017/11/18
+ * @Modify-date: 2017/12/26
  * @Modify-version: 2.1.5
  * @Modify-description: 新增：增，删，改，查方法
  */
 
+import com.timowang.common.component.TimoWangDomain;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
+
 /**
- * @ClassName: Test
- * @Description:
+ * @ClassName: TimoBaseConfigura
+ * @Description:    顶级Configura TimoBaseConfigura
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
- * @Date: 2017/11/18
+ * @Date: 2017/12/26
  */
-public class Test {
+@Configuration
+public class TimoBaseConfigura {
+
+    /**
+     * 环境
+     */
+    @Autowired
+    private TimoWangDomain timoWangDomain;
+
+    /**
+     * 获取运行环境name
+     * @return
+     */
+    protected String getDomain() {
+        return timoWangDomain.getDomain();
+    }
 }

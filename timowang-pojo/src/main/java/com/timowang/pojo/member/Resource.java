@@ -18,38 +18,73 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.common.configura.shiro;
+package com.timowang.pojo.member;
 
 /**
- * @Title: TimoShiroSecurityRealmConfigura
- * @Package: com.timowang.common.configura.shiro
+ * @Title: Resource
+ * @Package: com.timowang.pojo.member
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHongLin timo-wang@msyc.cc
- * @Date: 2017/11/22
+ * @Date: 2017/12/26
  * @Version: V2.0.10
  * @Modify-by: WangHongLin timo-wang@msyc.cc
- * @Modify-date: 2017/11/22
+ * @Modify-date: 2017/12/26
  * @Modify-version: 2.1.5
  * @Modify-description: 新增：增，删，改，查方法
  */
 
-import com.timowang.common.configura.shiro.pojo.TimoShiroSecurityRealm;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
 /**
- * @ClassName: TimoShiroSecurityRealmConfigura
+ * @ClassName: Resource
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
- * @Date: 2017/11/22
+ * @Date: 2017/12/26
  */
-@Configuration
-public class TimoShiroSecurityRealmConfigura {
+public class Resource {
+    private long idx;
+    private long resourceRroupIdx;
+    private String menuCode;
 
-    @Bean
-    public TimoShiroSecurityRealm shiroSecurityRealm() {
-        return new TimoShiroSecurityRealm();
+    /**
+     * @return idx
+     */
+    public long getIdx() {
+        return idx;
+    }
+
+    /**
+     * @param idx idx
+     */
+    public void setIdx(long idx) {
+        this.idx = idx;
+    }
+
+    /**
+     * @return resourceRroupIdx
+     */
+    public long getResourceRroupIdx() {
+        return resourceRroupIdx;
+    }
+
+    /**
+     * @param resourceRroupIdx resourceRroupIdx
+     */
+    public void setResourceRroupIdx(long resourceRroupIdx) {
+        this.resourceRroupIdx = resourceRroupIdx;
+    }
+
+    /**
+     * @return menuCode
+     */
+    public String getMenuCode() {
+        return menuCode;
+    }
+
+    /**
+     * @param menuCode menuCode
+     */
+    public void setMenuCode(String menuCode) {
+        this.menuCode = menuCode;
     }
 }

@@ -37,5 +37,9 @@ package com.timowang.common.constants;
  * @Author: WangHonglin timo-wang@msyc.cc
  * @Date: 2017/11/18
  */
-public class TimoWangConstant {
+public final class TimoWangConstant {
+    /**
+     * ,符号
+     */
+    public static final String SYMBOL_COMMA = ",";
 }

@@ -47,7 +47,7 @@ import java.util.Collection;
 
 /**
  * @ClassName: TimoDefaultWebSecurityManager
- * @Description:
+ * @Description:    默认Web安全管理器
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
  * @Date: 2017/11/21

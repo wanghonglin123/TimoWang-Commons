@@ -20,20 +20,6 @@
  */
 package com.timowang.common.configura.shiro.pojo;
 
-/**
- * @Title: TimoShiroSessionManager
- * @Package: com.timowang.common.configura.shiro.pojo
- * @Description:
- * @Company: 广州市两棵树网络科技有限公司
- * @Author: WangHongLin timo-wang@msyc.cc
- * @Date: 2017/11/22
- * @Version: V2.0.10
- * @Modify-by: WangHongLin timo-wang@msyc.cc
- * @Modify-date: 2017/11/22
- * @Modify-version: 2.1.5
- * @Modify-description: 新增：增，删，改，查方法
- */
-
 import org.apache.shiro.session.ExpiredSessionException;
 import org.apache.shiro.session.InvalidSessionException;
 import org.apache.shiro.session.Session;
@@ -48,7 +34,7 @@ import java.io.Serializable;
 
 /**
  * @ClassName: TimoShiroSessionManager
- * @Description:
+ * @Description: 自定义ShiroSession 管理器
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
  * @Date: 2017/11/22

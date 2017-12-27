@@ -20,20 +20,6 @@
  */
 package com.timowang.common.configura.shiro.pojo;
 
-/**
- * @Title: TimoSessionDao
- * @Package: com.timowang.common.configura.shiro
- * @Description:
- * @Company: 广州市两棵树网络科技有限公司
- * @Author: WangHongLin timo-wang@msyc.cc
- * @Date: 2017/11/21
- * @Version: V2.0.10
- * @Modify-by: WangHongLin timo-wang@msyc.cc
- * @Modify-date: 2017/11/21
- * @Modify-version: 2.1.5
- * @Modify-description: 新增：增，删，改，查方法
- */
-
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.session.Session;
@@ -46,7 +32,7 @@ import java.util.Collection;
 
 /**
  * @ClassName: TimoSessionDao
- * @Description:
+ * @Description:    Shiro SessionDao操作
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
  * @Date: 2017/11/21
@@ -55,7 +41,9 @@ public class TimoSessionDao extends CachingSessionDAO{
 
     @Override
     protected Serializable doCreate(Session session) {
-        return null;
+        // 使用Shiro生成一个自带的
+        Serializable sessionId = this.generateSessionId(session);
+        return sessionId;
     }
 
     @Override

@@ -34,29 +34,55 @@ package com.timowang.common.configura.shiro.pojo;
  * @Modify-description: 新增：增，删，改，查方法
  */
 
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
+import com.timowang.common.constants.TimoWangConstant;
+import com.timowang.common.data.MemberRelevantData;
+import com.timowang.pojo.member.Member;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
+import java.util.List;
+
 /**
  * @ClassName: TimoShiroSecurityRealm
- * @Description:
+ * @Description: 自定义ShiroSecurityRealm 管理
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
  * @Date: 2017/11/21
  */
 public class TimoShiroSecurityRealm extends AuthorizingRealm{
 
+    /**
+     * 获取授权信息
+     * @param var1
+     * @return
+     */
     @Override
     public AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection var1){
-        return null;
+        System.out.println("1");
+        return new SimpleAuthorizationInfo();
     }
 
+    /**
+     * 获取身份验证信息
+     * @param authcToken
+     * @return
+     * @throws AuthenticationException
+     */
     @Override
-    public AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken var1) throws AuthenticationException{
+    public AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException{
+        UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken)authcToken;
+        String userName = usernamePasswordToken.getUsername();
+        String password = String.valueOf(usernamePasswordToken.getPassword());
+        List<Member> members = MemberRelevantData.members;
+        for (Member member : members) {
+            // 判断用户名和密码是否正确， true,正确 false 不正确
+            if (member.getUserName().equals(userName) && member.getPwd().equals(password)) {
+                return new SimpleAuthenticationInfo(member.getIdx() + TimoWangConstant.SYMBOL_COMMA + password, password, getName());
+            }
+        }
         return null;
     }
 

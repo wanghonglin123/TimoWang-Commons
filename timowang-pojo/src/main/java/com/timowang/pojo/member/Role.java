@@ -18,51 +18,73 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.common.configura.shiro;
+package com.timowang.pojo.member;
 
 /**
- * @Title: TimoShiroSecurityManager
- * @Package: com.timowang.common.configura.shiro
+ * @Title: Role
+ * @Package: com.timowang.pojo.member
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHongLin timo-wang@msyc.cc
- * @Date: 2017/11/22
+ * @Date: 2017/12/26
  * @Version: V2.0.10
  * @Modify-by: WangHongLin timo-wang@msyc.cc
- * @Modify-date: 2017/11/22
+ * @Modify-date: 2017/12/26
  * @Modify-version: 2.1.5
  * @Modify-description: 新增：增，删，改，查方法
  */
 
-import com.timowang.common.configura.shiro.pojo.*;
-import org.apache.shiro.cache.MemoryConstrainedCacheManager;
-import org.apache.shiro.web.mgt.CookieRememberMeManager;
-import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
 /**
- * @ClassName: TimoShiroSecurityManager
- * @Description:    Shiro 安全管理器
+ * @ClassName: Role
+ * @Description: 角色po
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
- * @Date: 2017/11/22
+ * @Date: 2017/12/26
  */
-@Configuration
-public class TimoShiroSecurityManager {
+public class Role {
+    private long idx;
+    private String roleName;
+    private String roleCode;
 
-    @Bean
-    public DefaultWebSecurityManager securityManager(TimoShiroSecurityRealm shiroSecurityRealm,
-                                                     MemoryConstrainedCacheManager cacheManager,
-                                                     CookieRememberMeManager rememberMeManager,
-                                                     DefaultWebSessionManager shiroSessionManager) {
-        DefaultWebSecurityManager defaultWebSecurityManager = new TimoDefaultWebSecurityManager();
-        defaultWebSecurityManager.setRealm(shiroSecurityRealm);
-        defaultWebSecurityManager.setCacheManager(cacheManager);
-        defaultWebSecurityManager.setRememberMeManager(rememberMeManager);
-        defaultWebSecurityManager.setSessionManager(shiroSessionManager);
-        return defaultWebSecurityManager;
+    /**
+     * @return idx
+     */
+    public long getIdx() {
+        return idx;
+    }
+
+    /**
+     * @param idx idx
+     */
+    public void setIdx(long idx) {
+        this.idx = idx;
+    }
+
+    /**
+     * @return roleName
+     */
+    public String getRoleName() {
+        return roleName;
+    }
+
+    /**
+     * @param roleName roleName
+     */
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    /**
+     * @return roleCode
+     */
+    public String getRoleCode() {
+        return roleCode;
+    }
+
+    /**
+     * @param roleCode roleCode
+     */
+    public void setRoleCode(String roleCode) {
+        this.roleCode = roleCode;
     }
 }

@@ -41,7 +41,7 @@ import org.apache.shiro.web.servlet.Cookie;
 
 /**
  * @ClassName: TimoCookieRememberMeManager
- * @Description:
+ * @Description: 自定义Cookie记住我管理器
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
  * @Date: 2017/11/21
