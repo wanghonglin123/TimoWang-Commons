@@ -43,6 +43,7 @@ public class TimoSessionDao extends CachingSessionDAO{
     protected Serializable doCreate(Session session) {
         // 使用Shiro生成一个自带的
         Serializable sessionId = this.generateSessionId(session);
+        super.assignSessionId(session, sessionId);
         return sessionId;
     }
 

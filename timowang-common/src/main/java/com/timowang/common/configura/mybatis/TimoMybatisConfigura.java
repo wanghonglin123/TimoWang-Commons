@@ -25,7 +25,7 @@ import org.springframework.core.io.Resource;
  * @Author: WangHongLin
  * @Date: 2017-11-18 下午 8:30
  */
-@Configuration
+//@Configuration
 @PropertySource({"mybatis.properties"})
 public class TimoMybatisConfigura {
 

@@ -117,11 +117,11 @@ public final class MemberRelevantData {
     }
     private static List<Member> getMemberData() {
         List<Member> objs = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 1; i < 3; i++) {
             Member obj = new Member();
             obj.setIdx(i);
-            obj.setUserName("zhangsan" + i);
-            obj.setPwd("zhangsan" + i);
+            obj.setUserName("" + i);
+            obj.setPwd("" + i);
             objs.add(obj);
         }
         return objs;

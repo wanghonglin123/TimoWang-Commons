@@ -60,6 +60,14 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Brixton.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
                 <groupId>com.timowang</groupId>
                 <artifactId>timowang-common</artifactId>
                 <version>1.0.0</version>
@@ -182,7 +190,16 @@
 
     <!-- 多套环境配置 begin-->
     <profiles>
-
+        <!-- 开发环境  -->
+        <profile>
+            <id>dev</id>
+            <!-- 必须设置一个环境，否则参数报错，设置为默认激活  -->
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+            </properties>
+        </profile>
     </profiles>
     <!-- 多套环境配置 end-->
 </project>

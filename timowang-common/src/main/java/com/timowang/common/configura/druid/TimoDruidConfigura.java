@@ -43,7 +43,7 @@ import org.springframework.context.annotation.PropertySource;
  * @Author: WangHonglin timo-wang@msyc.cc
  * @Date: 2017/11/18
  */
-@Configuration
+//@Configuration
 @PropertySource("${spring.profile.active}/jdbc.properties")
 public class TimoDruidConfigura {
 

@@ -1,0 +1,38 @@
+51: 实例化SpringBoot
+public SpringApplication(ResourceLoader resourceLoader, Object... sources) {
+        this.bannerMode = Mode.CONSOLE;
+        this.logStartupInfo = true;
+        this.addCommandLineProperties = true;
+        this.headless = true;
+        this.registerShutdownHook = true;
+        this.additionalProfiles = new HashSet();
+        this.resourceLoader = resourceLoader;
+        this.initialize(sources);
+    }
+2: 设置SpringBoot的初始化的值
+private void initialize(Object[] sources) {
+        if(sources != null && sources.length > 0) {
+            this.sources.addAll(Arrays.asList(sources));
+        }
+	// 判断环境，new String[]{"javax.servlet.Servlet", "org.springframework.web.context.ConfigurableWebApplicationContext"};
+	判断这些类是否存在，不存在返回false
+        this.webEnvironment = this.deduceWebEnvironment();
+	// // 设置springboot的初始化类，这些配置在Spring所有jar包META-INF/spring.factories配置
+	// key = (ApplicationContextInitializer.class)).getName
+        this.setInitializers(this.getSpringFactoriesInstances(ApplicationContextInitializer.class));
+	// 设置springboot的监听器，这些配置在Spring所有jar包META-INF/spring.factories配置
+	// key = (ApplicationListener.class)).getName
+        this.setListeners(this.getSpringFactoriesInstances(ApplicationListener.class));
+	// 获取springboot启动的类
+        this.mainApplicationClass = this.deduceMainApplicationClass();
+    }
+3: 获取需要运行的Linstence,并且启动，采用发布订阅模式，观察者模式
+SpringApplicationRunListeners listeners = this.getRunListeners(args);
+        listeners.starting();
+4：打印Springboot横幅，主要是SpringbootBanner类实现 PrintStream
+5: 创建应用程序上下文 
+	初始化：org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext
+6：实例化FailureAnalyzers故障分析仪，获取所有的故障分析仪，在META-INF/spring.factories配置
+SpringFactoriesLoader.loadFactoryNames(FailureAnalyzer.class, classLoader);
+7：准备背景prepareContext
+8：刷新上下文，核心代码多在这里，加载了Spring的核心功能，比如，Springmvc，注入beans,启动bean，等实现

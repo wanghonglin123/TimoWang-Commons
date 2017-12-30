@@ -1,0 +1,7 @@
+1:AutowireCapableBeanFactory 自动装配bean工厂,主要用于装配不是spring管理的bean
+2:使用场景
+当在初始化一些监听器或者过滤器的时候，这个对象不是spring bean,没有被spring管理，当想被spring 管理的时候
+可以使用AutowireCapableBeanFactory，装配这个对象
+WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(filterConfig.getServletContext());  
+        AutowireCapableBeanFactory autowireCapableBeanFactory = wac.getAutowireCapableBeanFactory();  
+        autowireCapableBeanFactory.autowireBeanProperties(this, AutowireCapableBeanFactory.AUTOWIRE_BY_NAME, false);

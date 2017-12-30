@@ -47,7 +47,7 @@ import java.util.Set;
  * @Author: WangHonglin timo-wang@msyc.cc
  * @Date: 2017/11/22
  */
-@Configuration
+//@Configuration
 @PropertySource({"${spring.profile.active}/redis.properties"})
 public class TimoJedisClusterConfigura{
 
