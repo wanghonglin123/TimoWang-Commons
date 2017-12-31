@@ -16,6 +16,8 @@
     <!-- 常量配置 begin-->
     <properties>
         <jdk.version>1.8</jdk.version>
+        <flogger.version>1.0.2</flogger.version>
+        <timowang-version>1.0.0</timowang-version>
     </properties>
     <!-- 常量配置 end-->
 
@@ -38,7 +40,7 @@
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
+            <version>${timowang-version}</version>
         </dependency>
 
         <!-- 引入spring boot自带的pagehelper插件 -->
@@ -70,37 +72,44 @@
             <dependency>
                 <groupId>com.timowang</groupId>
                 <artifactId>timowang-common</artifactId>
-                <version>1.0.0</version>
+                <version>${timowang-version}</version>
+            </dependency>
+
+            <!-- 基于双缓冲队列、多刷盘机制的超轻量级 Java 日志 -->
+            <dependency>
+                <groupId>com.github.cyfonly</groupId>
+                <artifactId>flogger</artifactId>
+                <version>${flogger.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.timowang</groupId>
                 <artifactId>timowang-dao</artifactId>
-                <version>1.0.0</version>
+                <version>${timowang-version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.timowang</groupId>
                 <artifactId>timowang-interfaces</artifactId>
-                <version>1.0.0</version>
+                <version>${timowang-version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.timowang</groupId>
                 <artifactId>timowang-pojo</artifactId>
-                <version>1.0.0</version>
+                <version>${timowang-version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.timowang</groupId>
                 <artifactId>timowang-ext</artifactId>
-                <version>1.0.0</version>
+                <version>${timowang-version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.timowang</groupId>
                 <artifactId>timowang-member-service</artifactId>
-                <version>1.0.0</version>
+                <version>${timowang-version}</version>
             </dependency>
             <!-- mysql驱动包 -->
             <dependency>

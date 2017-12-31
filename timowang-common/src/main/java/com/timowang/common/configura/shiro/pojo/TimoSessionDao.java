@@ -39,26 +39,40 @@ import java.util.Collection;
  */
 public class TimoSessionDao extends CachingSessionDAO{
 
+    /**
+     * Session 创建，只有在Session == null 或者失效的时候才会创建session
+     * @param session
+     * @return
+     */
     @Override
     protected Serializable doCreate(Session session) {
-        // 使用Shiro生成一个自带的
         Serializable sessionId = this.generateSessionId(session);
         super.assignSessionId(session, sessionId);
         return sessionId;
     }
 
+    /**
+     * 当服务器重启后，如果发现Cookie存在SessionId,就会执行该方法读取该方法，任何操作多执行该方法，比如刷新浏览器，点击按钮等
+     * @param serializable
+     * @return
+     */
     @Override
     protected Session doReadSession(Serializable serializable) {
+        System.out.println(2);
         return null;
     }
 
+    /**
+     * Session 更新，当Session存在的情况下，任何操作多会更新当前Session
+     * @param session
+     */
     @Override
     protected void doUpdate(Session session) {
-
+        System.out.println(3);
     }
 
     @Override
     protected void doDelete(Session session) {
-
+        System.out.println("4");
     }
 }

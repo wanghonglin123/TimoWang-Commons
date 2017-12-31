@@ -18,7 +18,7 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.common.component;
+package com.timowang.common.component.domain;
 
 /**
  * @Title: ApplicationProperties

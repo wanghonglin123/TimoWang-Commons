@@ -36,6 +36,7 @@ package com.timowang.common.configura.shiro.pojo;
 
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.SessionListener;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @ClassName: TimoShiroSessionListener
@@ -46,18 +47,33 @@ import org.apache.shiro.session.SessionListener;
  */
 public class TimoShiroSessionListener implements SessionListener{
 
+    @Autowired
+    private TimoSessionDao sessionDao;
+
+    /**
+     * Session 创建
+     * @param session
+     */
     @Override
     public void onStart(Session session) {
-
+        System.out.println("1");
     }
 
+    /**
+     * Session 停止,需要执行doDelete（），因为session保存到了缓存里面，所以需要删除
+     * @param session
+     */
     @Override
     public void onStop(Session session) {
-
+        sessionDao.doDelete(session);
     }
 
+    /**
+     * Session 过期，需要执行doDelete（），因为session保存到了缓存里面，所以需要删除
+     * @param session
+     */
     @Override
     public void onExpiration(Session session) {
-
+        sessionDao.delete(session);
     }
 }

@@ -71,10 +71,12 @@ public class TimoShiroConfigura extends TimoBaseConfigura{
      */
     @Bean(name = "sessionIdCookie")
     public SimpleCookie sessionIdCookie() {
-        // 设置JsessionId为 sid.timowang.com
+        // 设置JsessionId为 sid.timowang.com, 必须加环境区分cookie名称，否则多个环境一起打开的时候会出现权限混淆问题
         SimpleCookie timoSimpleCookie = new TimoSimpleCookie(super.getDomain() + ".sid.timowang.com");
-        timoSimpleCookie.setMaxAge(36000);
+        // 必须设置为true, 增加cookie安全性，增加安全性
         timoSimpleCookie.setHttpOnly(true);
+        // 浏览器关闭后sessionIdCookie的寿命，设置为10分钟，如果为-1，即浏览器关闭后就失效
+        timoSimpleCookie.setMaxAge(36000);
         return timoSimpleCookie;
     }
 
@@ -85,8 +87,8 @@ public class TimoShiroConfigura extends TimoBaseConfigura{
     @Bean(name = "rememberMeCookie")
     public SimpleCookie rememberMeCookie() {
         SimpleCookie timoSimpleCookie = new TimoSimpleCookie(super.getDomain() + "rme.timowang.com");
-        timoSimpleCookie.setMaxAge(36000);
         timoSimpleCookie.setHttpOnly(true);
+        timoSimpleCookie.setMaxAge(36000);
         return timoSimpleCookie;
     }
 

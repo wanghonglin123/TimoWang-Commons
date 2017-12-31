@@ -34,10 +34,9 @@ package com.timowang.common.configura;
  * @Modify-description: 新增：增，删，改，查方法
  */
 
-import com.timowang.common.component.TimoWangDomain;
+import com.timowang.common.component.domain.TimoWangDomain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 /**
  * @ClassName: TimoBaseConfigura
@@ -54,6 +53,7 @@ public class TimoBaseConfigura {
      */
     @Autowired
     private TimoWangDomain timoWangDomain;
+
 
     /**
      * 获取运行环境name

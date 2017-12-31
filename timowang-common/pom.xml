@@ -27,7 +27,6 @@
         <dependency>
             <groupId>com.timowang</groupId>
             <artifactId>timowang-pojo</artifactId>
-            <version>1.0.0</version>
         </dependency>
 
         <!-- shiro-all -->
@@ -41,6 +40,12 @@
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
+        </dependency>
+
+        <!-- 基于双缓冲队列、多刷盘机制的超轻量级 Java 日志 -->
+        <dependency>
+            <groupId>com.github.cyfonly</groupId>
+            <artifactId>flogger</artifactId>
         </dependency>
     </dependencies>
 

@@ -62,7 +62,7 @@ public class TimoShiroSecurityRealm extends AuthorizingRealm{
     @Override
     public AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection var1){
         System.out.println("1");
-        return new SimpleAuthorizationInfo();
+        return null;
     }
 
     /**

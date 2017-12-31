@@ -38,8 +38,17 @@ package com.timowang.common.constants;
  * @Date: 2017/11/18
  */
 public final class TimoWangConstant {
+    private TimoWangConstant () {}
     /**
      * ,符号
      */
     public static final String SYMBOL_COMMA = ",";
+
+    public static final short ONE = 1;
+
+    public static final short TWO = 2;
+
+    public static final short THREE = 3;
+
+    public static final short FORE = 4;
 }
