@@ -44,7 +44,6 @@ public class TimoAnyRolesFilter extends AccessControlFilter {
      */
     @Override
     protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object o) throws Exception {
-        System.out.println(6);
         return true;
     }
 
@@ -57,7 +56,6 @@ public class TimoAnyRolesFilter extends AccessControlFilter {
      */
     @Override
     protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
-        System.out.println(7);
         return false;
     }
 }

@@ -12,6 +12,7 @@ import com.timowang.common.component.log.adapter.TimoLoggerAdapter;
 import com.timowang.common.configura.TimoBaseConfigura;
 import com.timowang.common.constants.TimoWangConstant;
 import com.timowang.common.exception.TimoLogExecption;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -28,6 +29,21 @@ public class TimoFlogger extends TimoBaseConfigura implements TimoLoggerAdapter{
     @Autowired
     private TimoLog timoLog;
 
+    /**
+     * 环境名称
+     */
+    private String domain;
+
+    /**
+     * 是否支持打印到控制台
+     * 大于2，允许打印到控制台,debug,info级别需要自己打印到控制台，error,warn默认会打印到控制台
+     */
+    private int isPrintConole = 3;
+
+    /**
+     * 日志级别， 1：debug， 2:info ， 3:warn， 4:error
+     */
+    private int logLevel;
     @Override
     public void info(Class<?> clazz, Exception ex, String logMsg) {
         this.logPrint(clazz, ex, logMsg, TimoWangConstant.TWO);
@@ -35,12 +51,12 @@ public class TimoFlogger extends TimoBaseConfigura implements TimoLoggerAdapter{
 
     @Override
     public void error(Class<?> clazz, Exception ex, String logMsg) {
-        this.logPrint(clazz, ex, logMsg, TimoWangConstant.THREE);
+        this.logPrint(clazz, ex, logMsg, TimoWangConstant.FORE);
     }
 
     @Override
     public void warn(Class<?> clazz, Exception ex, String logMsg) {
-        this.logPrint(clazz, ex, logMsg, TimoWangConstant.FORE);
+        this.logPrint(clazz, ex, logMsg, TimoWangConstant.THREE);
     }
 
     @Override
@@ -96,10 +112,44 @@ public class TimoFlogger extends TimoBaseConfigura implements TimoLoggerAdapter{
      * @param level 日志级别
      */
     private void logPrint(Class<?> clazz, Throwable ex, String logMsg, short level) {
+        String msg = null;
         try {
-            String msg = getMsg(clazz, ex, logMsg);
+            // 获取打印的日志信息
+            msg = getMsg(clazz, ex, logMsg);
+            if (isPrintConole > 2) {
+                switch (level) {
+                    case TimoWangConstant.ONE :
+                        System.out.println(String.format("debug#%s", msg));
+                        break;
+                    case TimoWangConstant.TWO :
+                        System.out.println(String.format("info#%s", msg));
+                        break;
+                }
+            }
+
+            // 判断level 是否支持打印
+            if (logLevel > level) {
+                return;
+            }
+            // 根据级别，打印不同的日志
+            switch (level) {
+                case TimoWangConstant.ONE :
+                    timoLog.debug(String.format("debug#%s", msg));
+                    break;
+                case TimoWangConstant.TWO :
+                    timoLog.info(String.format("info#%s", msg));
+                    break;
+                case TimoWangConstant.THREE :
+                    timoLog.info(String.format("warn#%s", msg));
+                    break;
+                case TimoWangConstant.FORE :
+                    timoLog.info(String.format("error#%s", msg));
+                    break;
+            }
+
         } catch (TimoLogExecption e) {
-            e.printStackTrace();
+            msg = null;
+            timoLog.error(String.format("error#%s", "日志打印失败"));
         }
     }
 
@@ -112,8 +162,15 @@ public class TimoFlogger extends TimoBaseConfigura implements TimoLoggerAdapter{
      */
     private String getMsg(Class<?> clazz, Throwable ex, String logMsg) throws TimoLogExecption{
         if (clazz == null || StringUtils.isEmpty(logMsg)) {
-            throw new TimoLogExecption();
+            throw new TimoLogExecption("日志打印参数非法");
         }
-        return null;
+        // 环境获取
+        this.domain = super.getDomain();
+        if (ex == null) {
+            return String.format("environment: %s, %s, %s", domain, clazz.getName(), logMsg);
+        } else {
+            return String.format("environment: %s, %s, %s, %s", domain,
+                    clazz.getName(), ExceptionUtils.getStackTrace(ex), logMsg);
+        }
     }
 }

@@ -35,6 +35,7 @@ package com.timowang.common.configura;
  */
 
 import com.timowang.common.component.domain.TimoWangDomain;
+import com.timowang.common.component.log.adapter.TimoLoggerAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
@@ -52,9 +53,10 @@ public class TimoBaseConfigura {
      * 环境
      */
     @Autowired
-    private TimoWangDomain timoWangDomain;
+    protected TimoWangDomain timoWangDomain;
 
-
+    @Autowired
+    protected TimoLoggerAdapter timoLoggerAdapter;
     /**
      * 获取运行环境name
      * @return

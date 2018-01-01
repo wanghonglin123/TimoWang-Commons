@@ -8,7 +8,9 @@ package com.timowang.common.component.log;
  * @Version: V2.0.0
  */
 
+import com.cyfonly.flogger.FLogger;
 import com.timowang.common.component.log.adapter.TimoLogAdapter;
+import org.springframework.stereotype.Component;
 
 /**
  * @ClassName: TimoLog
@@ -16,25 +18,28 @@ import com.timowang.common.component.log.adapter.TimoLogAdapter;
  * @Author: WangHongLin
  * @Date: 2018-01-01 上午 12:20
  */
-public class TimoLog implements TimoLogAdapter{
+@Component
+public class TimoLog implements TimoLogAdapter {
+
+    private static final FLogger FLOGGER = FLogger.getInstance();
 
     @Override
     public void debug(String msg) {
-
+        FLOGGER.debug(msg);
     }
 
     @Override
     public void info(String msg) {
-
+        FLOGGER.info(msg);
     }
 
     @Override
     public void error(String msg) {
-
+        FLOGGER.error(msg);
     }
 
     @Override
     public void warn(String msg) {
-
+        FLOGGER.warn(msg);
     }
 }

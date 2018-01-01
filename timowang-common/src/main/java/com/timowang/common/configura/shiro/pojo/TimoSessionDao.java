@@ -58,7 +58,6 @@ public class TimoSessionDao extends CachingSessionDAO{
      */
     @Override
     protected Session doReadSession(Serializable serializable) {
-        System.out.println(2);
         return null;
     }
 
@@ -68,11 +67,9 @@ public class TimoSessionDao extends CachingSessionDAO{
      */
     @Override
     protected void doUpdate(Session session) {
-        System.out.println(3);
     }
 
     @Override
     protected void doDelete(Session session) {
-        System.out.println("4");
     }
 }

@@ -56,7 +56,6 @@ public class TimoShiroSessionListener implements SessionListener{
      */
     @Override
     public void onStart(Session session) {
-        System.out.println("1");
     }
 
     /**
