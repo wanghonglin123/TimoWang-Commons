@@ -18,44 +18,53 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.common.configura.shiro.filter;
+package com.timowang.common.pojo.shiro;
 
-import org.apache.shiro.web.filter.AccessControlFilter;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.session.mgt.eis.CachingSessionDAO;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import java.io.Serializable;
 
 /**
- * @ClassName: TimoAnyRolesFilter
- * @Description:    Shiro 权限过滤器
+ * @ClassName: TimoSessionDao
+ * @Description:    Shiro SessionDao操作
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
- * @Date: 2017/11/22
+ * @Date: 2017/11/21
  */
-public class TimoAnyRolesFilter extends AccessControlFilter {
+public class TimoSessionDao extends CachingSessionDAO{
 
     /**
-     * 判断是否允许访问， true 允许， flase 不允许
-     * @param servletRequest
-     * @param servletResponse
-     * @param o
+     * Session 创建，只有在Session == null 或者失效的时候才会创建session
+     * @param session
      * @return
-     * @throws Exception
      */
     @Override
-    protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object o) throws Exception {
-        return true;
+    protected Serializable doCreate(Session session) {
+        Serializable sessionId = this.generateSessionId(session);
+        super.assignSessionId(session, sessionId);
+        return sessionId;
     }
 
     /**
-     *  如果isAccessAllowed返回false, 验证失败逻辑处理
-     * @param servletRequest
-     * @param servletResponse
+     * 当服务器重启后，如果发现Cookie存在SessionId,就会执行该方法读取该方法，任何操作多执行该方法，比如刷新浏览器，点击按钮等
+     * @param serializable
      * @return
-     * @throws Exception
      */
     @Override
-    protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
-        return false;
+    protected Session doReadSession(Serializable serializable) {
+        return null;
+    }
+
+    /**
+     * Session 更新，当Session存在的情况下，任何操作多会更新当前Session
+     * @param session
+     */
+    @Override
+    protected void doUpdate(Session session) {
+    }
+
+    @Override
+    protected void doDelete(Session session) {
     }
 }

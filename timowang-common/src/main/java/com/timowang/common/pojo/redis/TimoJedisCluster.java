@@ -18,7 +18,7 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.common.configura.redis.pojo;
+package com.timowang.common.pojo.redis;
 
 /**
  * @Title: TimoJedisCluster

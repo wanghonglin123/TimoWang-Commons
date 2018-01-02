@@ -18,61 +18,44 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.common.configura.shiro.pojo;
+package com.timowang.common.filter.shiro;
+
+import org.apache.shiro.web.filter.AccessControlFilter;
+
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 
 /**
- * @Title: TimoShiroSessionListener
- * @Package: com.timowang.common.configura.shiro
- * @Description:
- * @Company: 广州市两棵树网络科技有限公司
- * @Author: WangHongLin timo-wang@msyc.cc
- * @Date: 2017/11/21
- * @Version: V2.0.10
- * @Modify-by: WangHongLin timo-wang@msyc.cc
- * @Modify-date: 2017/11/21
- * @Modify-version: 2.1.5
- * @Modify-description: 新增：增，删，改，查方法
- */
-
-import org.apache.shiro.session.Session;
-import org.apache.shiro.session.SessionListener;
-import org.springframework.beans.factory.annotation.Autowired;
-
-/**
- * @ClassName: TimoShiroSessionListener
- * @Description:    自定义Shiro Session监听器
+ * @ClassName: TimoAnyRolesFilter
+ * @Description:    Shiro 权限过滤器
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
- * @Date: 2017/11/21
+ * @Date: 2017/11/22
  */
-public class TimoShiroSessionListener implements SessionListener{
-
-    @Autowired
-    private TimoSessionDao sessionDao;
+public class TimoAnyRolesFilter extends AccessControlFilter {
 
     /**
-     * Session 创建
-     * @param session
+     * 判断是否允许访问， true 允许， flase 不允许
+     * @param servletRequest
+     * @param servletResponse
+     * @param o
+     * @return
+     * @throws Exception
      */
     @Override
-    public void onStart(Session session) {
+    protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object o) throws Exception {
+        return true;
     }
 
     /**
-     * Session 停止,需要执行doDelete（），因为session保存到了缓存里面，所以需要删除
-     * @param session
+     *  如果isAccessAllowed返回false, 验证失败逻辑处理
+     * @param servletRequest
+     * @param servletResponse
+     * @return
+     * @throws Exception
      */
     @Override
-    public void onStop(Session session) {
-        sessionDao.doDelete(session);
-    }
-
-    /**
-     * Session 过期，需要执行doDelete（），因为session保存到了缓存里面，所以需要删除
-     * @param session
-     */
-    @Override
-    public void onExpiration(Session session) {
-        sessionDao.delete(session);
+    protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
+        return false;
     }
 }

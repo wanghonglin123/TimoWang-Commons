@@ -18,7 +18,7 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.common.configura.shiro.pojo;
+package com.timowang.common.pojo.shiro;
 
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;

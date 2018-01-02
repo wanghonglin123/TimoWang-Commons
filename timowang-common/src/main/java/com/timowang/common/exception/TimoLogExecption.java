@@ -10,7 +10,7 @@ package com.timowang.common.exception;
 
 /**
  * @ClassName: TimoLogExecption
- * @Description:
+ * @Description:    自定义日志异常
  * @Author: WangHongLin
  * @Date: 2018-01-01 上午 1:30
  */

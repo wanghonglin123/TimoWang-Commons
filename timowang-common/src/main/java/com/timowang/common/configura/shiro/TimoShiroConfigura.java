@@ -35,8 +35,8 @@ package com.timowang.common.configura.shiro;
  */
 
 import com.timowang.common.configura.TimoBaseConfigura;
-import com.timowang.common.configura.shiro.filter.TimoAnyRolesFilter;
-import com.timowang.common.configura.shiro.pojo.*;
+import com.timowang.common.filter.shiro.TimoAnyRolesFilter;
+import com.timowang.common.pojo.shiro.*;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.session.SessionListener;
 import org.apache.shiro.session.mgt.eis.CachingSessionDAO;

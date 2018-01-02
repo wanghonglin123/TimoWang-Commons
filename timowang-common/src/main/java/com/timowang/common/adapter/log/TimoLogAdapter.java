@@ -1,4 +1,4 @@
-package com.timowang.common.component.log.adapter;
+package com.timowang.common.adapter.log;
 /**
  * @Title: TimoLogAdapter
  * @Package: com.timowang.common.component.log.adapter

@@ -18,58 +18,67 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.common.configura.shiro.pojo;
-
-import org.apache.shiro.cache.Cache;
-import org.apache.shiro.cache.CacheManager;
-import org.apache.shiro.session.Session;
-import org.apache.shiro.session.UnknownSessionException;
-import org.apache.shiro.session.mgt.eis.CachingSessionDAO;
-import org.apache.shiro.session.mgt.eis.SessionIdGenerator;
-
-import java.io.Serializable;
-import java.util.Collection;
+package com.timowang.common.pojo.shiro;
 
 /**
- * @ClassName: TimoSessionDao
- * @Description:    Shiro SessionDao操作
+ * @Title: TimoCookieRememberMeManager
+ * @Package: com.timowang.common.configura.shiro
+ * @Description:
+ * @Company: 广州市两棵树网络科技有限公司
+ * @Author: WangHongLin timo-wang@msyc.cc
+ * @Date: 2017/11/21
+ * @Version: V2.0.10
+ * @Modify-by: WangHongLin timo-wang@msyc.cc
+ * @Modify-date: 2017/11/21
+ * @Modify-version: 2.1.5
+ * @Modify-description: 新增：增，删，改，查方法
+ */
+
+import org.apache.shiro.subject.Subject;
+import org.apache.shiro.subject.SubjectContext;
+import org.apache.shiro.web.mgt.CookieRememberMeManager;
+import org.apache.shiro.web.servlet.Cookie;
+
+/**
+ * @ClassName: TimoCookieRememberMeManager
+ * @Description: 自定义Cookie记住我管理器
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
  * @Date: 2017/11/21
  */
-public class TimoSessionDao extends CachingSessionDAO{
+public class TimoCookieRememberMeManager extends CookieRememberMeManager{
 
-    /**
-     * Session 创建，只有在Session == null 或者失效的时候才会创建session
-     * @param session
-     * @return
-     */
-    @Override
-    protected Serializable doCreate(Session session) {
-        Serializable sessionId = this.generateSessionId(session);
-        super.assignSessionId(session, sessionId);
-        return sessionId;
-    }
-
-    /**
-     * 当服务器重启后，如果发现Cookie存在SessionId,就会执行该方法读取该方法，任何操作多执行该方法，比如刷新浏览器，点击按钮等
-     * @param serializable
-     * @return
-     */
-    @Override
-    protected Session doReadSession(Serializable serializable) {
-        return null;
-    }
-
-    /**
-     * Session 更新，当Session存在的情况下，任何操作多会更新当前Session
-     * @param session
-     */
-    @Override
-    protected void doUpdate(Session session) {
+    public TimoCookieRememberMeManager() {
+        super();
     }
 
     @Override
-    protected void doDelete(Session session) {
+    public Cookie getCookie() {
+        return super.getCookie();
+    }
+
+    @Override
+    public void setCookie(Cookie cookie) {
+        super.setCookie(cookie);
+    }
+
+    @Override
+    protected void rememberSerializedIdentity(Subject subject, byte[] serialized) {
+        super.rememberSerializedIdentity(subject, serialized);
+    }
+
+    @Override
+    protected byte[] getRememberedSerializedIdentity(SubjectContext subjectContext) {
+        return super.getRememberedSerializedIdentity(subjectContext);
+    }
+
+    @Override
+    protected void forgetIdentity(Subject subject) {
+        super.forgetIdentity(subject);
+    }
+
+    @Override
+    public void forgetIdentity(SubjectContext subjectContext) {
+        super.forgetIdentity(subjectContext);
     }
 }

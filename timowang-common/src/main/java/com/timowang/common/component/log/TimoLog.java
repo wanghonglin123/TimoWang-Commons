@@ -9,7 +9,7 @@ package com.timowang.common.component.log;
  */
 
 import com.cyfonly.flogger.FLogger;
-import com.timowang.common.component.log.adapter.TimoLogAdapter;
+import com.timowang.common.adapter.log.TimoLogAdapter;
 import org.springframework.stereotype.Component;
 
 /**

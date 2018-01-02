@@ -18,10 +18,10 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.common.configura.shiro.pojo;
+package com.timowang.common.pojo.shiro;
 
 /**
- * @Title: TimoCookieRememberMeManager
+ * @Title: TimoDefaultWebSecurityManager
  * @Package: com.timowang.common.configura.shiro
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
@@ -34,51 +34,100 @@ package com.timowang.common.configura.shiro.pojo;
  * @Modify-description: 新增：增，删，改，查方法
  */
 
+import org.apache.shiro.mgt.SubjectDAO;
+import org.apache.shiro.realm.Realm;
+import org.apache.shiro.session.mgt.SessionContext;
+import org.apache.shiro.session.mgt.SessionKey;
+import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.subject.SubjectContext;
-import org.apache.shiro.web.mgt.CookieRememberMeManager;
-import org.apache.shiro.web.servlet.Cookie;
+import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+
+import java.util.Collection;
 
 /**
- * @ClassName: TimoCookieRememberMeManager
- * @Description: 自定义Cookie记住我管理器
+ * @ClassName: TimoDefaultWebSecurityManager
+ * @Description:    默认Web安全管理器
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
  * @Date: 2017/11/21
  */
-public class TimoCookieRememberMeManager extends CookieRememberMeManager{
+public class TimoDefaultWebSecurityManager extends DefaultWebSecurityManager{
 
-    public TimoCookieRememberMeManager() {
+    public TimoDefaultWebSecurityManager() {
         super();
     }
 
-    @Override
-    public Cookie getCookie() {
-        return super.getCookie();
+    public TimoDefaultWebSecurityManager(Realm singleRealm) {
+        super(singleRealm);
+    }
+
+    public TimoDefaultWebSecurityManager(Collection<Realm> realms) {
+        super(realms);
     }
 
     @Override
-    public void setCookie(Cookie cookie) {
-        super.setCookie(cookie);
+    protected SubjectContext createSubjectContext() {
+        return super.createSubjectContext();
     }
 
     @Override
-    protected void rememberSerializedIdentity(Subject subject, byte[] serialized) {
-        super.rememberSerializedIdentity(subject, serialized);
+    public void setSubjectDAO(SubjectDAO subjectDAO) {
+        super.setSubjectDAO(subjectDAO);
     }
 
     @Override
-    protected byte[] getRememberedSerializedIdentity(SubjectContext subjectContext) {
-        return super.getRememberedSerializedIdentity(subjectContext);
+    protected void afterSessionManagerSet() {
+        super.afterSessionManagerSet();
     }
 
     @Override
-    protected void forgetIdentity(Subject subject) {
-        super.forgetIdentity(subject);
+    protected SubjectContext copy(SubjectContext subjectContext) {
+        return super.copy(subjectContext);
     }
 
     @Override
-    public void forgetIdentity(SubjectContext subjectContext) {
-        super.forgetIdentity(subjectContext);
+    public String getSessionMode() {
+        return super.getSessionMode();
+    }
+
+    @Override
+    public void setSessionMode(String sessionMode) {
+        super.setSessionMode(sessionMode);
+    }
+
+    @Override
+    public void setSessionManager(SessionManager sessionManager) {
+        super.setSessionManager(sessionManager);
+    }
+
+    @Override
+    public boolean isHttpSessionMode() {
+        return super.isHttpSessionMode();
+    }
+
+    @Override
+    protected SessionManager createSessionManager(String sessionMode) {
+        return super.createSessionManager(sessionMode);
+    }
+
+    @Override
+    protected SessionContext createSessionContext(SubjectContext subjectContext) {
+        return super.createSessionContext(subjectContext);
+    }
+
+    @Override
+    protected SessionKey getSessionKey(SubjectContext context) {
+        return super.getSessionKey(context);
+    }
+
+    @Override
+    protected void beforeLogout(Subject subject) {
+        super.beforeLogout(subject);
+    }
+
+    @Override
+    protected void removeRequestIdentity(Subject subject) {
+        super.removeRequestIdentity(subject);
     }
 }

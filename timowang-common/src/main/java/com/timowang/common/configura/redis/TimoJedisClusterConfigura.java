@@ -28,11 +28,10 @@ package com.timowang.common.configura.redis;
  * @Author: WangHongLin timo-wang@msyc.cc
  */
 
-import com.timowang.common.configura.redis.pojo.TimoJedisCluster;
-import com.timowang.common.configura.redis.pojo.TimoJedisPoolConfig;
+import com.timowang.common.pojo.redis.TimoJedisCluster;
+import com.timowang.common.pojo.redis.TimoJedisPoolConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;

@@ -1,4 +1,4 @@
-package com.timowang.common.configura.redis.pojo;
+package com.timowang.common.pojo.redis;
 /**
  * @Title: TimoJedisPoolConfig
  * @Package: com.timowang.common.configura.redis.pojo
