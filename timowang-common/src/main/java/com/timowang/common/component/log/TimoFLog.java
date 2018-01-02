@@ -14,12 +14,12 @@ import org.springframework.stereotype.Component;
 
 /**
  * @ClassName: TimoLog
- * @Description:    日志实现
+ * @Description:    Flogger 日志组件实现
  * @Author: WangHongLin
  * @Date: 2018-01-01 上午 12:20
  */
 @Component
-public class TimoLog implements TimoLogAdapter {
+public class TimoFLog implements TimoLogAdapter {
 
     private static final FLogger FLOGGER = FLogger.getInstance();
 
