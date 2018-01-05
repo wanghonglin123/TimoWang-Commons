@@ -32,6 +32,7 @@ import com.timowang.common.pojo.redis.TimoJedisCluster;
 import com.timowang.common.pojo.redis.TimoJedisPoolConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
@@ -46,7 +47,7 @@ import java.util.Set;
  * @Author: WangHonglin timo-wang@msyc.cc
  * @Date: 2017/11/22
  */
-//@Configuration
+@Configuration
 @PropertySource({"${spring.profile.active}/redis.properties"})
 public class TimoJedisClusterConfigura{
 
