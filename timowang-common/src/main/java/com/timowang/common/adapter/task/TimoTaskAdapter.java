@@ -21,7 +21,7 @@
 package com.timowang.common.adapter.task;
 
 /**
- * @Title: TaskAdpater
+ * @Title: Task
  * @Package: com.timowang.common.adapter.task
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
@@ -34,25 +34,12 @@ package com.timowang.common.adapter.task;
  * @Modify-description: 新增：增，删，改，查方法
  */
 
-import java.util.List;
-
 /**
- * @ClassName: TaskAdpater
- * @Description: 任务适配器
+ * @ClassName: Task
+ * @Description:    任务适配器
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
  * @Date: 2018/1/5
  */
-public interface TaskAdpater {
-    /**
-     * 添加任务调度中心
-     * @param task
-     */
-    void addTask(Task task);
-
-    /**
-     * 获取所有的任务调度中心
-     * @return
-     */
-    List<Task> getAll();
+public interface TimoTaskAdapter extends Runnable {
 }

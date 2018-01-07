@@ -14,7 +14,7 @@ package com.timowang.common.exception;
  * @Author: WangHongLin
  * @Date: 2018-01-01 上午 1:30
  */
-public class TimoLogExecption extends Exception{
+public class TimoLogExecption extends TimoBaseException{
     public TimoLogExecption() {
         super();
     }

@@ -34,7 +34,7 @@ package com.timowang.common.configura.shiro;
  * @Modify-description: 新增：增，删，改，查方法
  */
 
-import com.timowang.common.configura.TimoBaseConfigura;
+import com.timowang.common.beans.TimoBeans;
 import com.timowang.common.filter.shiro.TimoAnyRolesFilter;
 import com.timowang.common.pojo.shiro.*;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
@@ -63,7 +63,7 @@ import java.util.Map;
  * @Date: 2017/12/26
  */
 @Configuration
-public class TimoShiroConfigura extends TimoBaseConfigura{
+public class TimoShiroConfigura extends TimoBeans {
 
     /**
      * 自定义简单cookie Bean, 设置存储到Cookie的 JSessionId 和Cookie时间

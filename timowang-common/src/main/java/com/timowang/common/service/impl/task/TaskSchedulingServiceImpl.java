@@ -18,7 +18,7 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.common.abstracts.task;
+package com.timowang.common.service.impl.task;
 
 /**
  * @Title: AbstractTaskScheduling
@@ -28,37 +28,48 @@ package com.timowang.common.abstracts.task;
  * @Author: WangHongLin timo-wang@msyc.cc
  */
 
-import com.timowang.common.adapter.task.Task;
-import com.timowang.common.adapter.task.TaskSchedulingAdapter;
-import com.timowang.common.task.AbstractTask;
+import com.timowang.common.adapter.task.TimoTaskAdapter;
+import com.timowang.common.adapter.task.TimoTaskSchedulingAdapter;
+import com.timowang.common.exception.handler.TaskSchedulingExceptionHandler;
+import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @ClassName: AbstractTaskScheduling
- * @Description: 任务调度抽象
+ * @Description: 任务调度服务，对任务调度中心操作，停止，删除
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
  * @Date: 2018/1/5
  */
-public abstract class AbstractTaskScheduling extends AbstractTask implements TaskSchedulingAdapter {
+@Component
+public class TaskSchedulingServiceImpl implements TimoTaskSchedulingAdapter {
     /**
-     * 任务调度数量
+     * 任务调度中心状态
+     * 0 ： 停止
+     * 1 ：启动
+     * 2 ：暂停
+     * 分布式存在数据库或者缓存或者zk
      */
-    private static int taskNum = 0;
+    private static int status = 0;
 
-    private static ExecutorService executorService = Executors.newFixedThreadPool(1);
+    private static ScheduledExecutorService executorService = Executors.newScheduledThreadPool(50);
+    /**
+     * 存放任务调度
+     */
+    private static Map<String, TimoTaskAdapter> taskMap = new HashMap();
 
     /**
      * 启动线程池，执行任务
      * @param runnable
      */
     @Override
-    public void start(Task runnable) {
-        super.addTask(runnable);
-        executorService.submit(runnable);
+    public void start(TimoTaskAdapter runnable) throws Exception{
+        this.execute(this.addTask(runnable));
     }
 
     /**
@@ -66,12 +77,47 @@ public abstract class AbstractTaskScheduling extends AbstractTask implements Tas
      */
     @Override
     public void stop() {
-        List<Task> list = super.getAll();
         executorService.shutdown();
     }
 
     @Override
     public void sleep() {
 
+    }
+
+    /**
+     * 执行线程池的任务调度
+     * @param runnable
+     */
+    private void execute(TimoTaskAdapter runnable) {
+        Thread thread = new Thread(runnable);
+        TaskSchedulingExceptionHandler exceptionHandler = new TaskSchedulingExceptionHandler();
+        thread.setUncaughtExceptionHandler(exceptionHandler);
+        // 必须使用execute, 不使用submit, sumbit方法不会抛出异常，使用execute可以正常捕获
+        //executorService.execute(thread);
+        executorService.schedule(thread, 10, TimeUnit.SECONDS);
+    }
+
+    /**
+     * 添加任务调度，需要保存到zk里面，需要重启或者停止
+     * 这里需要加上分布式锁
+     * @param runnable
+     */
+    private TimoTaskAdapter addTask(TimoTaskAdapter runnable) {
+        String key = runnable.getClass().getName();
+        if (this.getTask(key) == null) {
+            synchronized (key) {
+                this.putTask(key, runnable);
+            }
+        }
+        return getTask(key);
+    }
+
+    private TimoTaskAdapter getTask(String key) {
+        return taskMap.get(key);
+    }
+
+    private void putTask(String key, TimoTaskAdapter task) {
+        taskMap.put(key, task);
     }
 }

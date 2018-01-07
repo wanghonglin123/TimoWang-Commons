@@ -18,11 +18,11 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.common.task;
+package com.timowang.common.service.impl.task.impl;
 
 /**
- * @Title: ItemTask
- * @Package: com.timowang.common.task
+ * @Title: ItemService
+ * @Package: com.timowang.common.task.service
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHongLin timo-wang@msyc.cc
@@ -34,22 +34,44 @@ package com.timowang.common.task;
  * @Modify-description: 新增：增，删，改，查方法
  */
 
-import com.timowang.common.adapter.task.Task;
+import com.timowang.common.pojo.task.ItemPo;
+import com.timowang.common.service.task.AbstractTaskService;
+import net.sf.jsqlparser.expression.operators.relational.ItemsList;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
- * @ClassName: ItemTask
- * @Description: 商品任务
+ * @ClassName: ItemService
+ * @Description: 商品任务服务
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
  * @Date: 2018/1/5
  */
-public class ItemTask implements Task {
-
-    /**
-     * 执行任务
-     */
+@Component("itemTaskService")
+public class ItemTaskServiceImpl extends AbstractTaskService<ItemPo>{
     @Override
-    public void run() {
+    public void delTask(long idxCode) {
 
+    }
+
+    @Override
+    public void addTask(ItemPo taskPo) {
+
+    }
+
+    @Override
+    public void editTask(ItemPo taskPo) {
+
+    }
+
+    @Override
+    public List getTaskAll() {
+        return null;
+    }
+
+    @Override
+    public void doTask() {
+        System.out.println("执行商品任务");
     }
 }

@@ -21,25 +21,39 @@
 package com.timowang.common.adapter.task;
 
 /**
- * @Title: Task
+ * @Title: TaskSchedulingAdapter
  * @Package: com.timowang.common.adapter.task
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHongLin timo-wang@msyc.cc
  * @Date: 2018/1/5
- * @Version: V2.0.10
- * @Modify-by: WangHongLin timo-wang@msyc.cc
- * @Modify-date: 2018/1/5
- * @Modify-version: 2.1.5
- * @Modify-description: 新增：增，删，改，查方法
+ * @Version: V2.1.5
  */
 
+import com.timowang.common.adapter.pojo.TimoBasePoAdapter;
+
 /**
- * @ClassName: Task
- * @Description:    任务调度中心
+ * @ClassName: TaskSchedulingAdapter
+ * @Description: 任务调度适配器
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
  * @Date: 2018/1/5
  */
-public interface Task extends Runnable {
+public interface TimoTaskSchedulingAdapter {
+    /**
+     * 停止任务调度
+     * @param runnable
+     */
+    void start(TimoTaskAdapter runnable) throws Exception;
+
+    /**
+     * 停止任务调度服务
+     */
+    void stop();
+
+    /**
+     * 暂停任务调度服务
+     */
+    void sleep();
+
 }

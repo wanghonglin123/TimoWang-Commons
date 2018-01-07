@@ -8,14 +8,11 @@ package com.timowang.common.component.log;
  * @Version: V2.0.0
  */
 
-import com.timowang.common.adapter.log.TimoLogAdapter;
 import com.timowang.common.adapter.log.TimoLoggerAdapter;
-import com.timowang.common.configura.TimoBaseConfigura;
+import com.timowang.common.beans.TimoBeans;
 import com.timowang.common.constants.TimoWangConstant;
 import com.timowang.common.exception.TimoLogExecption;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 /**
@@ -24,11 +21,8 @@ import org.springframework.util.StringUtils;
  * @Author: WangHongLin
  * @Date: 2018-01-01 上午 12:04
  */
-@Component
-public class TimoLogger extends TimoBaseConfigura implements TimoLoggerAdapter{
-
-    @Autowired
-    private TimoLogAdapter logAdapter;
+//@Component
+public class TimoLogger extends TimoBeans implements TimoLoggerAdapter{
 
     /**
      * 环境名称
@@ -136,22 +130,22 @@ public class TimoLogger extends TimoBaseConfigura implements TimoLoggerAdapter{
             // 根据级别，打印不同的日志
             switch (level) {
                 case TimoWangConstant.ONE :
-                    logAdapter.debug(String.format("debug#%s", msg));
+                    super.getLogAdapter().debug(String.format("debug#%s", msg));
                     break;
                 case TimoWangConstant.TWO :
-                    logAdapter.info(String.format("info#%s", msg));
+                    super.getLogAdapter().info(String.format("info#%s", msg));
                     break;
                 case TimoWangConstant.THREE :
-                    logAdapter.info(String.format("warn#%s", msg));
+                    super.getLogAdapter().info(String.format("warn#%s", msg));
                     break;
                 case TimoWangConstant.FORE :
-                    logAdapter.info(String.format("error#%s", msg));
+                    super.getLogAdapter().info(String.format("error#%s", msg));
                     break;
             }
 
         } catch (TimoLogExecption e) {
             msg = null;
-            logAdapter.error(String.format("error#%s", "日志打印失败"));
+            super.getLogAdapter().error(String.format("error#%s", "日志打印失败"));
         }
     }
 

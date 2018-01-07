@@ -18,39 +18,92 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.common.abstracts.task;
+package com.timowang.common.component.task;
 
 /**
- * @Title: AbstractTaskService
- * @Package: com.timowang.common.abstracts.task
+ * @Title: TaskSchedulingService
+ * @Package: com.timowang.common.component.task
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHongLin timo-wang@msyc.cc
- * @Date: 2018/1/5
- * @Version: V2.0.10
- * @Modify-by: WangHongLin timo-wang@msyc.cc
- * @Modify-date: 2018/1/5
- * @Modify-version: 2.1.5
- * @Modify-description: 新增：增，删，改，查方法
  */
 
-import com.timowang.common.adapter.task.TaskService;
+import com.timowang.common.beans.TimoBeans;
+import com.timowang.common.adapter.pojo.TimoBasePoAdapter;
+import com.timowang.common.adapter.task.TimoTaskAdapter;
+import com.timowang.common.adapter.task.TimoTaskSchedulingAdapter;
+import com.timowang.common.service.task.TaskService;
+import com.timowang.common.task.DynamicTask;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
- * @ClassName: AbstractTaskService
- * @Description:    AbstractTaskService
+ * @ClassName: TaskSchedulingService
+ * @Description: 任务调度服务
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
  * @Date: 2018/1/5
  */
-public abstract class AbstractTaskService implements TaskService{
+@Component
+public class TaskScheduling<T extends TimoBasePoAdapter> extends TimoBeans {
 
     /**
-     * 暂停任务，这个任务不需要执行数据库
-     * @param taskIdxCode
+     * taskSchedulingAdapter 任务调度适配器
      */
-    @Override
-    public void sleepTask(Long taskIdxCode) {
+    @Autowired
+    private TimoTaskSchedulingAdapter taskSchedulingAdapter;
 
+    /**
+     * 启动任务调度
+     * @param runnable
+     */
+    public void doStart(TimoTaskAdapter runnable) throws Exception{
+        taskSchedulingAdapter.start(runnable);
+    }
+
+    /**
+     * 停止任务调度
+     */
+    public void doStop() {
+        taskSchedulingAdapter.stop();
+    }
+
+    /**
+     * 暂停任务调度
+     */
+    public void doSleep(TaskService taskService, int hour) {
+        taskSchedulingAdapter.sleep();
+    }
+
+    /**
+     * 执行任务删除
+     * @param idxCode
+     */
+    public void doDelTask(TaskService taskServer, Long idxCode) {
+        taskServer.delTask(idxCode);
+    }
+
+    /**
+     * 准备执行添加
+     * @param taskPo
+     */
+    public void doAddTask(TaskService taskServer, T taskPo) throws Exception{
+        taskServer.addTask(taskPo);
+        this.doStart(new DynamicTask(taskServer));
+    }
+
+    /**
+     * 准备执行修改
+     * @param taskPo
+     */
+    public void doEditTask(TaskService taskServer, T taskPo) {
+        taskServer.editTask(taskPo);
+    }
+
+    /**
+     * 准备执行查询
+     */
+    public void doQueryTask(TaskService taskServer) {
+        taskServer.getTaskAll();
     }
 }

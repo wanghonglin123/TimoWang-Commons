@@ -18,54 +18,60 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.common.task.service;
+package com.timowang.common.service.task;
 
 /**
- * @Title: ItemService
- * @Package: com.timowang.common.task.service
+ * @Title: TaskService
+ * @Package: com.timowang.common.adapter.task
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHongLin timo-wang@msyc.cc
  * @Date: 2018/1/5
- * @Version: V2.0.10
- * @Modify-by: WangHongLin timo-wang@msyc.cc
- * @Modify-date: 2018/1/5
- * @Modify-version: 2.1.5
- * @Modify-description: 新增：增，删，改，查方法
  */
 
-import com.timowang.common.adapter.task.TaskService;
+import com.timowang.common.adapter.pojo.TimoBasePoAdapter;
+
+import java.util.List;
 
 /**
- * @ClassName: ItemService
- * @Description: 商品任务服务
+ * @ClassName: TaskService
+ * @Description: 任务服务，增，删，改，查
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
  * @Date: 2018/1/5
  */
-public class ItemTaskService implements TaskService{
-    @Override
-    public void delTask(Long taskIdxCode) {
+public interface TaskService<T extends TimoBasePoAdapter> {
+    /**
+     * 删除任务
+     * @param idxCode
+     */
+    void delTask(long idxCode);
 
-    }
+    /**
+     *  新增任务
+     * @param taskPo 任务
+     */
+    void addTask(T taskPo);
 
-    @Override
-    public void addTask(Long taskIdxCode) {
+    /**
+     * 修改任务
+     * @param taskPo
+     */
+    void editTask(T taskPo);
 
-    }
+    /**
+     * 查询任务
+     */
+    List<T> getTaskAll();
 
-    @Override
-    public void editTask(Long taskIdxCode) {
+    /**
+     * 暂停任务
+     * @param taskIdxCode
+     */
+    void sleepTask(Long taskIdxCode);
 
-    }
-
-    @Override
-    public void queryTask(Long type) {
-
-    }
-
-    @Override
-    public void sleepTask(Long taskIdxCode) {
-
-    }
+    /**
+     * 执行任务
+     */
+    void doTask() ;
 }

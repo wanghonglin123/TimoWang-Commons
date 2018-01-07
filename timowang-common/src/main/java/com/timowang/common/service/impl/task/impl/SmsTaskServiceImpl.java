@@ -18,52 +18,66 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.common.adapter.task;
+package com.timowang.common.service.impl.task.impl;
 
 /**
- * @Title: TaskService
- * @Package: com.timowang.common.adapter.task
+ * @Title: SmsService
+ * @Package: com.timowang.common.task.service
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHongLin timo-wang@msyc.cc
  * @Date: 2018/1/5
+ * @Version: V2.0.10
+ * @Modify-by: WangHongLin timo-wang@msyc.cc
+ * @Modify-date: 2018/1/5
+ * @Modify-version: 2.1.5
+ * @Modify-description: 新增：增，删，改，查方法
  */
 
+import com.timowang.common.pojo.task.SmsPo;
+import com.timowang.common.service.task.TaskService;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
 /**
- * @ClassName: TaskService
- * @Description: 任务服务，增，删，改，查
+ * @ClassName: SmsService
+ * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
  * @Date: 2018/1/5
  */
-public interface TaskService {
-    /**
-     * 删除任务
-     * @param taskIdxCode
-     */
-    void delTask(Long taskIdxCode);
+@Component("smsTaskService")
+public class SmsTaskServiceImpl implements TaskService<SmsPo> {
+    @Override
+    public void delTask(long taskIdxCode) {
+        System.out.println("--------------删除短信任务成功");
+    }
+    private static int k = 0;
+    @Override
+    public void addTask(SmsPo smsPo) {
+            System.out.println(++k + "--------------添加短信任务成功");
+    }
 
-    /**
-     *  新增任务
-     * @param taskIdxCode
-     */
-    void addTask(Long taskIdxCode);
+    @Override
+    public void editTask(SmsPo smsPo) {
+        System.out.println("--------------修改短信任务成功");
+    }
 
-    /**
-     * 修改任务
-     * @param taskIdxCode
-     */
-    void editTask(Long taskIdxCode);
+    @Override
+    public List<SmsPo> getTaskAll() {
+        System.out.println("----------------查询短信任务成功");
+        return null;
+    }
 
-    /**
-     * 查询任务
-     * @param type
-     */
-    void queryTask(Long type);
+    @Override
+    public void sleepTask(Long taskIdxCode) {
+        System.out.println("暂停短信任务成功");
+    }
 
-    /**
-     * 暂停任务
-     * @param taskIdxCode
-     */
-    void sleepTask(Long taskIdxCode);
+    private volatile int i = 0;
+    @Override
+    public void doTask() {
+        System.out.println(++i + "----------------执行短信任务");
+    }
 }

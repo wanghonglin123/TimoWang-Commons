@@ -18,50 +18,40 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.common.configura;
+package com.timowang.common.service.task;
 
 /**
- * @Title: TimoBaseConfigura
- * @Package: com.timowang.common.configura
+ * @Title: AbstractTaskService
+ * @Package: com.timowang.common.abstracts.task
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHongLin timo-wang@msyc.cc
- * @Date: 2017/12/26
+ * @Date: 2018/1/5
  * @Version: V2.0.10
  * @Modify-by: WangHongLin timo-wang@msyc.cc
- * @Modify-date: 2017/12/26
+ * @Modify-date: 2018/1/5
  * @Modify-version: 2.1.5
  * @Modify-description: 新增：增，删，改，查方法
  */
 
-import com.timowang.common.component.domain.TimoWangDomain;
-import com.timowang.common.adapter.log.TimoLoggerAdapter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
+import com.timowang.common.adapter.pojo.TimoBasePoAdapter;
 
 /**
- * @ClassName: TimoBaseConfigura
- * @Description:    顶级Configura TimoBaseConfigura
+ * @ClassName: AbstractTaskService
+ * @Description:    AbstractTaskService
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
- * @Date: 2017/12/26
+ * @Date: 2018/1/5
  */
-@Configuration
-public class TimoBaseConfigura {
+public abstract class AbstractTaskService<T extends TimoBasePoAdapter> implements TaskService<T>{
 
     /**
-     * 环境
+     * 暂停任务，这个任务不需要执行数据库
+     * @param taskIdxCode
      */
-    @Autowired
-    protected TimoWangDomain timoWangDomain;
 
-    @Autowired
-    protected TimoLoggerAdapter timoLoggerAdapter;
-    /**
-     * 获取运行环境name
-     * @return
-     */
-    protected String getDomain() {
-        return timoWangDomain.getDomain();
+    @Override
+    public void sleepTask(Long taskIdxCode) {
+
     }
 }
