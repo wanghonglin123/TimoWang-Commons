@@ -29,7 +29,7 @@ public class TimoBeans extends TaskBeans {
     /**
      * 日志组件
      */
-    @Autowired
+    //@Autowired
     private TimoLogAdapter logAdapter;
 
     /*@Autowired

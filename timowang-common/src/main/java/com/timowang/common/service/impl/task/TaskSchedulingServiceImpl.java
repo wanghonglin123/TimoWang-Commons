@@ -31,6 +31,7 @@ package com.timowang.common.service.impl.task;
 import com.timowang.common.adapter.task.TimoTaskAdapter;
 import com.timowang.common.adapter.task.TimoTaskSchedulingAdapter;
 import com.timowang.common.exception.handler.TaskSchedulingExceptionHandler;
+import com.timowang.common.factory.TimoThreadFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -57,7 +58,7 @@ public class TaskSchedulingServiceImpl implements TimoTaskSchedulingAdapter {
      */
     private static int status = 0;
 
-    private static ScheduledExecutorService executorService = Executors.newScheduledThreadPool(50);
+    private static ScheduledExecutorService executorService = Executors.newScheduledThreadPool(50, new TimoThreadFactory());
     /**
      * 存放任务调度
      */
@@ -77,7 +78,13 @@ public class TaskSchedulingServiceImpl implements TimoTaskSchedulingAdapter {
      */
     @Override
     public void stop() {
-        executorService.shutdown();
+        // shutdownNow 和 shuntdown 的区别。shuntdown 不会停止已经执行的线程，shutdownNow会中断全部线程
+        List<Runnable> runnables = executorService.shutdownNow();
+
+        // TODO 停止任务调度的时候要更改任务的状态，待完成
+        /*for(Runnable runnable : runnables) {
+            Thread thread = t
+        }*/
     }
 
     @Override
@@ -90,12 +97,10 @@ public class TaskSchedulingServiceImpl implements TimoTaskSchedulingAdapter {
      * @param runnable
      */
     private void execute(TimoTaskAdapter runnable) {
+        /*TaskSchedulingExceptionHandler taskSchedulingExceptionHandler = new TaskSchedulingExceptionHandler();
         Thread thread = new Thread(runnable);
-        TaskSchedulingExceptionHandler exceptionHandler = new TaskSchedulingExceptionHandler();
-        thread.setUncaughtExceptionHandler(exceptionHandler);
-        // 必须使用execute, 不使用submit, sumbit方法不会抛出异常，使用execute可以正常捕获
-        //executorService.execute(thread);
-        executorService.schedule(thread, 10, TimeUnit.SECONDS);
+        thread.setUncaughtExceptionHandler(taskSchedulingExceptionHandler);*/
+        executorService.schedule(runnable, 1, TimeUnit.SECONDS);
     }
 
     /**

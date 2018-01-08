@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
  * @Author: WangHongLin
  * @Date: 2018-01-01 上午 12:20
  */
-@Component
+//@Component
 public class TimoFLog implements TimoLogAdapter {
 
     private static final FLogger FLOGGER = FLogger.getInstance();

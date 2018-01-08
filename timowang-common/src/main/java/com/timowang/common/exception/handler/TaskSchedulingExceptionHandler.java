@@ -9,8 +9,11 @@ package com.timowang.common.exception.handler;
  */
 
 import com.timowang.common.adapter.execption.handler.TimoExecptionHandlerAdapter;
+import com.timowang.common.task.DynamicTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.concurrent.RejectedExecutionException;
 
 /**
  * @ClassName: TaskSchedulingExceptionHandler
@@ -23,6 +26,7 @@ public class TaskSchedulingExceptionHandler implements TimoExecptionHandlerAdapt
 
     @Override
     public void uncaughtException(Thread t, Throwable e) {
+        System.out.println("处理异常成功");
         logger.error(e.getMessage());
     }
 }
