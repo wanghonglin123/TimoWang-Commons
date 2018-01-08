@@ -78,6 +78,6 @@ public class SmsTaskServiceImpl implements TaskService<SmsPo> {
     private volatile int i = 0;
     @Override
     public void doTask() {
-        System.out.println(++i + "----------------执行短信任务");
+
     }
 }

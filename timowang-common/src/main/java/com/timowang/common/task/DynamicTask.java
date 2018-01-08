@@ -38,12 +38,10 @@ public class DynamicTask implements TimoTaskAdapter {
     @Override
     public void run() {
         try {
-            System.out.println(1/0);
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            taskServer.doTask();
+        } catch (Exception e) {
+            // TODO 失败，保存到数据库
         }
-        taskServer.doTask();
     }
 
     public static void main(String[] args) {
