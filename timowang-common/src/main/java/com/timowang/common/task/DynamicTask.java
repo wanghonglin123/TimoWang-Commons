@@ -8,12 +8,15 @@ package com.timowang.common.task;
  * @Version: V2.0.0
  */
 
+import com.timowang.common.adapter.pojo.TimoBasePoAdapter;
 import com.timowang.common.adapter.task.TimoTaskAdapter;
-import com.timowang.common.service.impl.task.impl.ItemTaskServiceImpl;
-import com.timowang.common.service.impl.task.impl.SmsTaskServiceImpl;
+import com.timowang.common.exception.TimoException;
+import com.timowang.common.pojo.task.SmsPo;
+import com.timowang.common.service.base.TimoAbstactBaseService;
 import com.timowang.common.service.task.TaskService;
 
-import java.util.concurrent.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @ClassName: DynamicTask
@@ -21,16 +24,20 @@ import java.util.concurrent.*;
  * @Author: WangHongLin
  * @Date: 2018-01-05 下午 10:35
  */
-public class DynamicTask implements TimoTaskAdapter {
+public class DynamicTask<T extends TimoBasePoAdapter> implements TimoTaskAdapter<T> {
     /**
      * 任务名称
      */
     private TaskService taskServer;
 
-    private static int status = 0;
+    /**
+     * 任务Po数据
+     */
+    private T taskPo;
 
-    public DynamicTask (TaskService taskServer) {
+    public DynamicTask (TaskService taskServer, T taskPo) {
         this.taskServer = taskServer;
+        this.taskPo = taskPo;
     }
     /**
      * 运行动态任务
@@ -38,19 +45,32 @@ public class DynamicTask implements TimoTaskAdapter {
     @Override
     public void run() {
         try {
-            taskServer.doTask();
+            /*imoBasePoAdapter basePo = taskPo;
+            List<T> list = new ArrayList<>();
+            list.add(taskPo);
+            for (T taskPo : list) {
+                SmsPo smsPo = (SmsPo) taskPo;
+                System.out.println(Thread.currentThread().getName() + "测试" + smsPo.getIdx());
+            }*/
+            taskServer.doTask(taskPo);
         } catch (Exception e) {
             // TODO 失败，保存到数据库
+            e.printStackTrace();
+            taskServer.editTask(taskPo);
         }
     }
 
-    public static void main(String[] args) {
-        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(100);
-        for(int i = 0; i < 100; i ++) {
-            executorService.schedule(
-                    new DynamicTask(new ItemTaskServiceImpl()), 10, TimeUnit.SECONDS);
-        }
-        executorService.schedule(
-                new DynamicTask(new ItemTaskServiceImpl()), 10, TimeUnit.SECONDS);
+    /**
+     * @return taskServer
+     */
+    public TaskService getTaskServer() {
+        return taskServer;
+    }
+
+    /**
+     * @return taskPo
+     */
+    public T getTaskPo() {
+        return taskPo;
     }
 }

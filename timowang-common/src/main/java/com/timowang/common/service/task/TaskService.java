@@ -73,5 +73,5 @@ public interface TaskService<T extends TimoBasePoAdapter> {
     /**
      * 执行任务
      */
-    void doTask() ;
+    void doTask(T taskPo) ;
 }

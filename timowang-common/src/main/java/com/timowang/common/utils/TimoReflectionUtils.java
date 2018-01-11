@@ -18,42 +18,43 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
-package com.timowang.common.adapter.task;
+package com.timowang.common.utils;
+
+import com.timowang.common.exception.TimoException;
+
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 /**
- * @Title: TaskSchedulingAdapter
- * @Package: com.timowang.common.adapter.task
- * @Description:
- * @Company: 广州市两棵树网络科技有限公司
- * @Author: WangHongLin timo-wang@msyc.cc
- * @Date: 2018/1/5
- * @Version: V2.1.5
- */
-
-import com.timowang.common.adapter.pojo.TimoBasePoAdapter;
-
-/**
- * @ClassName: TaskSchedulingAdapter
- * @Description: 任务调度适配器
- * @Company: 广州市两棵树网络科技有限公司
+ * @ClassName: TimoReflectionUtils
+ * @Description: 反射工具类
  * @Author: WangHonglin timo-wang@msyc.cc
- * @Date: 2018/1/5
+ * @Date: 2018/1/9
  */
-public interface TimoTaskSchedulingAdapter<T extends TimoBasePoAdapter> {
-    /**
-     * 停止任务调度
-     * @param runnable
-     */
-    void start(TimoTaskAdapter runnable) throws Exception;
+public final class TimoReflectionUtils {
+    private TimoReflectionUtils() {
+
+    }
 
     /**
-     * 停止任务调度服务
+     * 获取父类的泛型列表中的某一个泛型的Class对象
+     * @param clazz
+     * @param index
+     * @return
      */
-    void stop();
-
-    /**
-     * 暂停任务调度服务
-     */
-    void sleep();
+    public static Class<?> getSuperclassParameterizedType(Class<?> clazz, int index) throws TimoException{
+        if (null == clazz) {
+            return null;
+        }
+        Type genericSuperclass = clazz.getGenericSuperclass();
+        if (genericSuperclass instanceof ParameterizedType) {
+            ParameterizedType parameterizedType = (ParameterizedType) genericSuperclass;
+            Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
+            if (null != actualTypeArguments && actualTypeArguments.length > index) {
+                return (Class<?>) actualTypeArguments[index];
+            }
+        }
+        return null;
+    }
 
 }

@@ -54,7 +54,7 @@ import java.util.List;
 public class TimoShiroSecurityRealm extends AuthorizingRealm{
 
     /**
-     * 获取授权信息
+     * 授权
      * @param var1
      * @return
      */
@@ -65,7 +65,7 @@ public class TimoShiroSecurityRealm extends AuthorizingRealm{
     }
 
     /**
-     * 获取身份验证信息
+     * 信息认证
      * @param authcToken
      * @return
      * @throws AuthenticationException

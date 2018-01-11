@@ -65,7 +65,6 @@ public final class TimoThreadFactory implements ThreadFactory{
         Thread t = new Thread(group, r,
                 namePrefix + threadNumber.getAndIncrement(),
                 0);
-        t.setUncaughtExceptionHandler(new TaskSchedulingExceptionHandler());
         if (!t.isDaemon()) // 判断是否为守护线程，如果不是守护，那么将线程设置为守护
             t.setDaemon(true);
         if (t.getPriority() != Thread.NORM_PRIORITY)

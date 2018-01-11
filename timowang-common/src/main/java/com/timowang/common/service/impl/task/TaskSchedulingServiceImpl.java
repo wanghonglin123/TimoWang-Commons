@@ -28,17 +28,16 @@ package com.timowang.common.service.impl.task;
  * @Author: WangHongLin timo-wang@msyc.cc
  */
 
+import com.timowang.common.adapter.pojo.TimoBasePoAdapter;
 import com.timowang.common.adapter.task.TimoTaskAdapter;
 import com.timowang.common.adapter.task.TimoTaskSchedulingAdapter;
-import com.timowang.common.exception.handler.TaskSchedulingExceptionHandler;
 import com.timowang.common.factory.TimoThreadFactory;
+import com.timowang.common.service.task.TaskService;
+import com.timowang.common.task.DynamicTask;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.List;
+import java.util.concurrent.*;
 
 /**
  * @ClassName: AbstractTaskScheduling
@@ -48,21 +47,12 @@ import java.util.concurrent.TimeUnit;
  * @Date: 2018/1/5
  */
 @Component
-public class TaskSchedulingServiceImpl implements TimoTaskSchedulingAdapter {
+public class TaskSchedulingServiceImpl<T extends TimoBasePoAdapter> implements TimoTaskSchedulingAdapter<T> {
     /**
-     * 任务调度中心状态
-     * 0 ： 停止
-     * 1 ：启动
-     * 2 ：暂停
-     * 分布式存在数据库或者缓存或者zk
+     * 任务调度线程池
      */
-    private static int status = 0;
-
-    private static ScheduledExecutorService executorService = Executors.newScheduledThreadPool(50, new TimoThreadFactory());
-    /**
-     * 存放任务调度
-     */
-    private static Map<String, TimoTaskAdapter> taskMap = new HashMap();
+    private static ScheduledThreadPoolExecutor executorService =
+            (ScheduledThreadPoolExecutor)Executors.newScheduledThreadPool(50, new TimoThreadFactory());
 
     /**
      * 启动线程池，执行任务
@@ -70,7 +60,7 @@ public class TaskSchedulingServiceImpl implements TimoTaskSchedulingAdapter {
      */
     @Override
     public void start(TimoTaskAdapter runnable) throws Exception{
-        this.execute(this.addTask(runnable));
+        this.execute(runnable /*this.addTask(runnable)*/);
     }
 
     /**
@@ -79,17 +69,12 @@ public class TaskSchedulingServiceImpl implements TimoTaskSchedulingAdapter {
     @Override
     public void stop() {
         // shutdownNow 和 shuntdown 的区别。shuntdown 不会停止已经执行的线程，shutdownNow会中断全部线程
-        List<Runnable> runnables = executorService.shutdownNow();
-
-        // TODO 停止任务调度的时候要更改任务的状态，待完成
-        /*for(Runnable runnable : runnables) {
-            Thread thread = t
-        }*/
+        executorService.shutdownNow();
     }
 
     @Override
     public void sleep() {
-
+        // TODO 更改任务表状态，全部改成暂停中，在Task ruan的时候多要检查下最新状态
     }
 
     /**
@@ -100,14 +85,14 @@ public class TaskSchedulingServiceImpl implements TimoTaskSchedulingAdapter {
         /*TaskSchedulingExceptionHandler taskSchedulingExceptionHandler = new TaskSchedulingExceptionHandler();
         Thread thread = new Thread(runnable);
         thread.setUncaughtExceptionHandler(taskSchedulingExceptionHandler);*/
-        executorService.schedule(runnable, 1, TimeUnit.SECONDS);
+        executorService.schedule(runnable, 10, TimeUnit.SECONDS);
     }
 
     /**
      * 添加任务调度，需要保存到zk里面，需要重启或者停止
      * 这里需要加上分布式锁
      * @param runnable
-     */
+     *//*
     private TimoTaskAdapter addTask(TimoTaskAdapter runnable) {
         String key = runnable.getClass().getName();
         if (this.getTask(key) == null) {
@@ -124,5 +109,5 @@ public class TaskSchedulingServiceImpl implements TimoTaskSchedulingAdapter {
 
     private void putTask(String key, TimoTaskAdapter task) {
         taskMap.put(key, task);
-    }
+    }*/
 }

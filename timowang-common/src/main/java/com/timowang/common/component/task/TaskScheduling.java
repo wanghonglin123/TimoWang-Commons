@@ -51,7 +51,7 @@ public class TaskScheduling<T extends TimoBasePoAdapter> extends TimoBeans {
      * taskSchedulingAdapter 任务调度适配器
      */
     @Autowired
-    private TimoTaskSchedulingAdapter taskSchedulingAdapter;
+    private TimoTaskSchedulingAdapter<T> taskSchedulingAdapter;
 
     /**
      * 启动任务调度
@@ -89,7 +89,7 @@ public class TaskScheduling<T extends TimoBasePoAdapter> extends TimoBeans {
      */
     public void doAddTask(TaskService taskServer, T taskPo) throws Exception{
         taskServer.addTask(taskPo);
-        this.doStart(new DynamicTask(taskServer));
+        this.doStart(new DynamicTask(taskServer, taskPo));
     }
 
     /**

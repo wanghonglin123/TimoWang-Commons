@@ -49,19 +49,22 @@ import java.util.List;
  */
 @Component("smsTaskService")
 public class SmsTaskServiceImpl implements TaskService<SmsPo> {
+
     @Override
     public void delTask(long taskIdxCode) {
         System.out.println("--------------删除短信任务成功");
     }
+
     private static int k = 0;
+
     @Override
     public void addTask(SmsPo smsPo) {
-            System.out.println(++k + "--------------添加短信任务成功");
+        System.out.println("--------------添加短信任务成功");
     }
 
     @Override
     public void editTask(SmsPo smsPo) {
-        System.out.println("--------------修改短信任务成功");
+        System.out.println("--------------修改短信任务状态");
     }
 
     @Override
@@ -76,8 +79,14 @@ public class SmsTaskServiceImpl implements TaskService<SmsPo> {
     }
 
     private volatile int i = 0;
-    @Override
-    public void doTask() {
 
+    @Override
+    public void doTask(SmsPo taskPo) {
+        //
+        // TODO 判断当前任务是否暂停
+
+        // TODO 判断任务调度是否停止
+
+        // TODO 执行任务操作代码
     }
 }

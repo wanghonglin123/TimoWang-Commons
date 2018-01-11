@@ -34,6 +34,8 @@ package com.timowang.common.adapter.task;
  * @Modify-description: 新增：增，删，改，查方法
  */
 
+import com.timowang.common.adapter.pojo.TimoBasePoAdapter;
+
 /**
  * @ClassName: Task
  * @Description:    任务适配器
@@ -41,5 +43,5 @@ package com.timowang.common.adapter.task;
  * @Author: WangHonglin timo-wang@msyc.cc
  * @Date: 2018/1/5
  */
-public interface TimoTaskAdapter extends Runnable {
+public interface TimoTaskAdapter<T extends TimoBasePoAdapter> extends Runnable {
 }

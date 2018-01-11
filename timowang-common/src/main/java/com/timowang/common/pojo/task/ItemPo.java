@@ -17,4 +17,34 @@ import com.timowang.common.adapter.pojo.TimoBasePoAdapter;
  * @Date: 2018-01-06 下午 12:07
  */
 public class ItemPo implements TimoBasePoAdapter {
+
+    private Long idx;
+    private Short status;
+    /**
+     * @return idx
+     */
+    public Long getIdx() {
+        return idx;
+    }
+
+    /**
+     * @param idx idx
+     */
+    public void setIdx(Long idx) {
+        this.idx = idx;
+    }
+
+    /**
+     * @return status
+     */
+    public Short getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status status
+     */
+    public void setStatus(Short status) {
+        this.status = status;
+    }
 }

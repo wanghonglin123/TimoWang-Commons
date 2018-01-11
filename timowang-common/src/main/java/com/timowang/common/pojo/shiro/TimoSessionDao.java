@@ -64,6 +64,10 @@ public class TimoSessionDao extends CachingSessionDAO{
     protected void doUpdate(Session session) {
     }
 
+    /**
+     * Session 删除，退出或者Session失效的时候会被执行
+     * @param session
+     */
     @Override
     protected void doDelete(Session session) {
     }

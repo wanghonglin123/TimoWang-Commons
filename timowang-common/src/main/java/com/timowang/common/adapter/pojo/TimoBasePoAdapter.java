@@ -17,4 +17,6 @@ import java.io.Serializable;
  * @Date: 2018-01-06 下午 1:17
  */
 public interface TimoBasePoAdapter extends Serializable{
+    Long getIdx();
+    Short getStatus();
 }

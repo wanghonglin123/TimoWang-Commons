@@ -57,7 +57,7 @@ public class ItemTaskServiceImpl extends AbstractTaskService<ItemPo>{
 
     @Override
     public void addTask(ItemPo taskPo) {
-
+        System.out.println(taskPo.getStatus());
     }
 
     @Override
@@ -71,7 +71,7 @@ public class ItemTaskServiceImpl extends AbstractTaskService<ItemPo>{
     }
 
     @Override
-    public void doTask() {
-        System.out.println("执行商品任务");
+    public void doTask(ItemPo taskPo) {
+        System.out.println(taskPo.getStatus());
     }
 }
