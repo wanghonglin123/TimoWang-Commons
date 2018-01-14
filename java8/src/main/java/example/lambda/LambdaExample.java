@@ -20,17 +20,10 @@ import java.util.stream.Collectors;
  * @Date: 2018-01-13 下午 1:09
  */
 //65054673
-public class LambdaExample {
+public class LambdaExample<T> {
     private static List<String> strings = new ArrayList<>();
     public static void main(String[] args) {
-        LambdaExample lambdaExample = new LambdaExample();
-        long beginTime = System.nanoTime();
-        strings.stream().filter(s -> s.isEmpty()).forEach(str -> {
-            int strLeng = str.length();
-            System.out.println(strLeng);
-        });
-        long endTime = System.nanoTime();
-        System.out.println(endTime - beginTime);
+        new Test1(o -> System.out.println("1")).run();
     }
 
     public LambdaExample() {
