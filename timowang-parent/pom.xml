@@ -27,12 +27,12 @@
 
     <dependencies>
         <!-- springboot 核心 -->
-        <!--<dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            &lt;!&ndash; 用於打包好的war包可以在外部tomcat運行，注释掉用于快速开发，热部署&ndash;&gt;
-            &lt;!&ndash;<scope>provided</scope>&ndash;&gt;
-        </dependency>-->
+            <!-- 用於打包好的war包可以在外部tomcat運行，注释掉用于快速开发，热部署-->
+            <!--<scope>provided</scope>-->
+        </dependency>
         <!--<dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
