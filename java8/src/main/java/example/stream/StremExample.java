@@ -89,7 +89,8 @@ public class StremExample {
         Stream.of(1,2,3).collect(Collectors.maxBy(Comparator.comparingInt(value -> value.intValue())));
         // Collectors.maxBy 获取最小的值
         Stream.of(1,2,3).collect(Collectors.minBy(Comparator.comparingInt(value -> value.intValue())));
-        Student.getStudentData().stream().collect(Collectors.mapping(Student :: getIdx, Collectors.toList()));
+        // Collectors.mapping 返回List集合，存储源元素studentName的值, 映射需要的值
+        Student.getStudentData().stream().collect(Collectors.mapping(Student :: getIdx, Collectors.toList())).forEach(s -> System.out.println(s));
     }
 
 }
@@ -134,8 +135,8 @@ class Student {
         students.add(student);
 
         Student student2 = new Student();
-        student2.setIdx(1);
-        student2.setStudentName("张三");
+        student2.setIdx(2);
+        student2.setStudentName("李四");
         students.add(student2);
         return students;
     }
