@@ -91,6 +91,35 @@ public class StremExample {
         Stream.of(1,2,3).collect(Collectors.minBy(Comparator.comparingInt(value -> value.intValue())));
         // Collectors.mapping 返回List集合，存储源元素studentName的值, 映射需要的值
         Student.getStudentData().stream().collect(Collectors.mapping(Student :: getIdx, Collectors.toList())).forEach(s -> System.out.println(s));
+        // 分区，true 一组，false 一组,实用场景：有需要分区的数据
+        Student.getStudentData().stream().collect(Collectors.partitioningBy(o -> o.getStudentName().length() > 1, Collectors.toSet()));
+        Student.getStudentData().stream().collect(Collectors.partitioningBy(o -> o.getStudentName().length() > 1));
+        // 将stream中的元素拼接起来（joining()、joining(",")）,只能是字符串类型
+        // 返回123
+        Stream.of("1","2","3").collect(Collectors.joining());
+        // 返回1,2,3
+        Stream.of("1","2","3").collect(Collectors.joining(","));
+        // 返回,123,
+        Stream.of("1","2","3").collect(Collectors.joining("", ",",","));
+        // double 统计，返回max, count,avg,sum 等结果
+        Stream.of("1","2","3").collect(Collectors.summarizingDouble(value -> Double.valueOf(value)));
+        // double 统计，返回max, count,avg,sum 等结果
+        Stream.of("1","2","3").collect(Collectors.summarizingInt(value -> Integer.valueOf(value)));
+        // double 统计，返回max, count,avg,sum 等结果
+        Stream.of("1","2","3").collect(Collectors.summarizingLong(value -> Long.valueOf(value)));
+        // 求和
+        Stream.of("1","2","3").collect(Collectors.summingInt(Integer :: valueOf));
+        // 返回Optional,没有初始值，
+        Stream.of(1,2,3).collect(Collectors.reducing((o, o2) -> o + o2));
+        // 累加结果 ，初始值100
+        Stream.of(1,2,3).collect(Collectors.reducing(100, Integer::sum));
+        Stream.of(1,2,3).collect(Collectors.reducing(100, (integer, integer2) -> integer + integer2));
+        // 将对象转map
+        Student.getStudentData().stream().collect(ArrayList<Map> :: new, (maps, student) -> {
+            Map map = new HashMap();
+            map.put("idx", student.getIdx());
+            maps.add(map);
+        },  List::addAll).forEach(map -> System.out.println("111" + map.get("idx")));
     }
 
 }
