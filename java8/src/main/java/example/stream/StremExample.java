@@ -8,9 +8,11 @@ package example.stream;
  * @Version: V2.0.0
  */
 
+import org.junit.Test;
+
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
@@ -52,6 +54,8 @@ public class StremExample {
         // 返回由应用给定结果的流组成的流,改变元素的结果
         Stream.of(1, 2, 3).map(integer -> String.valueOf(integer)
         );
+        // 取第一条
+        System.out.println(Stream.of(1, 2, 3).findFirst().get() + "map");
 
         // collect用法，收集流结果，汇总返回新的IntegerList集合
         Stream.of(1, 2, 3).collect(Collectors.toList());
@@ -114,14 +118,34 @@ public class StremExample {
         // 累加结果 ，初始值100
         Stream.of(1,2,3).collect(Collectors.reducing(100, Integer::sum));
         Stream.of(1,2,3).collect(Collectors.reducing(100, (integer, integer2) -> integer + integer2));
-        // 将对象转map
+        // 将Object对象转map
         Student.getStudentData().stream().collect(ArrayList<Map> :: new, (maps, student) -> {
             Map map = new HashMap();
-            map.put("idx", student.getIdx());
+            map.put("idx", student);
             maps.add(map);
         },  List::addAll).forEach(map -> System.out.println("111" + map.get("idx")));
-    }
+        // Collectors.toMap 将集合转换成map
+        Student.getStudentData().stream().
+                collect(Collectors.toMap(Student :: getIdx, student -> student)).
+                forEach((aLong, student) -> System.out.println(student.getStudentName() + "toMap"));
+        Student.getStudentData().stream().
+                collect(Collectors.toMap(Student :: getIdx, Student::getStudentName, (s, s2) -> s + "111" + s2))
+                .forEach((aLong, s) -> System.out.println(s));
+        Student.getStudentData().stream().
+                collect(Collectors.toMap(Student :: getIdx, Student::getStudentName, (s, s2) -> s + s2, ConcurrentHashMap::new))
+                .forEach((aLong, s) -> System.out.println(s));
 
+        // 将Object对象转map
+        Student.getStudentData().stream().collect(ArrayList<Map> :: new, (maps, student) -> {
+            try {
+                Map map = new HashMap();
+                map.put("idx", student);
+                maps.add(map);
+            } catch (Exception e) {
+
+            }
+        },  List::addAll).forEach(map -> System.out.println("111" + map.get("idx")));
+    }
 }
 
 class Student {

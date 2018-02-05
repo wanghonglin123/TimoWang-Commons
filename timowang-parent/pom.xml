@@ -64,6 +64,7 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
+
     </dependencies>
 
     <!-- jar包依赖 begin-->
@@ -75,6 +76,14 @@
                 <version>Brixton.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <!-- 单元测试 -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+                <scope>test</scope>
             </dependency>
 
             <dependency>
