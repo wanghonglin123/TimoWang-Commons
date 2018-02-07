@@ -42,20 +42,218 @@ package example.algorithm;
  * @Date: 2018/2/5
  */
 
+import com.sun.deploy.util.StringUtils;
+import org.junit.Test;
+
 /**
- * int 转 二进制规律， Num / 2 > 0, true 1 false 0, 循环到结果为0为止，后面的结果往左移
- * 实例： int number = 7, 7 / 2 = 3  取1, 3/2=1 取1, 1/2=0 取1， 结果为111
+ * java 保存的数字的补码
+ * int 转 二进制规律， Num/2 > 0, true 1 false 0, 循环到结果为0为止，后面的结果往左移
+ * 实例： int number = 7, 7/2 = 3  取1, 3/2=1 取1, 1/2=0 取1， 结果为111
  * int number = 12, 12/ 2 = 6  取0,6/2=3 取0, 3/2=0 取1，1/2 取1 结果为1100
  *
+ * int 转 二进制规律 参考方法test2()
+ * 负整数转二进制规律: 奇数： 获取负数的原码x，在反码得到y，y 最低位加1得到补码
+ * 负整数转二进制规律: 偶数： 获取负数的原码x，在反码得到y，y 全部位值+1  得到补码
  */
+
+/**
+ * 按位右移运算，m >> n 整数m 往右移动n位， m >> n = m / 2^n, 低位移除n位，高位补0，5 >> 2 = 1
+ * 正整数： 低位移除n位，高位补n个0
+ * 负整数： 低位移除n位，低位补n个1
+ */
+
+/**
+ * 参考test2() 方法
+ * 按位左移运算， m << n 整数m往左移n位
+ * 正整数： 高位移除n个0，低位补n个0
+ * 负整数： 高位移除n个1，低位补n个0
+ */
+
 public class BinaryExample {
+    // 使用高位的好处, 方便阅读记忆
+    private static final int STATUS_1 = -1 << 29;
+
+    private static final int NUM_1 = 1;
+    private static final int NUM_2 = 0;
+
+    final static char[] digits = {
+            '0' , '1' , '2' , '3' , '4' , '5' ,
+            '6' , '7' , '8' , '9' , 'a' , 'b' ,
+            'c' , 'd' , 'e' , 'f' , 'g' , 'h' ,
+            'i' , 'j' , 'k' , 'l' , 'm' , 'n' ,
+            'o' , 'p' , 'q' , 'r' , 's' , 't' ,
+            'u' , 'v' , 'w' , 'x' , 'y' , 'z'
+    };
+
+    @Test
     public void test() {
-        int k = 7;
+        int k = -7; // 0000 0000 0000 0000 0000 0000 0000 0000 0111
         // 转换成二进制字符串
-        Integer.toBinaryString(k);
+        String a = Integer.toBinaryString(k);
         // 转换成16进制字符串
-        Integer.toHexString(k);
+        String b = Integer.toHexString(111);
         // 转换成8进制字符串
-        Integer.toOctalString(k);
+        String c = Integer.toOctalString(123);
+
+        /**
+         * 参考test2() 方法
+         * 按位左移运算， m << n 整数m往左移n位
+         * 正整数： 高位移除n个0，低位补n个0
+         * 负整数： 高位移除n个1，低位补n个0
+         */
+        System.out.println(k << 2);
+        /**
+         * >> 按位右移运算，m >> n 整数m 往右移动n位， m >> n = m / 2^n, 低位移除n位，高位补0，5 >> 2 = 1
+         * 正整数： 低位移除n位，高位补n个0
+         * 负整数： 低位移除n位，低位补n个1
+         */
+        System.out.println(-9 >> 2);
+        /**
+         * m >>> n 按位右移补零操作符
+         * m == 正整数，m >>> n = m >> n, m 往右移动n位，高位补n个0，低位移除n位 返回的值一样
+         * m == 负整数, m >>> n， m 往右移动n位，高位补n个0，m >> n，高位补1，所以返回结果不一样
+         */
+        System.out.println(-9 >>> 2);
+
+        /**
+         * m ^ n, 判断m 补码 和 n补码对应位值是否相同，相同结果为0，否则为1
+         * 同是正整数或者负整数， 右移31的值多为0，可以用于实现是否多是正整数和负整数
+         */
+        System.out.println(2 >> 31 ^ 15 >> 31);
+
+    }
+
+    /**
+     * 位运算和普通运算对比
+     * 代码热点或者循环未超过10000的时候，使用位运算性能快很多
+     * 代码热点或者循环超过10000的时候，JVM会使用JIT编译器进行即时编译成本地机器码进行执行，优化，所以普通运算和位运算相差不大
+     */
+    @Test
+    public void test1() {
+        int a = -123456;
+        int b = 123456;
+        long beginTime = System.nanoTime();
+        boolean isTrue = false;
+        for (int i = 0; i < 2000; i ++) {
+            if (a > 0 && b > 0) {
+                isTrue = true;
+            }
+            else if (a < 0 && b < 0) {
+                isTrue = true;
+            } else {
+                isTrue = false;
+            }
+        }
+        System.out.println(1);
+        long endTime = System.nanoTime();
+        System.out.println("普通判断====" + (endTime - beginTime));
+
+        beginTime = System.nanoTime();
+        isTrue = false;
+        for (int i = 0; i < 2000; i ++) {
+            if ((a >> 31 ^ b >> 31) == 0) {
+                isTrue = true;
+            } else {
+                isTrue = false;
+            }
+        }
+        System.out.println(1);
+        endTime = System.nanoTime();
+        System.out.println("位运算判断====" + (endTime - beginTime));
+    }
+
+    @Test
+    public void test2() {
+        // -9 原码 10001001
+        // -9 反码 11111111 11111111 11111111 11110110
+        // -9 补码 11111111 11111111 11111111 11110111
+        // -12 原码 10001100
+        // -12 反码 11111111 11111111 11111111 11110011
+        // -12 补码 11111111 11111111 11111111 11110100
+        // -7 原码 10010111
+        // -7 反码 11111111 11111111 11111111 11111000
+        // -7 补码 11111111 11111111 11111111 11111001
+        // -16 原码 10001100
+        // -16 反码 11111111 11111111 11111111 11110011
+        // -16 补码 11111111 11111111 11111111 11110100
+        // -16 >>> 2 11111111 11111111 11111111 00001101
+        // -1 原码 10000001
+        // -1 反码 11111111 11111111 11111111 11111110
+        // -1 补码 11111111 11111111 11111111 11111111
+        // -2 原码 10000010
+        // -2 反码 11111111 11111111 11111111 11111101
+        // -2 补码 11111111 11111111 11111111 11111110
+        System.out.println(Integer.toBinaryString(-28));
+        System.out.println(Integer.toBinaryString(1073741821));
+    }
+    /**
+     * 二进制转int， 左位移运算
+     * @param binary
+     * @return
+     */
+    public int binaayToInt(String binary) {
+        int num = 0;
+        String numStr = "";
+        for (int i = 0; i < binary.length(); i++) {
+            if (i < binary.length()) {
+                numStr = binary.substring(i, i + 1);
+            }
+            num = num << 1;
+            if (numStr.equals(0)) {
+                num = 1;
+            } else if(numStr.equals("1")){
+                num ++;
+            }
+        }
+
+        return num;
+    }
+
+    /**
+     * int 转二进制, 右位移运算
+     * @param num
+     * @return
+     */
+    public String intToBinaay(int num) {
+        char[] buff = new char[27];
+        int i = 0;
+        do {
+            num = num >> 1;
+            buff[i] =  digits[num];
+            i ++;
+        } while (num > 0 && num != 0);
+
+        return String.valueOf(buff);
+    }
+
+    @Test
+    public void test5(){
+        int b = 1;
+        long beginTime = System.nanoTime();
+        boolean isTrue = false;
+        for (int i = 0; i < 2000; i ++) {
+            if (b > 0) {
+                isTrue = true;
+            }
+            else {
+                isTrue = false;
+            }
+        }
+        System.out.println(isTrue);
+        long endTime = System.nanoTime();
+        System.out.println("普通判断====" + (endTime - beginTime));
+
+        beginTime = System.nanoTime();
+        isTrue = false;
+        for (int i = 0; i < 2000; i ++) {
+            if (b << 1 > 0) {
+                isTrue = true;
+            } else {
+                isTrue = false;
+            }
+        }
+        System.out.println(isTrue);
+        endTime = System.nanoTime();
+        System.out.println("位运算判断====" + (endTime - beginTime));
     }
 }
