@@ -6,3 +6,7 @@ https://software.intel.com/zh-cn/videos/machine-learning-introduction-regression
 
 分布式事务框架：Raincat, tcc-transaction
 洋葱集团技术分享git地址：https://github.com/OnionEcology
+https://github.com/SpringCloud/spring-cloud-document
+https://github.com/chengzhx76/weixin-shop-spring-cloud
+https://github.com/changmingxie/tcc-transaction
+https://github.com/yu199195/Raincat
