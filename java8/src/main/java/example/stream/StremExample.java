@@ -32,6 +32,11 @@ import java.util.stream.Stream;
  */
 public class StremExample {
 
+    @Test
+    public void test() {
+        // Collectors.mapping 返回List集合，存储源元素studentName的值, 映射需要的值
+        Student.getStudentData().stream().collect(Collectors.mapping(Student :: getIdx, Collectors.toList())).forEach(s -> System.out.println(s));
+    }
     public static void main(String[] args) {
         // 生成顺序流
         Stream.of(1, 2, 3);

@@ -1,5 +1,8 @@
-1：hadoop/oozie/sqoop，以及kafka/zookeeper/flume；
-2：hive/hbase/redis/solr/mongodb/mysql。
-3：Etl
-4: hadoop，spark，storm，分布式文件系统hdfs，分布式消息队列例如kafka，非关系型数据库例如redis，hbase。
+1锟斤拷hadoop/oozie/sqoop锟斤拷锟皆硷拷kafka/zookeeper/flume锟斤拷
+2锟斤拷hive/hbase/redis/solr/mongodb/mysql锟斤拷
+3锟斤拷Etl
+4: hadoop锟斤拷spark锟斤拷storm锟斤拷锟街诧拷式锟侥硷拷系统hdfs锟斤拷锟街诧拷式锟斤拷息锟斤拷锟斤拷锟斤拷锟斤拷kafka锟斤拷锟角癸拷系锟斤拷锟斤拷锟捷匡拷锟斤拷锟斤拷redis锟斤拷hbase锟斤拷
 https://software.intel.com/zh-cn/videos/machine-learning-introduction-regression-and-classification
+
+鍒嗗竷寮忎簨鍔℃鏋讹細Raincat, tcc-transaction
+娲嬭懕闆嗗洟鎶�鏈垎浜玤it鍦板潃锛歨ttps://github.com/OnionEcology

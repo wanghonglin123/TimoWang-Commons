@@ -18,70 +18,39 @@
  * <p>
  * 洋桃商城：http://www.yunyangtao.com
  */
+package example;
 
 /**
- * @Title: Test
- * @Package: PACKAGE_NAME
+ * @Title: HashMapExample
+ * @Package: example
  * @Description:
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHongLin timo-wang@msyc.cc
- * @Date: 2018/2/2
+ * @Date: 2018/2/9
  * @Version: V2.0.10
  * @Modify-by: WangHongLin timo-wang@msyc.cc
- * @Modify-date: 2018/2/2
+ * @Modify-date: 2018/2/9
  * @Modify-version: 2.1.5
  * @Modify-description: 新增：增，删，改，查方法
  */
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * @ClassName: Test
- * @Description:
+ * @ClassName: HashMapExample
+ * @Description: map
  * @Company: 广州市两棵树网络科技有限公司
  * @Author: WangHonglin timo-wang@msyc.cc
- * @Date: 2018/2/2
+ * @Date: 2018/2/9
  */
-public class Test {
-    @org.junit.Test
-    public void test() throws Exception{
-        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
-        scheduledExecutorService.schedule(() -> {
-            System.out.println(1);
-        }, 1000, TimeUnit.SECONDS);
-    }
+public class MapExample {
 
-    public boolean test1() {
-        System.out.println(23 == 24);
-        return 23 == 24;
-    }
-
-    public boolean test2() {
-        System.out.println(23 == 23);
-        return 23 == 23;
-    }
-
-    @org.junit.Test
-    public void test3() {
-        long begin = System.nanoTime();
-        for (int i = 0; i <20000; i ++) {
-            int k = 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2;
-        }
-        long end = System.nanoTime();
-        // 715663
-        System.out.println(end - begin);
-    }
-
-    @org.junit.Test
-    public void test4() {
-        long begin = System.nanoTime();
-        for (int i = 0; i < 20000; i ++) {
-            int k = 1 >> 8;
-        }
-        long end = System.nanoTime();
-        // 715663
-        System.out.println(end - begin);
+    @Test
+    public void test() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("1", 1);
     }
 }

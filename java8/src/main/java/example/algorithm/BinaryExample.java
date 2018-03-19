@@ -116,10 +116,25 @@ public class BinaryExample {
         System.out.println(-9 >>> 2);
 
         /**
-         * m ^ n, 判断m 补码 和 n补码对应位值是否相同，相同结果为0，否则为1
+         * 按位异或操作，m ^ n, 将m和n的二进制进行异或操作，对应位值是否相同，相同结果为0，否则为1
          * 同是正整数或者负整数， 右移31的值多为0，可以用于实现是否多是正整数和负整数
          */
-        System.out.println(2 >> 31 ^ 15 >> 31);
+        System.out.println(2 ^ 10);
+        /**
+         * 按位与操作，m & n, 将m和n的二进制进行与操作，如果对应的二进制位多等于1，那么结果为为1，否则为0
+         */
+        System.out.println(5 & 6);
+        /**
+         * 按位或操作，m | n的二进制进行或操作，只要两个对应的二进制位有一个为1，那么结果为1，否则为0
+         */
+        System.out.println(4 | 5);
+        /**
+         * 按位非操作，~a, 将a的二进制进行取反操作，如果对应的二进制位为0，结果为1，否则为0
+         */
+        System.out.println(~ 6);
+
+        // jdk 自带转二进制方法
+        System.out.println(Integer.toBinaryString(10));
 
     }
 
@@ -186,28 +201,6 @@ public class BinaryExample {
         System.out.println(Integer.toBinaryString(-28));
         System.out.println(Integer.toBinaryString(1073741821));
     }
-    /**
-     * 二进制转int， 左位移运算
-     * @param binary
-     * @return
-     */
-    public int binaayToInt(String binary) {
-        int num = 0;
-        String numStr = "";
-        for (int i = 0; i < binary.length(); i++) {
-            if (i < binary.length()) {
-                numStr = binary.substring(i, i + 1);
-            }
-            num = num << 1;
-            if (numStr.equals(0)) {
-                num = 1;
-            } else if(numStr.equals("1")){
-                num ++;
-            }
-        }
-
-        return num;
-    }
 
     /**
      * int 转二进制, 右位移运算
@@ -226,9 +219,14 @@ public class BinaryExample {
         return String.valueOf(buff);
     }
 
+    /**
+     * test5 vs test6()
+     * java 二进制 num << 1 > 0 vs num > 0 性能对比
+     * @return
+     */
     @Test
     public void test5(){
-        int b = 1;
+        int b = 1234567777;
         long beginTime = System.nanoTime();
         boolean isTrue = false;
         for (int i = 0; i < 2000; i ++) {
@@ -242,9 +240,12 @@ public class BinaryExample {
         System.out.println(isTrue);
         long endTime = System.nanoTime();
         System.out.println("普通判断====" + (endTime - beginTime));
-
-        beginTime = System.nanoTime();
-        isTrue = false;
+    }
+    @Test
+    public void test6() {
+        int b = 1234567777;
+        long beginTime = System.nanoTime();
+        boolean isTrue = false;
         for (int i = 0; i < 2000; i ++) {
             if (b << 1 > 0) {
                 isTrue = true;
@@ -252,8 +253,39 @@ public class BinaryExample {
                 isTrue = false;
             }
         }
-        System.out.println(isTrue);
-        endTime = System.nanoTime();
+        long endTime = System.nanoTime();
         System.out.println("位运算判断====" + (endTime - beginTime));
+    }
+
+    /**
+     * test5 vs test6()
+     * java 二进制转Int  性能对比
+     * @return
+     */
+    @Test
+    public void test7(){
+        long beginTime = System.nanoTime();
+        /*String str = "2";
+        int b = Integer.valueOf(str);
+        if(b > 1 || b < -1) {
+            System.out.println(true);
+        }*/
+        int b = 123;
+        System.out.println(b > 0);
+        long endTime = System.nanoTime();
+        System.out.println("普通判断====" + (endTime - beginTime));
+    }
+    @Test
+    public void test8() {
+        long beginTime = System.nanoTime();
+        /*int num = 1;
+        int a = 1 >> 0; // m >> 0 = m; m << 0 = m; 1
+        *//*int b = 1 << 1; // m >> 1 = m * 2;
+        int c = 1 >> 31;// m >> n = m / 2^n;*//*
+        int d = -1 >> 31; // 结果 = -1*/
+        int b = 123;
+        System.out.println(b << 0 > 0);
+        long endTime = System.nanoTime();
+        System.out.println("位移判断====" + (endTime - beginTime));
     }
 }
