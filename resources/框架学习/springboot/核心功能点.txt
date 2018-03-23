@@ -1,0 +1,46 @@
+1：异常处理和自定义错误页面 27.1.11
+
+2：批量应用程序， 整合spring batch框架，大数据批处理  82
+
+3：执行器和自定义管理服务器端口，可以配置服务器端口访问的信息和权限等  83， 51.2
+
+80.数据库初始化
+80.1。使用JPA初始化数据库
+80.2。使用Hibernate初始化数据库
+80.3。初始化数据库
+80.4。初始化一个Spring批处理数据库
+80.5。使用更高级别的数据库迁移工具
+80.5.1。启动时执行Flyway数据库迁移
+80.5.2。在启动时执行Liquibase数据库迁移
+
+79.数据访问
+79.1。配置一个自定义数据源
+79.2。配置两个数据源
+79.3。使用Spring数据存储库
+79.4。Spring配置分离@实体定义
+79.5。配置JPA属性
+79.6。配置Hibernate命名策略
+79.7。使用自定义EntityManagerFactory
+79.8。使用两个EntityManagers
+79.9。使用传统persistence.xml文件
+79.10。使用Spring Data JPA和Mongo仓库
+79.11。将Spring数据存储库公开为REST端点
+79.12。配置由JPA使用的组件
+79.13。用两个数据源配置jOOQ
+
+77. HTTP客户端
+77.1。配置RestTemplate以使用代理记录
+78.1。配置Logback进行日志记录
+78.1.1。为纯文件输出配置Logback
+78.2。配置Log4j进行日志记录
+78.2.1。使用YAML或JSON配置Log4j 2
+
+76. Spring MVC
+76.1。编写一个JSON REST服务
+76.2。编写一个XML REST服务
+76.3。自定义Jackson ObjectMapper
+76.4。自定义@ResponseBody呈现
+76.5。处理多部分文件上传
+76.6。关闭Spring MVC DispatcherServlet
+76.7。关闭默认的MVC配置
+76.8。自定义ViewResolvers
