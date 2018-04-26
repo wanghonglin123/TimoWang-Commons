@@ -10,3 +10,9 @@ https://github.com/SpringCloud/spring-cloud-document
 https://github.com/chengzhx76/weixin-shop-spring-cloud
 https://github.com/changmingxie/tcc-transaction
 https://github.com/yu199195/Raincat
+
+canal，监听数据库记录变更
+https://github.com/liukelin/canal_mysql_nosql_sync
+
+分布式调度框架
+https://github.com/elasticjob/elastic-job-lite
