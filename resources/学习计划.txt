@@ -16,3 +16,6 @@ https://github.com/liukelin/canal_mysql_nosql_sync
 
 分布式调度框架
 https://github.com/elasticjob/elastic-job-lite
+
+// 抢购开源项目。码云开源网
+https://gitee.com/1028125449/miaosha/tree/master/
