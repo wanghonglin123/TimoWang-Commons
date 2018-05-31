@@ -19,3 +19,9 @@ https://github.com/elasticjob/elastic-job-lite
 
 // 抢购开源项目。码云开源网
 https://gitee.com/1028125449/miaosha/tree/master/
+
+// spark PDF
+http://vdisk.weibo.com/s/dpl9zOWD9mNOe?category_id=0...re&parents_ref=dpl9zOWD9mOh9
+
+// 远程工具，免费版
+// http://www.xt800.cn/download
