@@ -25,3 +25,24 @@ http://vdisk.weibo.com/s/dpl9zOWD9mNOe?category_id=0...re&parents_ref=dpl9zOWD9m
 
 // 远程工具，免费版
 // http://www.xt800.cn/download
+
+
+Lucene说白了，就是“建立索引，搜索索引”！！
+
+第一个开源的web搜索引擎Nutch也是就用Lucene的~~
+
+Lucene作为一个核心搜索库，并不提供任何功能来实现内容的获取。内容获取的实现完全依赖于你的应用程序或者一款其他软件。目前，有大量的开源爬虫软件可以实现这个功能，如：
+
+1,Solr：（http://lucene.apache.org/solr）Apache Lucene的子项目，支持从关系数据库和xml文档中提原始数据，以及能够通过集成Tika来处理复杂文档。
+
+2,Nutch：（http://lucene.apache.org/nutch）,另一个Apache Lucene子项目，它包含大规模的爬虫工具，能够抓取和分辨web站点数据。
+
+3,Grub：（http://www.grub.org）比较流行的开源web爬虫工具。
+
+4,Heritrix:（http://crawler.archive.org）是一款开源的Internate文档搜索程序
+
+5,Drods:是另一个Apache Lucene子项目
+
+6,Aperture：它支持从web站点，文件系统和邮箱中抓去，并解析和索引和其中的文本数据。
+
+7,google企业连接管理工程（http://code.google.com/p/google-enterprise-connector-manager）提供大量针对非web形式的内容连接方案。
