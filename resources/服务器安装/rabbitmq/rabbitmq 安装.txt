@@ -1,0 +1,10 @@
+1:sudo docker search rabbitmq:management
+2:sudo docker pull rabbitmq:management
+3:sudo docker run -d \
+>         --name rabbitmq \
+>         -p 15672:15672 \
+>         -p 5672:5672 \
+>         -e RABBITMQ_VHOST=whl \
+>         -e RABBITMQ_USER=whl\
+>         -e RABBITMQ_PASSWORD=123456 \
+>         rabbitmq:management
